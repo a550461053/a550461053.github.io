@@ -191,7 +191,11 @@ title: Tutorial of Hexo and Github web
 7. 添加评论
 	- 
 8. 添加打赏
-	- 
+	- 修改blog/themes/next/_config.yml
+	- reward_comment: 坚持原创技术分享，您的支持将鼓励我继续创作！
+	- wechatpay: /images/wechat.jpg
+	- alipay: /images/aipay.png
+	- 添加图片到next/source/images下即可
 9. 多终端同步：
 	- 在username.github.io下新建一个hexo分支
 		+ 在hexo的根目录下新建hexo分支
