@@ -28,6 +28,10 @@ title: Tutorial of Hexo and Github web
 	- vim 1.py
 2. 文件添加到版本库: 
 	- 添加到暂存区: git add 1.py
+		+ git add . # 仅添加修改的文件
+		+ git add -u # 添加修改或删除的文件，不包含新创建的文件
+		+ git add -A # 添加所有内容
+		+ git add -A . #添加所有经过修改的文件
 	- 文件提交到仓库: git commit -m "注释信息"
 	- 查看是否还有未提交的文件: git status
 	- 查看修改内容: git diff 1.py
@@ -208,5 +212,6 @@ title: Tutorial of Hexo and Github web
 		+ git push origin hexo  //更新分支
 		+ hexo d -g   //push更新完分支之后将自己写的博客对接到自己搭的博客网站上，同时同步了Github中的master
 	- 同步hexo：
-		+ 原来的终端：git pull
+		+ 原来的终端：git pull origin hexo
+		+ hexo d -g
 

@@ -1,3 +1,7 @@
+---
+title: Ubuntu管理日记
+---
+
 ## Ubuntu管理日记
 
 teamviewer: 647025111
