@@ -1,3 +1,6 @@
+---
+title: Tutorial of Hexo and Github web
+---
 # github blog
 
 ## github做blog方法比较
