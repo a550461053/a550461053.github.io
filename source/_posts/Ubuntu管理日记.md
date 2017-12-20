@@ -1,10 +1,6 @@
----
-title: Ubuntu管理日记
----
+# Ubuntu管理日记
 
-## Ubuntu管理日记
-
-teamviewer: 647025111
+## 酷炫Ubuntu
 
  - 开机时间：
 	 - uptime
@@ -12,11 +8,22 @@ teamviewer: 647025111
 - 开机密码：
 	+ sudo su第一次安装用户可以使用命令
 	+ 然后切换到root后：passwd，即可修改root密码
+- 忘记密码：
+	+ 重启，按住shift，选择adanced，进入recovery模式
+	+ mount -o rw,remount /
+	+ ls /home
+	+ passwd root
+	+ reboot
+
+- win+Ubuntu双系统：
+	+ 参见我的csdn：http://blog.csdn.net/a550461053/article/details/58822451
+
  - win与Ubuntu双系统启动顺序：
 	- 修改/etc/default/grub
 	- 定位到GRUB_DEFAULT=0
 	- 后面数字代表启动项位置-1，我的win7启动项在第4位，所以数字改为3
 	- sudo update-grub 更新启动列表
+
  - 减少等待时间：
 	- sudo gedit /etc/default/grub
 	- 修改TIMEOUT=1
@@ -27,6 +34,14 @@ teamviewer: 647025111
 	- sudo gedit /etc/sysctl.conf
 	- vm.swappiness=10 //添加
 
+- 查看CPU：
+	+ 物理cpu个数：cat /proc/cpuinfo | grep 'physical id' | sort | uniq | wc -l
+	+ 查看cpu几核：cat /proc/cpuinfo | grep 'cores' | uniq
+	+ 查看逻辑CPU: cat /proc/cpuinfo | grep 'processor' | wc -l
+	+ 结果为：1,4,4所以说逻辑也为1*4，也就不支持超线程
+- 快捷键：
+	+ vi的时候，使用ctrl+s会锁定屏幕，无法输入，使用ctrl+q解锁即可
+	+ 
  - 移动Unity所处位置：
     gsettings set com.canonical.Unity.Launcher launcher-position Bottom
 
@@ -38,19 +53,15 @@ teamviewer: 647025111
 	- 自启动在软件自己的设置里面
 	- 显示的内容可自定义
 
- - 安装vim，然后安装fish，更好的shell界面：
-	- sudo apt-get fish
-	- fish
- - 安装R:
-	- sudo apt-get install r-base
-	- R
-	- RStudio的安装;
  - 创建链接文件：软链接即可，可跨文件系统：ln -s 源文件 目标文件
  	- sudo ln -s /usr/local/anaconda3/bin/python /usr/bin/python
 	- 跨文件系统，需要自动mount ： sudo gedit /etc/fstab
 	- /dev/sda1 /media/win-C ntfs nls=utf8,umask=000   0   0
+
  - 创建桌面快捷方式：
 
+- 网卡的时候：
+	+ 一般是由于ipv6+ipv4混用造成的，把网络连接选项的ipv6选为ignore即可；但还是能够上ipv6~
 
  - 中文编码：locale查看支持的字符集
    - win下还是要使用sublime，不用txt打开文件。
@@ -71,6 +82,23 @@ teamviewer: 647025111
 	- ctrl+shift+t:新建标签页
 	- ctrl+shift+w:关闭标签页
 
+- 实时命令：
+	+ watch -n 30 fortune-zh #  fortune 每次执行都会随机说一句谚语、名言、电影台词等，当然都是英文的。
+
+- 开机自启动：
+	+ sudo gedit /etc/rc.local
+	+ 将要执行的命令添加在exit 0之前，即可自启动
+		+ guake $
+	+ 这种方法不是一个好的style，so：
+		1. 建立一个run_server.sh文件
+			# !/bin/bash
+			guake $
+		2. sudo chmod 755 run_server.sh
+		3. sudo cp run_server.sh /etc/init.d/
+		4. cd /etc/init.d/
+		5. sudo update-rc.d run_server defaults 90 # 数字90表示一个优先级，越高越晚执行
+		6. 若要移除该命令：sudo update-rc.d -f run_server.sh remove
+
  - dpkg -L packagename:查看安装位置
 
 - 修复U盘只读：
@@ -79,43 +107,6 @@ teamviewer: 647025111
 	+ tail -f /var/log/syslog 查看动态日志，找到所在分区
 	+ sudo dosfsck -v -a /dev/sdb4
 	+ Windows下式：chkdsk命令
-
- - wine-qq: sudo apt install wine; winetrick ; QQIntel
- 	- sudo add-apt-repository ppa:wine/wine-builds
- 	- sudo apt update
- 	- sudo apt-get install winehq-devel
- 	- 将wineQQ解压到~/下:
- 		- 下载: https://pan.baidu.com/share/link?shareid=923804833&uk=1397526986
- 		- tar xvf wineQQ8.9_19990.tar.xz -C ~/
- 		- 会提示安装wine的其他插件;
- 	- 启动qq即可
- 	- 卸载qq:
- 		- rm -rf ~/.wine
-		- rm -rf ~/.local/share/applications/wine-QQ.desktop
-		- rm -rf ~/.local/share/icons/hicolor/256x256/apps/QQ.png
-		- rm -rf ~/.fonts/simsun.ttc
-
- - VPN:
- 	- 服务器:
- 		- https://linghucong.js.org/2016/04/20/setup-Shadowsocks-on-ubuntu-1604/
- 	- 客户端:
- 		- 见: http://www.jeyzhang.com/how-to-install-and-setup-shadowsocks-client-in-different-os.html
- 		- sudo add-apt-repository ppa:hzwhuang/ss-qt5
-		- sudo apt-get update
- 		- sudo apt install shadowsocks-Qt5
- 		- UI界面
- 		- Address: 
- 			-  2001:19f0:7001:f96:5400:00ff:fe80:92a1
- 			- 没有ipv6的用:104.238.161.51
- 		- Port: 1234
- 		- password: luolvgen
-
-- 远程连接：
-	+ Ubuntu连接windows：
-		* 安装rdesktop：sudo apt install rdesktop
-		* rdesktop -f -a 16 10.10.4.42 -u Administrator -p 1qazZAQ!
-		* 连接不上，报错，可能是账户密码错误；或者就是没有开启宿机windows的远程管理，放开只能网络连接限制
-		* 或者使用Ubuntu自带的remote软件，都是使远程连接协议RDP
 
 - 下载加速:
 	- 安装uget:
@@ -150,19 +141,7 @@ teamviewer: 647025111
 	- wifi-Security页:
 		- 密码
 	- https://donjajo.com/creating-wi-fi-hotspot-in-ubuntu-visible-to-android-and-all-devices/#.WZPwVXWGNhE
-- wps:
-	- 卸载libreOffice:
-		- sudo apt-get remove libreoffice-common
-	- 删除Amazon连接:
-		- sudo apt-get remove unity-webapps-common
-	- 删除不常用软件: (先不删)
-		- sudo apt-get remove thunderbird totem rhythmbox empathy brasero simple-scan gnome-mahjongg aisleriot 
-		- sudo apt-get remove gnome-mines cheese transmission-common gnome-orca webbrowser-app gnome-sudoku  landscape-client-ui-install  
-		- sudo apt-get remove onboard deja-dup 
-	- 安装wps:
-		- 官网下载wps
-		- sudo dpkg -i wps-office_10.1.0.5672~a21_amd64.deb
-		- 若缺少依赖:sudo apt install -f
+
 
 - 画图工具:
 	- sudo apt-get install  kolourpaint4
@@ -187,8 +166,47 @@ teamviewer: 647025111
 		- 修改主题和图标:
 			- 打开unity工具, 修改主题即可
 
-- nvidia;
+
+## Ubuntu显示问题
+
+- 常见问题：
 	- 更新驱动: https://stackoverflow.com/questions/43016255/libegl-so-1-is-not-a-symbolic-link
+	- 配有英伟达显卡的主机，装完 Ubuntu 16.04 后出现闪屏现象，是由于没有安装显卡驱动。
+
+- NVIDIA安装过程
+ 安装NVIDIA Corporation GTX940
+	1. 驱动下载
+	从NVIDIA官网下载显卡对应的驱动安装文件
+	NVIDIA-Linux-x86_64-...run
+
+	2. 安装依赖
+		+ 卸载旧版本NVIDIA驱动，没有安装过也执行一下
+			* sudo apt remove --purge nvidia*
+		+ 安装依赖项：
+			* sudo apt update
+			* sudo apt install dkms build-essential linux-headers-generic
+		+ 将Ubuntu自带的nouveau驱动加入黑名单：
+			* sudo vi /etc/modprobe.d/blacklist-nouveau.conf
+			* 在文件 blacklist-nouveau.conf 中加入如下内容：
+				blacklist nouveau
+				blacklist lbm-nouveau
+				options nouveau modeset=0
+				alias nouveau off
+				alias lbm-nouveau off
+		+ 禁用 nouveau 内核模块:
+			* echo options nouveau modeset=0 | sudo tee -a /etc/modprobe.d/nouveau-kms.conf
+			* sudo update-initramfs -u
+		+ 重启：reboot
+	3. 开始安装驱动：
+		- 上一步重启后要直接按ctrl+alt+F1进入字符终端界面
+		- 关闭图形界面：
+			+ sudo service lightdm stop
+		- 安装驱动：
+			+ sudo chmod u+x NVIDIA-Linux-x86_64-361.45.11.run
+			+ sudo ./NVIDIA-Linux-x86_64-361.45.11.run
+		- 重启：reboot
+	4. 安装完毕
+
 
 - 黑屏问题：
 	+ 开机按住shift即可进入grub系统引导界面
@@ -200,8 +218,79 @@ teamviewer: 647025111
 		* 重启，即可。
 	+ 如果是双系统，通过win的easyBCD恢复启动引导：http://blog.csdn.net/u010099080/article/details/52275502
 	+ 如果是单系统，通过制作Ubuntu修复盘：https://help.ubuntu.com/community/Boot-Repair
-	+ 
+- 主动灭屏：
+	+ gnome-screensaver-command -a
+	+ xset dpms force off
+	+ 都行：可以添加为启动器
 
+- xorg进行：
+	+ 是linux图形界面的基本模式，关了的话，图形界面就用不了。
+	+ 进入tty1，然后查看xorg的id
+	+ ps -t tty7
+	+ kill id即可
+	+ xorg会自动重启
+
+
+## 常用软件安装
+
+- 非root用户安装软件：
+	1. 获取源代码，一般是wget方式，ubuntu可以使用apt-get source来获取源代码。
+	2. 解压源代码，一般使用tar -zxvf xxx.tar.gz即可
+	3. 切换到解压后的目录，运行 ./configure。其选项可以通过 ./configure –help来获取，非root用户下最重要的应该是定义安装目录，即应该定义 ./configure –prefix=/path/to/bin， 对于一些依赖库，可能还需要使用 ./configure  –prefix=xxx –with-xx-dir=xxx这种形式。
+	4. 接着是编译源代码和安装软件： make &&  make install。这两条命令可以分开来用，因为编译的时候可以指定参数 -j来并行编译，这样能够加快编译进度。。
+	5. 更新path路径。使用export PATH=/path/to/bin:$PATH，这句话在shell窗口运行只在本次会话中有效，可以将其写到.bashrc或者.bash_profile里面使其对当前用户有效。
+	6.如果安装的是动态链接库，则需要更新动态链接库路径： export LD_LIBRARY_PATH=/path/to/library:$LD_LIBRARY_PATH，同样是export命令，最好将其写在.bashrc这类文件下面以便登陆的时候自动调用。
+	
+
+- 打包apt安装包:
+	- 下载安装包: sudo apt download openssh-server
+	- 下载需要依赖: sudo apt build-dep --download-only -o dir::cache=/home/yuziqi/Download/myinstaller openssh-server
+	- 下载额外的依赖: sudo apt download openssh-sftp-server openssh-client
+	- 给所有文件权限: sudo chmod 777 *
+	- 安装: sudo dpkg -i *.deb
+
+ - pip：pip安装：pip install package
+ 	- sudo apt install python-pip
+ 	- sudo pip uninstall docker-compose
+ 	- sudo pip install --upgrade pip 升级pip
+ 	- sudo apt-get -f install 修复安装
+ 	- sudo apt-get upgrade升级已经安装的包
+ 	- sudo apt  dist-upgrade 升级系统
+ 	- 二进制包安装的方式，卸载直接rm即可
+- apt-get 安装的包是系统化的包，在系统内完全安装。源是ubuntu仓库。pip install安装的python包，可以只安装在当前工程内。且源是pyPI和ubuntu仓库。
+
+- 修改源:
+	- sudo vim /etc/apt/source.list
+	- 添加: https://mirrors.ustc.edu.cn/repogen/
+	deb https://ipv6.mirrors.ustc.edu.cn/ubuntu/ xenial main restricted universe multiverse
+	deb-src https://ipv6.mirrors.ustc.edu.cn/ubuntu/ xenial main restricted universe multiverse
+
+	deb https://ipv6.mirrors.ustc.edu.cn/ubuntu/ xenial-security main restricted universe multiverse
+	deb-src https://ipv6.mirrors.ustc.edu.cn/ubuntu/ xenial-security main restricted universe multiverse
+
+	deb https://ipv6.mirrors.ustc.edu.cn/ubuntu/ xenial-updates main restricted universe multiverse
+	deb-src https://ipv6.mirrors.ustc.edu.cn/ubuntu/ xenial-updates main restricted universe multiverse
+
+	deb https://ipv6.mirrors.ustc.edu.cn/ubuntu/ xenial-backports main restricted universe multiverse
+	deb-src https://ipv6.mirrors.ustc.edu.cn/ubuntu/ xenial-backports main restricted universe multiverse	
+	- 更新源: sudo apt-get update
+	- 更新系统: sudo apt-get upgrade
+
+- PPA，表示 Personal Package Archives，也就是个人软件包集。
+
+- wps:
+	- 卸载libreOffice:
+		- sudo apt-get remove libreoffice-common
+	- 删除Amazon连接:
+		- sudo apt-get remove unity-webapps-common
+	- 删除不常用软件: (先不删)
+		- sudo apt-get remove thunderbird totem rhythmbox empathy brasero simple-scan gnome-mahjongg aisleriot 
+		- sudo apt-get remove gnome-mines cheese transmission-common gnome-orca webbrowser-app gnome-sudoku  landscape-client-ui-install  
+		- sudo apt-get remove onboard deja-dup 
+	- 安装wps:
+		- 官网下载wps
+		- sudo dpkg -i wps-office_10.1.0.5672~a21_amd64.deb
+		- 若缺少依赖:sudo apt install -f
 - sublime:
 	 - sublime3安装:
 	     sudo add-apt-repository ppa:webupd8team/sublime-text-3
@@ -221,13 +310,13 @@ teamviewer: 647025111
 
  - sogoupinyin:sudo dpkg -i ./sogoupinyin....deb
  	+ 设置里面的语言支持+text entry设置输入法
-    缺少依赖,用：sudo apt-get -f install 下面不要也可以，重启即可～
-    还是不行：sudo apt-get purge fcitx; 清理文件，包括配置文件 
-    重启 - dpkg -i sogou..deb ; sudo apt-get -f install ; 重启
-    还是搜狗的用着舒服～～～
-    - 搜狗很容易出问题: 
-    	- 就是回车+分号同时按的时候
-    	- 此时: 运行一下fictx即可
+ 	+ 缺少依赖,用：sudo apt-get -f install 下面不要也可以，重启即可～
+ 	+ 还是不行：sudo apt-get purge fcitx; 清理文件，包括配置文件 
+ 	+ 重启 - dpkg -i sogou..deb ; sudo apt-get -f install ; 重启
+ 	+ 还是搜狗的用着舒服～～～
+    	+ 搜狗很容易出问题: 
+    	 	+ 就是回车+分号同时按的时候
+    	 	+ 此时: 运行一下fictx即可
 
 - youdao-dict:
 	- sudo dpkg -i ./youdao-dict.deb
@@ -253,6 +342,22 @@ teamviewer: 647025111
 	XAka34A2rVRYJ4XBIU35UZMUEEF64CMMIYZCK2FZZUQNODEKUHGJLFMSLIQMQUCUBXRENLK6NZL37JXP4PZXQFILMQ2RG5R7G4QNDO3PSOEUBOCDRYSSXZGRARV6MGA33TN2AMUBHEL4FXMWYTTJDEINJXUAV4BAYKBDCZQWVF3LWYXSDCXY546U3NBGOI3ZPAP2SO3CSQFNB7VVIY123456789012345
 	- 补充内容 (2017-5-30 09:49):
 	另外，激活之前在 修改hosts文件添加  "127.0.0.1 www.xmind.net" 防止软件联网验证序列号
+
+ - wine-qq: sudo apt install wine; winetrick ; QQIntel
+ 	- sudo add-apt-repository ppa:wine/wine-builds
+ 	- sudo apt update
+ 	- sudo apt-get install winehq-devel
+ 	- 将wineQQ解压到~/下:
+ 		- 下载: https://pan.baidu.com/share/link?shareid=923804833&uk=1397526986
+ 		- tar xvf wineQQ8.9_19990.tar.xz -C ~/
+ 		- 会提示安装wine的其他插件;
+ 	- 启动qq即可
+ 	- 卸载qq:
+ 		- rm -rf ~/.wine
+		- rm -rf ~/.local/share/applications/wine-QQ.desktop
+		- rm -rf ~/.local/share/icons/hicolor/256x256/apps/QQ.png
+		- rm -rf ~/.fonts/simsun.ttc
+
 - labelme:
 	- 安装python版本的:
 	- sudo apt-get install python-qt4 pyqt4-dev-tools
@@ -262,7 +367,34 @@ teamviewer: 647025111
 	- 运行: labelme
 
 
+- 安装vim，然后安装fish，更好的shell界面：
+	- sudo apt-get fish
+	- fish
 
+- 安装R:
+	- sudo apt-get install r-base
+	- R
+	- RStudio的安装;
+- gcc: 
+	- gcc降级:
+		    sudo apt-get install g++-4.9
+		    sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.9 20
+		    sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-5 10
+		    sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.9 20
+		    sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-5 10
+		    sudo update-alternatives --install /usr/bin/cc cc /usr/bin/gcc 30
+		    sudo update-alternatives --set cc /usr/bin/gcc
+		    sudo update-alternatives --install /usr/bin/c++ c++ /usr/bin/g++ 30
+		    sudo update-alternatives --set c++ /usr/bin/g++
+    	- gcc恢复:
+		    sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.9 10
+		    sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-5 20
+		    sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.9 10
+		    sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-5 20
+		    sudo update-alternatives --install /usr/bin/cc cc /usr/bin/gcc 30
+		    sudo update-alternatives --set cc /usr/bin/gcc
+		    sudo update-alternatives --install /usr/bin/c++ c++ /usr/bin/g++ 30
+		    sudo update-alternatives --set c++ /usr/bin/g++
  - docker：
  	- sudo apt-get install docker.io
  	- docker version ; 只显示client 1.12.6
@@ -279,51 +411,16 @@ teamviewer: 647025111
  		- sudo apt-get remove docker.io
  		- sudo apt-get remove docker-compose
 
-- alias:
-	- 临时: alias xmind='XMind'
-	- 永久: 保存在.bashrc或其他文件下
-
- - cp：cp 待复制文件 新文件
- 	- cp -r 待复制文件夹 新文件夹
-
- - pip：pip安装：pip install package
- 	- sudo apt install python-pip
- 	- sudo pip uninstall docker-compose
- 	- sudo pip install --upgrade pip 升级pip
- 	- sudo apt-get -f install 修复安装
- 	- sudo apt-get upgrade升级已经安装的包
- 	- sudo apt  dist-upgrade 升级系统
- 	- 二进制包安装的方式，卸载直接rm即可
-- apt-get 安装的包是系统化的包，在系统内完全安装。源是ubuntu仓库。
- pip install安装的python包，可以只安装在当前工程内。且源是pyPI和ubuntu仓库。
-- 修改源:
-	- sudo vim /etc/apt/source.list
-	- 添加: https://mirrors.ustc.edu.cn/repogen/
-	deb https://ipv6.mirrors.ustc.edu.cn/ubuntu/ xenial main restricted universe multiverse
-	deb-src https://ipv6.mirrors.ustc.edu.cn/ubuntu/ xenial main restricted universe multiverse
-
-	deb https://ipv6.mirrors.ustc.edu.cn/ubuntu/ xenial-security main restricted universe multiverse
-	deb-src https://ipv6.mirrors.ustc.edu.cn/ubuntu/ xenial-security main restricted universe multiverse
-
-	deb https://ipv6.mirrors.ustc.edu.cn/ubuntu/ xenial-updates main restricted universe multiverse
-	deb-src https://ipv6.mirrors.ustc.edu.cn/ubuntu/ xenial-updates main restricted universe multiverse
-
-	deb https://ipv6.mirrors.ustc.edu.cn/ubuntu/ xenial-backports main restricted universe multiverse
-	deb-src https://ipv6.mirrors.ustc.edu.cn/ubuntu/ xenial-backports main restricted universe multiverse	
-	- 更新源: sudo apt-get update
-	- 更新系统: sudo apt-get upgrade
-PPA，表示 Personal Package Archives，也就是个人软件包集。
-
 - golang：
 	- 下载: sudo wget https://storage.googleapis.com/golang/go1.7.4.linux-amd64.tar.gz
-	- 解压后, 复制到GOROOT目录下
+	- 解压后, 复制到GOROOT目录下:sudo cp -r go/ /usr/lib/
 	- export GOROOT=/usr/lib/go
 	- export GORACH=amd64
 	- export GOOS=linux
 	- export PATH=${PATH}:$GOROOT/bin
 	- export GOPATH=$HOME/project/go #工作目录，至少包含bin/pkg/src
 	- 32位则rach=386；win则改goos=windows
-当你运行go build测试你的chaincode编译时，Go将在$GOPATH/src目录中查找你在importchaincode 的块中列出的非标准依赖。
+	当你运行go build测试你的chaincode编译时，Go将在$GOPATH/src目录中查找你在importchaincode 的块中列出的非标准依赖。
 
 	- 必须新建：$GOPATH/src/go/github.com/hyperledger/
 	- 必须新建：$GOROOT/src/go/github.com/hyperledger/
@@ -335,104 +432,39 @@ PPA，表示 Personal Package Archives，也就是个人软件包集。
 	- sudo -E go env保持当前用户下的环境变量，以root身份执行命令
 	- sudo -E go install hello
 	- su 一个用户； 或者sudo su；都是临时登录，所以/etc/profile对其无效，是用户变量，只对登录的所有用户有效，而/etc/environment为系统变量，对系统有效；
-- 查看系统：lscpu
-- 关闭防火墙：sudo ufw status ; sudo ufw disable;
+	- 卸载go：
+		+ sudo apt remove golang-go
+		+ sudo apt remove --auto-remove golang-go
+		+ source ~/.bashrc # 使生效
+		+ 
 
-- gcc: 
-	- gcc降级:
-    sudo apt-get install g++-4.9
-    sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.9 20
-    sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-5 10
-    sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.9 20
-    sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-5 10
-    sudo update-alternatives --install /usr/bin/cc cc /usr/bin/gcc 30
-    sudo update-alternatives --set cc /usr/bin/gcc
-    sudo update-alternatives --install /usr/bin/c++ c++ /usr/bin/g++ 30
-    sudo update-alternatives --set c++ /usr/bin/g++
-    	- gcc恢复:
-    sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.9 10
-    sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-5 20
-    sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.9 10
-    sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-5 20
-    sudo update-alternatives --install /usr/bin/cc cc /usr/bin/gcc 30
-    sudo update-alternatives --set cc /usr/bin/gcc
-    sudo update-alternatives --install /usr/bin/c++ c++ /usr/bin/g++ 30
-    sudo update-alternatives --set c++ /usr/bin/g++
-    
-- 端口冲突：
-	- fuser 3000/tcp
-	- kill 28597
-	
-- windows复制文件到Linux
-    1.Linux服务器：XFTP方式（建立连接） 或 远程工具XSHELL（登录直接yum安装） 或 Linux安装samba服务器
-    2.Linux虚拟机：XFTP方式（虚拟与实体） 或 利用VMTOOL工具直接拖拽（安装的操作系统版本很新，都是Vmware的版本比较老，晚于操作系统出来）
+- pycharm安装：
+	1. 获取pycharm.tar.gz
+	2. cp pycharm.tar.gz ~/software/
+	3. tar -zxvf pycharm.tar.gz
+	4. ./bin/pycharm.sh
+	5. 创建desktop:
+		- sudo vi /usr/share/applications/pycharm.desktop
+			[Desktop Entry]
+			Encoding=UTF-8
+			Type=Application
+			Name=pycharm //程序名称, 必选
+			GenericName=Pycharm3 
+			Comment=Pycharm-edu-3.5.1:The Python IDE //程序描述, 可选
+			Exec="/home/yuziqi/software/pycharm/pycharm-edu-3.5.1/bin/pycharm.sh" %f //程序启动命令, 必选
+			Icon=/home/yuziqi/software/pycharm/pycharm-edu-3.5.1/bin/pycharm.png //程序图标. 可选
+			Terminal=false // 是否在终端运行, 可选
+			Categories=Application;Development; // 注明在菜单栏中显示的类别, 可选
+					- sudo chmod +x /usr/share/applications/pycharm.desktop
+					- cp /usr/chare/applications/pycharm.desktop ~/Desktop/
 
-- Samba：根据SMB协议实现的，主要用于Windows和Linux之间共享资源
-    1.安装samba：sudo apt-get install samba
-        修改配置文件：vi /etc/samba/smb.conf  的global加入：usershare owner only=false
-        sudo chmod 777 myshare
-    2.右键文件夹选择共享文件
-    3.在windows的地址栏输入：`\\ip（Linux的ip）`
-    4.win10的解决方案：
-    	0. win+R；services.msc，找到workstation服务，停止后再启动；
-    	1，Windows10（作为客户端）无法访问其它服务器上共享出来的目录
-			1，打开注册表编辑器（运行regedit并回车）；
-			2，展开HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\LanmanWorkstation\Parameters，右击Parameters，选择“新建”-“DWORD (32位)值”，名称为AllowInsecureGuestAuth，并且将该值设置为1，保持默认的16进制不变。
-			立即生效：任务管理器杀掉explorer.exe，然后在新建explorer任务；
-		2，Windows10（作为服务端）的共享目录，在其它服务器上无法访问
-			1，打开控制面板\网络和 Internet\网络和共享中心\高级共享设置；
-			2，找到“所有网络”下面的“密码保护的共享”，选择“关闭密码保护共享”。
-	5. 记得把虚拟记得设置：共享启用；
-
-- 使用bash命令：
-	+ bash a.sh
-	+ sh sbin/start-all.sh
-	+ . sbin/start-all.sh
-
-- Linux只存在只读权限：
-	+ 切换root用户，w！，或者直接chmod增加读写
-	+ 不切换root：:w !sudo tee %
-		* ！： 表示执行外部命令
-		* tee： linux命令，这个有点复杂
-		%：在执行外部命令时，%会扩展成当前文件名；这个%区别于替换时的%，替换时%的意义是代表整个文件，而不是文件名
-
-- 映射便捷操作：
-	+ 把长串的命令映射为一个简单的命令，添加到.vimrc中：
-	+ " Allow saving of files as sudo when I forgot to start vim using sudo.
- 	cmap w!! w !sudo tee > /dev/null %
- 	+ 命令后半部分> /dev/null 是为显式的丢掉标准输出的内容。
-
-- 修改用户：
-	+ root登录
-	+ vim /etc/passwd
-	+ vim /etc/group
-	+ vim /etc/gshadow
-	+ vim /etc/shadow
-	+ mv /home/olduser 为 /home/newuser :其下所有的文件所属用户和用户组都自动修改好，不需要自己手动用chown -R修改。
-	+ 重启
-	+ vim /etc/sudoers
-		* 前chmod u+w /etc/sudoers 
-		* 后chmod u-w /etc/sudoers
-
-- 打包apt安装包:
-	- 下载安装包: sudo apt download openssh-server
-	- 下载需要依赖: sudo apt build-dep --download-only -o dir::cache=/home/yuziqi/Download/myinstaller openssh-server
-	- 下载额外的依赖: sudo apt download openssh-sftp-server openssh-client
-	- 给所有文件权限: sudo chmod 777 *
-	- 安装: sudo dpkg -i *.deb
-
-- IP网络配置:
-	sudo gedit /etc/network/interfaces
-	# net for xingongsuo
-	# auto ens33
-	iface ens33 inet static
-	address 10.10.28.102 
-	netmask 255.255.254.0
-	gateway 10.10.28.1
+- linux系统read only file system：
+	+ mount -o remount, rw /
+	+ 再改回只读：mount -o ro, remount /
 
 - dia工具:
 	- sudo apt install dia
-	- dia
+	- dia  # 画图
 - xmind工具:
 	- 由于提前安装了其他xmind, 
 		- 不删除配置:
@@ -448,7 +480,7 @@ PPA，表示 Personal Package Archives，也就是个人软件包集。
 	- sudo update-mime-database /usr/share/mime
 	- sudo dpkg -i xmind-7.5-linux_amd64.deb
 
-
+ 
 - Atom:
 	- Google开发的文本编辑器
 
@@ -499,7 +531,10 @@ PPA，表示 Personal Package Archives，也就是个人软件包集。
 	       -p, --preserve-permissions
 	       -v, --verbose
 	       -z, --gzip
-
+-zip：
+	+ tar速度快，但只是一个打包工具，不负责压缩
+	+ 压缩：zip -r a.zip directory
+	+ 解压：unzip a.zip
 
 - 配置python3-GAN项目环境:
 	- sudo apt purge mysql-server
@@ -553,40 +588,262 @@ python3:
 	- radhat或centos存在：/etc/redhat-release 这个文件
 	- debian或ubuntu 存在 /etc/debian_version 这个文件
 
+- unity:
+	+ 恢复：unity --reset
+	+ reboot
+
 - 安装xgboost：
 
 
-- 非root用户安装软件：
-	1. 获取源代码，一般是wget方式，ubuntu可以使用apt-get source来获取源代码。
-	2. 解压源代码，一般使用tar -zxvf xxx.tar.gz即可
-	3. 切换到解压后的目录，运行 ./configure。其选项可以通过 ./configure –help来获取，非root用户下最重要的应该是定义安装目录，即应该定义 ./configure –prefix=/path/to/bin， 对于一些依赖库，可能还需要使用 ./configure  –prefix=xxx –with-xx-dir=xxx这种形式。
-	4. 接着是编译源代码和安装软件： make &&  make install。这两条命令可以分开来用，因为编译的时候可以指定参数 -j来并行编译，这样能够加快编译进度。。
-	5. 更新path路径。使用export PATH=/path/to/bin:$PATH，这句话在shell窗口运行只在本次会话中有效，可以将其写到.bashrc或者.bash_profile里面使其对当前用户有效。
-	6.如果安装的是动态链接库，则需要更新动态链接库路径： export LD_LIBRARY_PATH=/path/to/library:$LD_LIBRARY_PATH，同样是export命令，最好将其写在.bashrc这类文件下面以便登陆的时候自动调用。
-	
-- install pycharm
-	1. 获取pycharm.tar.gz
-	2. cp pycharm.tar.gz ~/software/
-	3. tar -zxvf pycharm.tar.gz
-	4. ./bin/pycharm.sh
-	5. 创建desktop:
-		- sudo vi /usr/share/applications/pycharm.desktop
-[Desktop Entry]
-Encoding=UTF-8
-Type=Application
-Name=pycharm //程序名称, 必选
-GenericName=Pycharm3 
-Comment=Pycharm-edu-3.5.1:The Python IDE //程序描述, 可选
-Exec="/home/yuziqi/software/pycharm/pycharm-edu-3.5.1/bin/pycharm.sh" %f //程序启动命令, 必选
-Icon=/home/yuziqi/software/pycharm/pycharm-edu-3.5.1/bin/pycharm.png //程序图标. 可选
-Terminal=false // 是否在终端运行, 可选
-Categories=Application;Development; // 注明在菜单栏中显示的类别, 可选
-		- sudo chmod +x /usr/share/applications/pycharm.desktop
-		- cp /usr/chare/applications/pycharm.desktop ~/Desktop/
+
+## 常用命令
+
+- 使用bash命令：
+	+ bash a.sh
+	+ sh sbin/start-all.sh
+	+ . sbin/start-all.sh
+
+- Linux只存在只读权限：
+	+ 切换root用户，w！，或者直接chmod增加读写
+	+ 不切换root：:w !sudo tee %
+		* ！： 表示执行外部命令
+		* tee： linux命令，这个有点复杂
+		%：在执行外部命令时，%会扩展成当前文件名；这个%区别于替换时的%，替换时%的意义是代表整个文件，而不是文件名
+
+- 映射便捷操作：
+	+ 把长串的命令映射为一个简单的命令，添加到.vimrc中：
+	+ " Allow saving of files as sudo when I forgot to start vim using sudo.
+ 	cmap w!! w !sudo tee > /dev/null %
+ 	+ 命令后半部分> /dev/null 是为显式的丢掉标准输出的内容。
+
+- 修改用户：
+	+ root登录
+	+ vim /etc/passwd
+	+ vim /etc/group
+	+ vim /etc/gshadow
+	+ vim /etc/shadow
+	+ mv /home/olduser 为 /home/newuser :其下所有的文件所属用户和用户组都自动修改好，不需要自己手动用chown -R修改。
+	+ 重启
+	+ vim /etc/sudoers
+		* 前chmod u+w /etc/sudoers 
+		* 后chmod u-w /etc/sudoers
+- alias:
+	- 临时: alias xmind='XMind'
+	- 永久: 保存在.bashrc或其他文件下
+
+ - cp：cp 待复制文件 新文件
+ 	- cp -r 待复制文件夹 新文件夹
+
+- 查看系统信息：
+	- 查看系统：lscpu
+	- 查看显卡：lspci | grep VGA
+	- 查看GPU使用：
+		+ nvidia-smi
+		+ 推荐工具：
+			* pip install gpustat
+			* watch --color -n1 gpustat -cpu # 动态实时监控GPU使用情况
+	- 查看nvidia芯片：
+		+ lspci | grep -i nvidia
+	- 实时查看显存信息：
+		+ whatis watch # 周期性的执行某一条命令，并输出全屏显示
+		+ watch -n 10 command # 每10s执行一次command
+		+ watch -n 10 nvidia-smi
 
 
+## 网络：远程控制+文件共享
 
-# shell:
+- 关闭防火墙：sudo ufw status ; sudo ufw disable;
+
+- 端口冲突：
+	- fuser 3000/tcp
+	- kill 28597    
+
+- VPN:
+ 	- 服务器:
+ 		- https://linghucong.js.org/2016/04/20/setup-Shadowsocks-on-ubuntu-1604/
+ 	- 客户端:
+ 		- 见: http://www.jeyzhang.com/how-to-install-and-setup-shadowsocks-client-in-different-os.html
+ 		- sudo add-apt-repository ppa:hzwhuang/ss-qt5
+		- sudo apt-get update
+ 		- sudo apt install shadowsocks-Qt5
+ 		- UI界面
+ 		- Address: 
+ 			-  2001:19f0:7001:f96:5400:00ff:fe80:92a1
+ 			- 没有ipv6的用:104.238.161.51
+ 		- Port: 1234
+ 		- password: luolvgen
+
+- 远程连接：
+	+ Ubuntu连接windows：
+		* 安装rdesktop：sudo apt install rdesktop
+		* rdesktop -f -a 16 10.10.4.42 -u Administrator -p 1qazZAQ!
+		* 连接不上，报错，可能是账户密码错误；或者就是没有开启宿机windows的远程管理，放开只能网络连接限制
+		* 或者使用Ubuntu自带的remote软件，都是使远程连接协议RDP
+	+ 进行文件传输：
+		* 将本地文件挂载到服务器运行：
+		* rdesktop 10.10.4.42 -r sound:local -r disk://batista=/home/yuziqi/project/
+		* batista为服务器上虚拟盘符的地址名称，
+		* -r sound:local这个虽然看起来无所谓，但是有bug，最好还是要加上
+	+ 支持复制粘贴：
+		* rdesktop  -f -a 16 10.10.4.42 -u Administrator -p 1qazZAQ! -r clipboard:PRIMARYCLIPBOARD -r disk://batista=/home/yuziqi/project/
+	+ 远程linux之间传输：
+		* scp也就是secure copy，是linux下基于ssh登录进行安全的远程文件拷贝命令
+		* 前提：sudo apt install ssh
+		* scp 参数 源路径 目标路径
+		* 本地到远程：scp local_file -r remote_username@remote_ip:remote_folder
+			- 加了remote_username需要输入密码，不加则需要输入用户名和密码
+		* 远程到本地：scp root@192.168.120.204:/opt/soft/a.tar.gz /opt/soft/
+
+- windows复制文件到Linux
+    1.Linux服务器：XFTP方式（建立连接） 或 远程工具XSHELL（登录直接yum安装） 或 Linux安装samba服务器
+    2.Linux虚拟机：XFTP方式（虚拟与实体） 或 利用VMTOOL工具直接拖拽（安装的操作系统版本很新，都是Vmware的版本比较老，晚于操作系统出来）
+    	- 点击虚拟机-安装tools-复制到虚拟机的一个位置-解压后:
+    	- sudo ./vmware-install.py
+    	- 一路回车到底
+    	- 重启虚拟机即可
+
+- Samba：根据SMB协议实现的，主要用于Windows和Linux之间共享资源
+    1.安装samba：sudo apt-get install samba
+        修改配置文件：vi /etc/samba/smb.conf  的global加入：usershare owner only=false
+        sudo chmod 777 myshare
+    2.右键文件夹选择共享文件
+    3.在windows的地址栏输入：`\\ip（Linux的ip）`
+    4.win10的解决方案：
+    	0. win+R；services.msc，找到workstation服务，停止后再启动；
+    	1，Windows10（作为客户端）无法访问其它服务器上共享出来的目录
+			1，打开注册表编辑器（运行regedit并回车）；
+			2，展开HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\LanmanWorkstation\Parameters，右击Parameters，选择“新建”-“DWORD (32位)值”，名称为AllowInsecureGuestAuth，并且将该值设置为1，保持默认的16进制不变。
+			立即生效：任务管理器杀掉explorer.exe，然后在新建explorer任务；
+		2，Windows10（作为服务端）的共享目录，在其它服务器上无法访问
+			1，打开控制面板\网络和 Internet\网络和共享中心\高级共享设置；
+			2，找到“所有网络”下面的“密码保护的共享”，选择“关闭密码保护共享”。
+	5. 记得把虚拟记得设置：共享启用；
+
+
+- IP网络配置:
+	sudo gedit /etc/network/interfaces
+	# net for xingongsuo
+	# auto ens33
+	iface ens33 inet static
+	address 10.10.28.102 
+	netmask 255.255.254.0
+	gateway 10.10.28.1
+- 关闭其他网络：
+	+ sudo ifconfig docker0 down
+
+- Busybox：
+	+ linux工具里的瑞士军刀
+	+ 集成压缩了linux的工具和命令，用来创建可引导的Linux急救系统
+	+ busybox ls
+
+- Ubuntu开启telnet功能：
+	+ sudo apt install openbsd-inetd xinetd telnetd
+	+ 修改/etc/inetd.conf添加一行：telnet stream tcp nowait telnetd /usr/sbin/tcpd /usr/sbin/in.telnetd
+	+ 修改/etc/xinetd.conf,添加：
+		* instances=60
+		* log_type=SYSLOG authpriv
+		* log_on_success=HOST PID
+		* log_on_failure=HOST
+		* cps=25 30
+	+ 编辑/etc/xinetd.d/telnet文件：
+		# default: on   
+		# description: The telnet server serves telnet sessions; it uses \   
+		# unencrypted username/password pairs for authentication.   
+		service telnet   
+		{   
+		disable = no   
+		flags = REUSE   
+		socket_type = stream   
+		wait = no   
+		user = root   
+		server = /usr/sbin/in.telnetd   
+		log_on_failure += USERID   
+		}
+	+ 重启机器或网络：
+		* sudo /etc/init.d/xinetd restart 
+	+ 测试：
+		* 查看telnet运行状态：netstat -a | grep telnet
+		* 登录127.0.0.1：
+			- telnet localhost
+			- ok
+
+- Ubuntu建立apache服务器：
+	+ sudo apt install apache2 -y
+	+ sudo service apache2 start
+	+ 默认目录在：/var/www/html
+	+ 目标用户下载：wget http://192.168.1.2/mirai.mips
+
+- ubuntu 开启ftp服务器：
+	+ sudo apt install tftpd-hpa
+	+ vi /etc/default/tftpd-hpa
+		TFTP_USERNAME="tftp"
+		TFTP_DIRECTORY="/tftpboot"
+		TFTP_ADDRESS="0.0.0.0:69"
+		TFTP_OPTIONS="--secure --create"
+	+ mkdir /tftpd-hpa
+	+ chmod 777 -R /tftpd-hpa
+	+ chown tftp:nogroup -R /srv/tftpboot/  # 不用也可以
+	+ service tftpd-hpa restart
+	+ 测试：
+		* netstat -a | grep tftp
+		* echo 'test tftp' > /tftpboot/test
+		* tftp localhost
+		* get test
+		* quit
+		* busybox中：tftp -g -r mirai.mips 192.168.1.140  #
+			- -g表示下载文件get
+			- -p表示上传文件put
+			- -l表示本地文件名local file
+			- -r表示远程主机的文件名remote file
+
+- Ubuntu搭建私有DNS：
+	+ DNS：域名系统
+		* DNS使用TCP和UDP端口53
+		* FQDN：完全限定域名
+		* SOA：start of authority起始授权记录，一个区域zone的解析库中有且只能有一条SOA记录，必须为解析库中的第一条记录，定义主DNS服务器地址和相关事件时间定义。
+		* A：实现FQDN ==> IP 
+		* MX：标明提供邮件服务的主机
+		* NS：标明当前域内的DNS服务器
+		* AAAA：FQDN ==> IPv6
+		* CNAME：Canonical Name，别名记录
+			- www IN A example.com  # 用户访问example.com的时候也会产生www.example.com效果
+		* PTR：IP ==> FQDN
+	+ 安装bind9：sudo apt install bind9
+		* sudo apt install bind9-host dnsutils
+		* sudo apt install bind9-doc
+	+ 配置bind：
+		* 添加一个zone：
+			- sudo gedit /etc/bind/named.conf.local
+				+ zone "example.com" {type master; file "/etc/bind/db.example.com"}
+				+ 正向区域
+				+ zone "168.192.in-addr.arpa" {type master; file "/etc/bind/db.168.192"}
+				+ 反向区域（ 反向区域名称以“168.192”，这是“192.168”的八位逆转开始 ）
+			- 正向：
+				+ sudo cp db.local db.example.com
+				+ sudo gedit /etc/bind/db.example.com
+				+ 修改相应的example.com的位置
+			- 反向：
+				+ sudo cp db.local db.168.192
+				+ 修改相应的192.168.1.130和example.com
+	+ 测试：
+		* 检查主配置文件语法named-checkconf
+		* 修改配置后，需要重启bind服务
+			- sudo /etc/init.d/bind9 restart
+			- sudo service bind9 restart  # 这两者不一样，最保险用前者
+		* 查看log日志是否正确：sudo tail /var/log/syslog
+		* 服务器端解析域名：host -t A example.com 192.168.1.130
+		* 客户端解析域名：nslookup example.com，直接ping也行
+	+ 
+
+- ping大概测网速：
+	+ windows下：ping 192.168.1.6 -l 1000  # 发送1000个字节
+	+ linux下：ping 192.168.1.6 -s 1000 
+	+ 速度为=1000 / 返回的时间ms = 多少个k字节
+- linux下的网络工具：
+	+ iperf
+	+ netperf
+
+## shell使用:
 1. ll -rt
 
 # vim技巧：
@@ -610,8 +867,8 @@ Categories=Application;Development; // 注明在菜单栏中显示的类别, 可
 
 - vim技巧：
 	1. w跳词头，e跳词尾
-    2. ctrl+s是停止输入;ctrl+q是继续输入;看不见输入的内容了，直接输入exit回车，退出该终端;
-    3. ctrl+a回到文件开头
+    	2. ctrl+s是停止输入;ctrl+q是继续输入;看不见输入的内容了，直接输入exit回车，退出该终端;
+    	3. ctrl+a回到文件开头
 
  - vim粘贴：
    1. 系统粘贴板：复制后 - 在vim的编辑模式直接shift+inset键;
@@ -629,8 +886,7 @@ Categories=Application;Development; // 注明在菜单栏中显示的类别, 可
 	5. 
 
 
-
-# 在github上托管博客
+## 在github上托管博客
 1. create a repository and named ：hacker.github.io
 	- 进入github，找到设置，最下面有删除
 2. clone the repository: sudo git clone https://github.com/hacker.github.io/
@@ -638,7 +894,7 @@ Categories=Application;Development; // 注明在菜单栏中显示的类别, 可
 3. 最终打开：
 	- https://a550461053.github.io/hacker
 
-# git使用:
+## git使用:
 0. 选择问题：
 	- 上传代码库：github，完美
 	- 写博客平台：
@@ -683,6 +939,9 @@ Categories=Application;Development; // 注明在菜单栏中显示的类别, 可
 	- 法三: git checkout -- 1.py : 撤销工作区的修改
 		- 1.py修改后还没放到暂存区
 		- 1.py已经放到暂存区了,就回到添加暂存区后的状态
+	* 撤销修改了remote：
+		- git revert HEAD
+		- git revert CommitID
 5. 删除文件:
 	- rm 2.py
 	- git add 2.py
@@ -704,12 +963,24 @@ Categories=Application;Development; // 注明在菜单栏中显示的类别, 可
 		- git commit -m 'first commit'
 		- git remote add origin https://github.com/a550461053/matlab-seg.git
 		- git push origin master
+	- 5. pull强制覆盖本地文件
+		- git remote add origin https://github.com/a550461053/BDCI2017-360.git
+		- git fetch --all # 获取最新分支
+		- get reset --hard origin/master
+		- git pull origin master
 	- 5. 报错处理
 		- fatal: remote origin already exists
 			- 先执行: git remote rm origin
 		- error:failed to push som refs to.......
 			- 先执行: git pull origin master
 	- 6. 设置免密码登录
+	- 7. 上传空文件：
+		+ touch data/ .gitignore
+		+ git add data/.gitignore
+		+ git commit -m "add empty .gitignore to data/"
+		+ echo data >> .gitignore
+		+ git add .gitignore
+		+ git commit -m "add data to .gitignore"
 
 7. 创建分支：
 	- 创建分支：git branch dev
@@ -742,7 +1013,7 @@ Categories=Application;Development; // 注明在菜单栏中显示的类别, 可
 	- 		
 
 
-# Ubuntu提速
+## Ubuntu提速
 0. 查看分析：
 	- sudo systemd-analyze plot > boot.svg
 	- 看图分析问题
@@ -796,7 +1067,7 @@ Categories=Application;Development; // 注明在菜单栏中显示的类别, 可
 11. 
 
 
-# kali-linux:
+## kali-linux:
 - Ubuntu安装kali：Katoolin
 	- sudo apt-get install git
 	- sudo git clone https://github.com/LionSec/katoolin.git
@@ -812,7 +1083,7 @@ Categories=Application;Development; // 注明在菜单栏中显示的类别, 可
 			- 1 2 back 4
 			- dash中搜索：indicator
 
-- wifi:
+## wifi破解:
 	- 准备:
 		- service network-manager stop
 		- 杀掉进程: sudo airmon-ng check kill
@@ -963,6 +1234,8 @@ Categories=Application;Development; // 注明在菜单栏中显示的类别, 可
 6. express and webpack
 	- Express本质是一系列middleware的集合，因此，适合Express的webpack开发工具是webpack-dev-middleware和webpack-hot-middleware。
 	-     // "dev": "webpack-dev-server"
+
+## 未完待续
 
 应用程序有两种模式C/S、B/S。
 C/S是客户端/服务器端程序，也就是说这类程序一般独立运行。
