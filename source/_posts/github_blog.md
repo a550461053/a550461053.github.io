@@ -1,12 +1,11 @@
 ---
-title: Tutorial of Hexo and Github web
+title: github_blog的使用
 ---
-# github blog
-
 ## github做blog方法比较
 略
 
-## git使用:
+## github使用
+
 0. 选择问题：
 	- 上传代码库：github，完美
 	- 写博客平台：
@@ -28,10 +27,6 @@ title: Tutorial of Hexo and Github web
 	- vim 1.py
 2. 文件添加到版本库: 
 	- 添加到暂存区: git add 1.py
-		+ git add . # 仅添加修改的文件
-		+ git add -u # 添加修改或删除的文件，不包含新创建的文件
-		+ git add -A # 添加所有内容
-		+ git add -A . #添加所有经过修改的文件
 	- 文件提交到仓库: git commit -m "注释信息"
 	- 查看是否还有未提交的文件: git status
 	- 查看修改内容: git diff 1.py
@@ -191,11 +186,7 @@ title: Tutorial of Hexo and Github web
 7. 添加评论
 	- 
 8. 添加打赏
-	- 修改blog/themes/next/_config.yml
-	- reward_comment: 坚持原创技术分享，您的支持将鼓励我继续创作！
-	- wechatpay: /images/wechat.jpg
-	- alipay: /images/aipay.png
-	- 添加图片到next/source/images下即可
+	- 
 9. 多终端同步：
 	- 在username.github.io下新建一个hexo分支
 		+ 在hexo的根目录下新建hexo分支
@@ -214,8 +205,14 @@ title: Tutorial of Hexo and Github web
 		+ git add source  //经测试每次只要更新sorcerer中的文件到Github中即可，因为只是新建了一篇新博客
 		+ git commit -m "XX"
 		+ git push origin hexo  //更新分支
-		+ hexo d -g   //push更新完分支之后将自己写的博客对接到自己搭的博客网站上，同时同步了Github中的master
-	- 同步hexo：
-		+ 原来的终端：git pull origin hexo
+		+ hexo d -g   # push更新完分支之后将自己写的博客对接到自己搭的博客网站上，同时同步了Github中的master
+	- 更新hexo：
+		+ B端更新后，A端也要更新：
+		+ git pull origin hexo # pull完成本地与远程的融合
+		+ 然后后面就一样了
+		+ hexo new "..."
+		+ git add source 
+		+ git commit -m ".."
+		+ git push origin hexo
 		+ hexo d -g
-
+		+ 

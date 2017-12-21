@@ -1,6 +1,3 @@
----
-title: sublime
----
 # sublime
 
 ## tools
