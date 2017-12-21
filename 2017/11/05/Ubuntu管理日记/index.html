@@ -1,0 +1,2012 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+  <link rel="stylesheet" media="all" href="/lib/Han/dist/han.min.css?v=3.3">
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Ubuntu管理日记teamviewer: 647025111  开机时间： uptime uptime -v 查看版本 开机密码：   sudo su第一次安装用户可以使用命令 然后切换到root后：passwd，即可修改root密码     win与Ubuntu双系统启动顺序： 修改/etc/default/grub 定位到GRUB_DEFAULT=0 后面数字代表启动项位置-1，我的win7">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ubuntu管理日记">
+<meta property="og:url" content="http://yoursite.com/2017/11/05/Ubuntu管理日记/index.html">
+<meta property="og:site_name" content="Fake it till you make it">
+<meta property="og:description" content="Ubuntu管理日记teamviewer: 647025111  开机时间： uptime uptime -v 查看版本 开机密码：   sudo su第一次安装用户可以使用命令 然后切换到root后：passwd，即可修改root密码     win与Ubuntu双系统启动顺序： 修改/etc/default/grub 定位到GRUB_DEFAULT=0 后面数字代表启动项位置-1，我的win7">
+<meta property="og:updated_time" content="2017-11-04T17:44:56.303Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Ubuntu管理日记">
+<meta name="twitter:description" content="Ubuntu管理日记teamviewer: 647025111  开机时间： uptime uptime -v 查看版本 开机密码：   sudo su第一次安装用户可以使用命令 然后切换到root后：passwd，即可修改root密码     win与Ubuntu双系统启动顺序： 修改/etc/default/grub 定位到GRUB_DEFAULT=0 后面数字代表启动项位置-1，我的win7">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/11/05/Ubuntu管理日记/"/>
+
+
+
+
+
+  <title>Ubuntu管理日记 | Fake it till you make it</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Fake it till you make it</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Startseite
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            Über
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Kategorien
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archiv
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/05/Ubuntu管理日记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Batista Yu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Fake it till you make it">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Ubuntu管理日记</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-11-05T01:44:56+08:00">
+                2017-11-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Ubuntu管理日记"><a href="#Ubuntu管理日记" class="headerlink" title="Ubuntu管理日记"></a>Ubuntu管理日记</h2><p>teamviewer: 647025111</p>
+<ul>
+<li>开机时间：<ul>
+<li>uptime</li>
+<li>uptime -v 查看版本<ul>
+<li>开机密码：</li>
+</ul>
+<ul>
+<li>sudo su第一次安装用户可以使用命令</li>
+<li>然后切换到root后：passwd，即可修改root密码</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>win与Ubuntu双系统启动顺序：<ul>
+<li>修改/etc/default/grub</li>
+<li>定位到GRUB_DEFAULT=0</li>
+<li>后面数字代表启动项位置-1，我的win7启动项在第4位，所以数字改为3</li>
+<li>sudo update-grub 更新启动列表</li>
+</ul>
+</li>
+<li><p>减少等待时间：</p>
+<ul>
+<li>sudo gedit /etc/default/grub</li>
+<li>修改TIMEOUT=1</li>
+<li>sudo update-grub2</li>
+</ul>
+</li>
+<li><p>减少swap的作用：默认是60</p>
+<ul>
+<li>sudo sysctl vm.swappiness=10 //暂时生效</li>
+<li>sudo gedit /etc/sysctl.conf</li>
+<li>vm.swappiness=10 //添加</li>
+</ul>
+</li>
+<li><p>移动Unity所处位置：<br> gsettings set com.canonical.Unity.Launcher launcher-position Bottom</p>
+</li>
+<li><p>桌面实时流量：</p>
+<ul>
+<li>sudo add-apt-repository ppa:fossfreedom/indicator-sysmonitor </li>
+<li>sudo apt-get update </li>
+<li>sudo apt-get install indicator-sysmonitor </li>
+<li>indicator-sysmonitor &amp; 后台运行;</li>
+<li>自启动在软件自己的设置里面</li>
+<li>显示的内容可自定义</li>
+</ul>
+</li>
+<li><p>安装vim，然后安装fish，更好的shell界面：</p>
+<ul>
+<li>sudo apt-get fish</li>
+<li>fish</li>
+</ul>
+</li>
+<li>安装R:<ul>
+<li>sudo apt-get install r-base</li>
+<li>R</li>
+<li>RStudio的安装;</li>
+</ul>
+</li>
+<li>创建链接文件：软链接即可，可跨文件系统：ln -s 源文件 目标文件<ul>
+<li>sudo ln -s /usr/local/anaconda3/bin/python /usr/bin/python<ul>
+<li>跨文件系统，需要自动mount ： sudo gedit /etc/fstab</li>
+<li>/dev/sda1 /media/win-C ntfs nls=utf8,umask=000   0   0</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>创建桌面快捷方式：</li>
+</ul>
+<ul>
+<li><p>中文编码：locale查看支持的字符集</p>
+<ul>
+<li>win下还是要使用sublime，不用txt打开文件。<br>sudo gedit /etc/environment<br>可以看到如下内容：<br>PATH=”/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games”<br>LANG=”zh_CN.UTF-8”<br>LANGUAGE=”zh_CN:zh:en_US:en”第二行即是默认的中文字符编码。注：可以通过这里修改默认的中文编码字符，比如修改为：zh_CN.GBK。</li>
+<li>不能乱改，否则终端不能打开</li>
+</ul>
+</li>
+<li><p>终端打开文件夹：而且默认自带root权限：nautilus $PWD</p>
+</li>
+<li><p>sudo without passwd: sudo visudo ;  username ALL=(ALL) NOPASSWD: ALL ;只是用于终端</p>
+</li>
+<li><p>快捷键：super + w：布局;</p>
+</li>
+<li><p>guake:下拉终端e</p>
+<ul>
+<li>ctrl+shift+t:新建标签页</li>
+<li>ctrl+shift+w:关闭标签页</li>
+</ul>
+</li>
+<li><p>dpkg -L packagename:查看安装位置</p>
+</li>
+</ul>
+<ul>
+<li><p>修复U盘只读：</p>
+<ul>
+<li>卸载U盘</li>
+<li>插上U盘</li>
+<li>tail -f /var/log/syslog 查看动态日志，找到所在分区</li>
+<li>sudo dosfsck -v -a /dev/sdb4</li>
+<li>Windows下式：chkdsk命令</li>
+</ul>
+<ul>
+<li><p>wine-qq: sudo apt install wine; winetrick ; QQIntel</p>
+<ul>
+<li>sudo add-apt-repository ppa:wine/wine-builds</li>
+<li>sudo apt update</li>
+<li>sudo apt-get install winehq-devel</li>
+<li>将wineQQ解压到~/下:<ul>
+<li>下载: <a href="https://pan.baidu.com/share/link?shareid=923804833&amp;uk=1397526986" target="_blank" rel="external">https://pan.baidu.com/share/link?shareid=923804833&amp;uk=1397526986</a></li>
+<li>tar xvf wineQQ8.9_19990.tar.xz -C ~/</li>
+<li>会提示安装wine的其他插件;</li>
+</ul>
+</li>
+<li>启动qq即可</li>
+<li>卸载qq:<ul>
+<li>rm -rf ~/.wine<ul>
+<li>rm -rf ~/.local/share/applications/wine-QQ.desktop</li>
+<li>rm -rf ~/.local/share/icons/hicolor/256x256/apps/QQ.png</li>
+<li>rm -rf ~/.fonts/simsun.ttc</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>VPN:</p>
+<ul>
+<li>服务器:<ul>
+<li><a href="https://linghucong.js.org/2016/04/20/setup-Shadowsocks-on-ubuntu-1604/" target="_blank" rel="external">https://linghucong.js.org/2016/04/20/setup-Shadowsocks-on-ubuntu-1604/</a></li>
+</ul>
+</li>
+<li>客户端:<ul>
+<li>见: <a href="http://www.jeyzhang.com/how-to-install-and-setup-shadowsocks-client-in-different-os.html" target="_blank" rel="external">http://www.jeyzhang.com/how-to-install-and-setup-shadowsocks-client-in-different-os.html</a></li>
+<li>sudo add-apt-repository ppa:hzwhuang/ss-qt5<ul>
+<li>sudo apt-get update</li>
+</ul>
+</li>
+<li>sudo apt install shadowsocks-Qt5</li>
+<li>UI界面</li>
+<li>Address: <ul>
+<li>2001:19f0:7001:f96:5400:00ff:fe80:92a1</li>
+<li>没有ipv6的用:104.238.161.51</li>
+</ul>
+</li>
+<li>Port: 1234</li>
+<li>password: luolvgen</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>远程连接：</p>
+<ul>
+<li>Ubuntu连接windows：<ul>
+<li>安装rdesktop：sudo apt install rdesktop</li>
+<li>rdesktop -f -a 16 10.10.4.42 -u Administrator -p 1qazZAQ!</li>
+<li>连接不上，报错，可能是账户密码错误；或者就是没有开启宿机windows的远程管理，放开只能网络连接限制</li>
+<li>或者使用Ubuntu自带的remote软件，都是使远程连接协议RDP</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>下载加速:</p>
+<ul>
+<li>安装uget:<ul>
+<li>sudo add-apt-repository ppa:plushuang-tw/uget-stable</li>
+<li>sudo apt update</li>
+<li>sudo apt install uget</li>
+</ul>
+</li>
+<li>安装aria2:<ul>
+<li>sudo add-apt-repository ppa:t-tujikawa/ppa</li>
+<li>sudo apt-get update</li>
+<li>sudo apt install aria2</li>
+</ul>
+</li>
+<li>Firefox添加支持:<ul>
+<li>插件flashget</li>
+<li>通过flashgot修改下载管理器</li>
+</ul>
+</li>
+<li>配置uget:<ul>
+<li>sudo uget-gtk </li>
+<li>直接点击super也可以</li>
+<li>选择最大连接数16</li>
+<li>plugin选择aria2</li>
+</ul>
+</li>
+<li></li>
+</ul>
+</li>
+<li><p>wifi热点:</p>
+<ul>
+<li>sudo apt install plasma-nm</li>
+<li>sudo apt install -f</li>
+<li>还报错:<ul>
+<li>sudo dpkg -i –force-overwrite /var/cache/apt/archives/libdbusmenu-qt5-2_0.9.3+16.04.20160218-1_amd64.deb</li>
+</ul>
+</li>
+<li>运行: kde5-nm-connection-editor</li>
+<li>添加一个WiFi</li>
+<li>wifi页:<ul>
+<li>connection name: 随便</li>
+<li>SSID: 随便</li>
+<li>mode: Access Point, 此模式安卓就可以访问了</li>
+</ul>
+</li>
+<li>wifi-Security页:<ul>
+<li>密码</li>
+</ul>
+</li>
+<li><a href="https://donjajo.com/creating-wi-fi-hotspot-in-ubuntu-visible-to-android-and-all-devices/#.WZPwVXWGNhE" target="_blank" rel="external">https://donjajo.com/creating-wi-fi-hotspot-in-ubuntu-visible-to-android-and-all-devices/#.WZPwVXWGNhE</a></li>
+</ul>
+</li>
+<li><p>wps:</p>
+<ul>
+<li>卸载libreOffice:<ul>
+<li>sudo apt-get remove libreoffice-common</li>
+</ul>
+</li>
+<li>删除Amazon连接:<ul>
+<li>sudo apt-get remove unity-webapps-common</li>
+</ul>
+</li>
+<li>删除不常用软件: (先不删)<ul>
+<li>sudo apt-get remove thunderbird totem rhythmbox empathy brasero simple-scan gnome-mahjongg aisleriot </li>
+<li>sudo apt-get remove gnome-mines cheese transmission-common gnome-orca webbrowser-app gnome-sudoku  landscape-client-ui-install  </li>
+<li>sudo apt-get remove onboard deja-dup </li>
+</ul>
+</li>
+<li>安装wps:<ul>
+<li>官网下载wps</li>
+<li>sudo dpkg -i wps-office_10.1.0.5672~a21_amd64.deb</li>
+<li>若缺少依赖:sudo apt install -f</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>画图工具:</p>
+<ul>
+<li>sudo apt-get install  kolourpaint4</li>
+<li>打开即可</li>
+</ul>
+</li>
+<li><p>主题:</p>
+<ul>
+<li>安装unity管理工具Ubuntu Tweak:<ul>
+<li>ubuntu16.04需要修改:<ul>
+<li>wget -q -O - <a href="http://archive.getdeb.net/getdeb-archive.key" target="_blank" rel="external">http://archive.getdeb.net/getdeb-archive.key</a> | sudo apt-key add -</li>
+<li>sudo sh -c ‘echo “deb <a href="http://archive.getdeb.net/ubuntu" target="_blank" rel="external">http://archive.getdeb.net/ubuntu</a> xenial-getdeb apps” &gt;&gt; /etc/apt/sources.list.d/getdeb.list’</li>
+<li>sudo apt-get update</li>
+</ul>
+</li>
+<li>sudo apt-get install unity-weak-tool ; </li>
+</ul>
+</li>
+<li>Flatabulous主题:<ul>
+<li>安装主题:<ul>
+<li>sudo add-apt-repository ppa:noobslab/themes</li>
+<li>sudo apt-get update</li>
+<li>sudo apt-get install flatabulous-theme</li>
+</ul>
+</li>
+<li>安装图标:<ul>
+<li>sudo add-apt-repository ppa:noobslab/icons</li>
+<li>sudo apt-get update</li>
+<li>sudo apt-get install ultra-flat-icons</li>
+</ul>
+</li>
+<li>修改主题和图标:<ul>
+<li>打开unity工具, 修改主题即可</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>nvidia;</p>
+<ul>
+<li>更新驱动: <a href="https://stackoverflow.com/questions/43016255/libegl-so-1-is-not-a-symbolic-link" target="_blank" rel="external">https://stackoverflow.com/questions/43016255/libegl-so-1-is-not-a-symbolic-link</a></li>
+</ul>
+</li>
+<li><p>黑屏问题：</p>
+<ul>
+<li>开机按住shift即可进入grub系统引导界面</li>
+<li>再按e可以进入恢复模式的启动脚本编辑模式，<ul>
+<li>修改root密码：将最后ro开始到最后部分修改为：rw single init=/bin/bash</li>
+<li>然后ctrl+x启动系统</li>
+<li>即可进入root可编辑的模式了</li>
+<li>然后进一步修改/etc/group文件，将自己的用户添加到admin组，保存，</li>
+<li>重启，即可。</li>
+</ul>
+</li>
+<li>如果是双系统，通过win的easyBCD恢复启动引导：<a href="http://blog.csdn.net/u010099080/article/details/52275502" target="_blank" rel="external">http://blog.csdn.net/u010099080/article/details/52275502</a></li>
+<li>如果是单系统，通过制作Ubuntu修复盘：<a href="https://help.ubuntu.com/community/Boot-Repair" target="_blank" rel="external">https://help.ubuntu.com/community/Boot-Repair</a></li>
+<li></li>
+</ul>
+</li>
+<li><p>sublime:</p>
+<ul>
+<li>sublime3安装:<br>  sudo add-apt-repository ppa:webupd8team/sublime-text-3<br>  sudo apt-get update<br>  sudo apt-get install sublime-text<br>  subl</li>
+<li>sublime3 中文字体问题:<ul>
+<li>git clone <a href="https://github.com/lyfeyaj/sublime-text-imfix.git" target="_blank" rel="external">https://github.com/lyfeyaj/sublime-text-imfix.git</a><br>cd sublime-text-imfix<br>./sublime-imfix<br>Done! Re-login Xwindows and ok.<br>但是只支持从终端启动：subl<ul>
+<li>中英文字体不对齐：<br>settings：”font_face”: “微软雅黑”,</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>sublime3 python:<ul>
+<li>package: anaconda</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>sogoupinyin:sudo dpkg -i ./sogoupinyin….deb<ul>
+<li>设置里面的语言支持+text entry设置输入法<br>缺少依赖,用：sudo apt-get -f install 下面不要也可以，重启即可～<br>还是不行：sudo apt-get purge fcitx; 清理文件，包括配置文件<br>重启 - dpkg -i sogou..deb ; sudo apt-get -f install ; 重启<br>还是搜狗的用着舒服～～～<ul>
+<li>搜狗很容易出问题: <ul>
+<li>就是回车+分号同时按的时候</li>
+<li>此时: 运行一下fictx即可</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>youdao-dict:</p>
+<ul>
+<li>sudo dpkg -i ./youdao-dict.deb</li>
+<li>缺少依赖: sudo apt -f install</li>
+<li>dpkg -i ./youdao-dict.deb</li>
+<li>~可选问题:Ubuntu16.04, 需要重新打包:<ul>
+<li>解压目录: dpkg -X ./youdao-dict_1.1.0….deb youdao-dict</li>
+<li>解压依赖: dpkg -e ./youdao-dict_1.1.0….deb youdao-dict/DEBIAN</li>
+<li>修改依赖: 删除control中, Depends里面的gstreamer0.10-plugins-ugly</li>
+<li>重新打包: dpkg-deb -b youdao-dict youdaobuild.deb</li>
+<li>重新安装: dpkg -i youdaobuild.deb</li>
+</ul>
+</li>
+<li>启动遇到问题:<ul>
+<li>youdao-dict</li>
+<li>报错: No module named ‘Xlib’</li>
+<li>解决: sudo apt install python-xlib</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>xmind8:<br>  1.下载官方安装包，安装<br>  2.下载xmind.jar 链接: <a href="https://pan.baidu.com/s/1i5uonrf" target="_blank" rel="external">https://pan.baidu.com/s/1i5uonrf</a> 密码: 8cjt，放在安装目录。<br>  3.在XMind.ini和XMind-original.ini后面添加-javaagent:xmind.jar<br>  4.打开configuration文件夹修改config.ini最后一行为net.xmind.verify.ui.disallowsLicenseActivation=false（使用写字板打开，不要用记事本）<br>  5.打开xmind 8  输入序列号，邮箱随便填写<br>  XAka34A2rVRYJ4XBIU35UZMUEEF64CMMIYZCK2FZZUQNODEKUHGJLFMSLIQMQUCUBXRENLK6NZL37JXP4PZXQFILMQ2RG5R7G4QNDO3PSOEUBOCDRYSSXZGRARV6MGA33TN2AMUBHEL4FXMWYTTJDEINJXUAV4BAYKBDCZQWVF3LWYXSDCXY546U3NBGOI3ZPAP2SO3CSQFNB7VVIY123456789012345</p>
+<ul>
+<li>补充内容 (2017-5-30 09:49):<br>另外，激活之前在 修改hosts文件添加  “127.0.0.1 www.xmind.net” 防止软件联网验证序列号</li>
+</ul>
+</li>
+<li>labelme:<ul>
+<li>安装python版本的:</li>
+<li>sudo apt-get install python-qt4 pyqt4-dev-tools</li>
+<li>sudo pip install labelme<ul>
+<li>报错: install the python-tk package</li>
+<li>解决: sudo apt install python-tk</li>
+</ul>
+</li>
+<li>运行: labelme</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>docker：<ul>
+<li>sudo apt-get install docker.io</li>
+<li>docker version ; 只显示client 1.12.6</li>
+<li>sudo systemctl status docker ; 运行daemon</li>
+<li>sudo usermod -aG docker $(whoami) ; 防止docker每次都要sudo</li>
+<li>sudo apt install docker-compose</li>
+<li>docker-compose version ; docker-compose1.5.2</li>
+<li>版本太低，so用pip安装docker-compose</li>
+<li>sudo pip install docker-compose</li>
+<li>docker-compose -h ; 查看用法</li>
+<li>卸载：dpkg –list | grep docker<ul>
+<li>卸载程序和配置：sudo apt-get –purge remove docker</li>
+<li>只卸载程序：sudo apt-get remove docker</li>
+<li>sudo apt-get remove docker.io</li>
+<li>sudo apt-get remove docker-compose</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>alias:</p>
+<ul>
+<li>临时: alias xmind=’XMind’</li>
+<li>永久: 保存在.bashrc或其他文件下</li>
+</ul>
+<ul>
+<li><p>cp：cp 待复制文件 新文件</p>
+<ul>
+<li>cp -r 待复制文件夹 新文件夹</li>
+</ul>
+</li>
+<li><p>pip：pip安装：pip install package</p>
+<ul>
+<li>sudo apt install python-pip</li>
+<li>sudo pip uninstall docker-compose</li>
+<li>sudo pip install –upgrade pip 升级pip</li>
+<li>sudo apt-get -f install 修复安装</li>
+<li>sudo apt-get upgrade升级已经安装的包</li>
+<li>sudo apt  dist-upgrade 升级系统</li>
+<li>二进制包安装的方式，卸载直接rm即可</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>apt-get 安装的包是系统化的包，在系统内完全安装。源是ubuntu仓库。<br>pip install安装的python包，可以只安装在当前工程内。且源是pyPI和ubuntu仓库。</li>
+<li><p>修改源:</p>
+<ul>
+<li>sudo vim /etc/apt/source.list</li>
+<li><p>添加: <a href="https://mirrors.ustc.edu.cn/repogen/" target="_blank" rel="external">https://mirrors.ustc.edu.cn/repogen/</a><br>deb <a href="https://ipv6.mirrors.ustc.edu.cn/ubuntu/" target="_blank" rel="external">https://ipv6.mirrors.ustc.edu.cn/ubuntu/</a> xenial main restricted universe multiverse<br>deb-src <a href="https://ipv6.mirrors.ustc.edu.cn/ubuntu/" target="_blank" rel="external">https://ipv6.mirrors.ustc.edu.cn/ubuntu/</a> xenial main restricted universe multiverse</p>
+<p>deb <a href="https://ipv6.mirrors.ustc.edu.cn/ubuntu/" target="_blank" rel="external">https://ipv6.mirrors.ustc.edu.cn/ubuntu/</a> xenial-security main restricted universe multiverse<br>deb-src <a href="https://ipv6.mirrors.ustc.edu.cn/ubuntu/" target="_blank" rel="external">https://ipv6.mirrors.ustc.edu.cn/ubuntu/</a> xenial-security main restricted universe multiverse</p>
+<p>deb <a href="https://ipv6.mirrors.ustc.edu.cn/ubuntu/" target="_blank" rel="external">https://ipv6.mirrors.ustc.edu.cn/ubuntu/</a> xenial-updates main restricted universe multiverse<br>deb-src <a href="https://ipv6.mirrors.ustc.edu.cn/ubuntu/" target="_blank" rel="external">https://ipv6.mirrors.ustc.edu.cn/ubuntu/</a> xenial-updates main restricted universe multiverse</p>
+<p>deb <a href="https://ipv6.mirrors.ustc.edu.cn/ubuntu/" target="_blank" rel="external">https://ipv6.mirrors.ustc.edu.cn/ubuntu/</a> xenial-backports main restricted universe multiverse<br>deb-src <a href="https://ipv6.mirrors.ustc.edu.cn/ubuntu/" target="_blank" rel="external">https://ipv6.mirrors.ustc.edu.cn/ubuntu/</a> xenial-backports main restricted universe multiverse    </p>
+</li>
+<li>更新源: sudo apt-get update</li>
+<li>更新系统: sudo apt-get upgrade<br>PPA，表示 Personal Package Archives，也就是个人软件包集。</li>
+</ul>
+</li>
+<li><p>golang：</p>
+<ul>
+<li>下载: sudo wget <a href="https://storage.googleapis.com/golang/go1.7.4.linux-amd64.tar.gz" target="_blank" rel="external">https://storage.googleapis.com/golang/go1.7.4.linux-amd64.tar.gz</a></li>
+<li>解压后, 复制到GOROOT目录下</li>
+<li>export GOROOT=/usr/lib/go</li>
+<li>export GORACH=amd64</li>
+<li>export GOOS=linux</li>
+<li>export PATH=${PATH}:$GOROOT/bin</li>
+<li>export GOPATH=$HOME/project/go #工作目录，至少包含bin/pkg/src</li>
+<li><p>32位则rach=386；win则改goos=windows<br>当你运行go build测试你的chaincode编译时，Go将在$GOPATH/src目录中查找你在importchaincode 的块中列出的非标准依赖。</p>
+</li>
+<li><p>必须新建：$GOPATH/src/go/github.com/hyperledger/</p>
+</li>
+<li>必须新建：$GOROOT/src/go/github.com/hyperledger/</li>
+<li>安装了:sudo apt install mercurial</li>
+<li>安装go中文教程：sudo go get bitbucket.org/mikespook/go-tour-zh/gotour</li>
+<li>sudo go env是root环境下的环境变量了</li>
+<li>go env才是当前目录下的环境变量</li>
+<li>可以sudo su 到root下,然后执行source /etc/profile, 再次执行命令</li>
+<li>sudo -E go env保持当前用户下的环境变量，以root身份执行命令</li>
+<li>sudo -E go install hello</li>
+<li>su 一个用户； 或者sudo su；都是临时登录，所以/etc/profile对其无效，是用户变量，只对登录的所有用户有效，而/etc/environment为系统变量，对系统有效；</li>
+</ul>
+</li>
+<li>查看系统：lscpu</li>
+<li><p>关闭防火墙：sudo ufw status ; sudo ufw disable;</p>
+</li>
+<li><p>gcc: </p>
+<ul>
+<li>gcc降级:<br>sudo apt-get install g++-4.9<br>sudo update-alternatives –install /usr/bin/gcc gcc /usr/bin/gcc-4.9 20<br>sudo update-alternatives –install /usr/bin/gcc gcc /usr/bin/gcc-5 10<br>sudo update-alternatives –install /usr/bin/g++ g++ /usr/bin/g++-4.9 20<br>sudo update-alternatives –install /usr/bin/g++ g++ /usr/bin/g++-5 10<br>sudo update-alternatives –install /usr/bin/cc cc /usr/bin/gcc 30<br>sudo update-alternatives –set cc /usr/bin/gcc<br>sudo update-alternatives –install /usr/bin/c++ c++ /usr/bin/g++ 30<br>sudo update-alternatives –set c++ /usr/bin/g++<ul>
+<li>gcc恢复:<br>sudo update-alternatives –install /usr/bin/gcc gcc /usr/bin/gcc-4.9 10<br>sudo update-alternatives –install /usr/bin/gcc gcc /usr/bin/gcc-5 20<br>sudo update-alternatives –install /usr/bin/g++ g++ /usr/bin/g++-4.9 10<br>sudo update-alternatives –install /usr/bin/g++ g++ /usr/bin/g++-5 20<br>sudo update-alternatives –install /usr/bin/cc cc /usr/bin/gcc 30<br>sudo update-alternatives –set cc /usr/bin/gcc<br>sudo update-alternatives –install /usr/bin/c++ c++ /usr/bin/g++ 30<br>sudo update-alternatives –set c++ /usr/bin/g++</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>端口冲突：</p>
+<ul>
+<li>fuser 3000/tcp</li>
+<li>kill 28597</li>
+</ul>
+</li>
+<li><p>windows复制文件到Linux<br>  1.Linux服务器：XFTP方式（建立连接） 或 远程工具XSHELL（登录直接yum安装） 或 Linux安装samba服务器<br>  2.Linux虚拟机：XFTP方式（虚拟与实体） 或 利用VMTOOL工具直接拖拽（安装的操作系统版本很新，都是Vmware的版本比较老，晚于操作系统出来）</p>
+</li>
+<li><p>Samba：根据SMB协议实现的，主要用于Windows和Linux之间共享资源<br>  1.安装samba：sudo apt-get install samba</p>
+<pre><code>修改配置文件：vi /etc/samba/smb.conf  的global加入：usershare owner only=false
+sudo chmod 777 myshare
+</code></pre><p>  2.右键文件夹选择共享文件<br>  3.在windows的地址栏输入：<code>\\ip（Linux的ip）</code><br>  4.win10的解决方案：</p>
+<pre><code>0. win+R；services.msc，找到workstation服务，停止后再启动；
+1，Windows10（作为客户端）无法访问其它服务器上共享出来的目录
+    1，打开注册表编辑器（运行regedit并回车）；
+    2，展开HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\LanmanWorkstation\Parameters，右击Parameters，选择“新建”-“DWORD (32位)值”，名称为AllowInsecureGuestAuth，并且将该值设置为1，保持默认的16进制不变。
+    立即生效：任务管理器杀掉explorer.exe，然后在新建explorer任务；
+2，Windows10（作为服务端）的共享目录，在其它服务器上无法访问
+    1，打开控制面板\网络和 Internet\网络和共享中心\高级共享设置；
+    2，找到“所有网络”下面的“密码保护的共享”，选择“关闭密码保护共享”。
+</code></pre><ol>
+<li>记得把虚拟记得设置：共享启用；</li>
+</ol>
+</li>
+<li><p>使用bash命令：</p>
+<ul>
+<li>bash a.sh</li>
+<li>sh sbin/start-all.sh</li>
+<li>. sbin/start-all.sh</li>
+</ul>
+</li>
+<li><p>Linux只存在只读权限：</p>
+<ul>
+<li>切换root用户，w！，或者直接chmod增加读写</li>
+<li>不切换root：:w !sudo tee %<ul>
+<li>！： 表示执行外部命令</li>
+<li>tee： linux命令，这个有点复杂<br>%：在执行外部命令时，%会扩展成当前文件名；这个%区别于替换时的%，替换时%的意义是代表整个文件，而不是文件名</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>映射便捷操作：</p>
+<ul>
+<li>把长串的命令映射为一个简单的命令，添加到.vimrc中：</li>
+<li>“ Allow saving of files as sudo when I forgot to start vim using sudo.<br>cmap w!! w !sudo tee &gt; /dev/null %<ul>
+<li>命令后半部分&gt; /dev/null 是为显式的丢掉标准输出的内容。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>修改用户：</p>
+<ul>
+<li>root登录</li>
+<li>vim /etc/passwd</li>
+<li>vim /etc/group</li>
+<li>vim /etc/gshadow</li>
+<li>vim /etc/shadow</li>
+<li>mv /home/olduser 为 /home/newuser :其下所有的文件所属用户和用户组都自动修改好，不需要自己手动用chown -R修改。</li>
+<li>重启</li>
+<li>vim /etc/sudoers<ul>
+<li>前chmod u+w /etc/sudoers </li>
+<li>后chmod u-w /etc/sudoers</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>打包apt安装包:</p>
+<ul>
+<li>下载安装包: sudo apt download openssh-server</li>
+<li>下载需要依赖: sudo apt build-dep –download-only -o dir::cache=/home/yuziqi/Download/myinstaller openssh-server</li>
+<li>下载额外的依赖: sudo apt download openssh-sftp-server openssh-client</li>
+<li>给所有文件权限: sudo chmod 777 *</li>
+<li>安装: sudo dpkg -i *.deb</li>
+</ul>
+</li>
+<li><p>IP网络配置:<br>  sudo gedit /etc/network/interfaces</p>
+<h1 id="net-for-xingongsuo"><a href="#net-for-xingongsuo" class="headerlink" title="net for xingongsuo"></a>net for xingongsuo</h1><h1 id="auto-ens33"><a href="#auto-ens33" class="headerlink" title="auto ens33"></a>auto ens33</h1><p>  iface ens33 inet static<br>  address 10.10.28.102<br>  netmask 255.255.254.0<br>  gateway 10.10.28.1</p>
+</li>
+<li><p>dia工具:</p>
+<ul>
+<li>sudo apt install dia</li>
+<li>dia</li>
+</ul>
+</li>
+<li>xmind工具:<ul>
+<li>由于提前安装了其他xmind, <ul>
+<li>不删除配置:<ul>
+<li>sudo dpkg -r xmind</li>
+</ul>
+</li>
+<li>删除配置:<ul>
+<li>sudo dpkg -P xmind</li>
+</ul>
+</li>
+<li>需要彻底删除, 包括依赖项: <ul>
+<li>sudo apt autoremove –purge xmind</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>官网下载</li>
+<li>sudo dpkg -i xmind-7.5-linux_amd64.deb</li>
+<li>出现问题就:</li>
+<li>sudo rm /usr/share/mime/packages/kde.xml </li>
+<li>sudo update-mime-database /usr/share/mime</li>
+<li>sudo dpkg -i xmind-7.5-linux_amd64.deb</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>Atom:</p>
+<ul>
+<li>Google开发的文本编辑器</li>
+</ul>
+</li>
+<li><p>截图工具:</p>
+<ul>
+<li>法1:<ul>
+<li>sudo apt install shutter</li>
+<li>好用!</li>
+</ul>
+</li>
+<li>法2:<ul>
+<li>使用快捷键printsript截图</li>
+<li>图片裁剪:<ul>
+<li>sudo apt install gthumb</li>
+<li>gthumb启动编辑软件</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>tar:</p>
+<pre><code> tar 参数：
+   -c：将文件打包（但不压缩）create
+   -x：将打包文件解压   excha
+   -z：将打包文件压缩。
+   -v：把压缩过程显示出来。
+   -f：我的理解是用当前的名字。如xxx目录，那么打包之后就是xxx.tar。压缩之后就是xxx.tar.gz
+ex:
+   打包目录下的workspace（不压缩）
+      tar -cvf workspace.tar workspace
+   打包并压缩目录下的worksapce
+      tar -zcvf workspace.tar.gz workspace
+   解压
+   这需要看后缀名来的，当后缀名有.gz时表示这个包经过压缩处理的。反之，者没有。但都可以用tar 来解压的   
+      1. 解包 workspace.tar
+         tar -xvf worksapce.tar
+      2. 解包 workspace.tar.gz
+         tar -xvf workspace.tar.gz
+
+tar  [options]
+Operations:
+    [-]A --catenate --concatenate
+    [-]c --create
+    [-]d --diff --compare
+    [-]r --append
+    [-]t --list
+    [-]u --update
+    [-]x --extract --get
+    --delete
+
+Common Options:
+    -C, --directory DIR
+    -f, --file F
+    -j, --bzip2
+    -p, --preserve-permissions
+    -v, --verbose
+    -z, --gzip
+</code></pre></li>
+</ul>
+<ul>
+<li>配置python3-GAN项目环境:<ul>
+<li>sudo apt purge mysql-server</li>
+<li>sudo rm -rf /etc/mysql</li>
+<li>sudo apt install mysql-server</li>
+<li>sudo apt install swig</li>
+<li>sudo -E python setup.py install </li>
+<li>alsa报错: sudo apt-get install libasound2-dev</li>
+<li>权限不足: python setup.py install –user<ul>
+<li>或者自己指定位置: python setup.py install –prefix=/usr/local/../site-packages/</li>
+</ul>
+</li>
+<li>权限:<ul>
+<li>sudo chown yuziqi:yuziqi a.py</li>
+<li>sudo chown root:root a.py</li>
+<li>需要在/下, 挂载的其他盘符默认是root:root, 改不了</li>
+</ul>
+</li>
+<li>python ….</li>
+<li>报错: python的pickle.load()需要指明rb和wb, 而且要指明encoding=”utf-8”</li>
+<li>python2:</li>
+<li>新建anaconda命令: conda create -n python27 python=2.7 anaconda</li>
+<li>source activate python27</li>
+<li>作者所用的tensorflow的版本&lt;=0.12:<ul>
+<li>rnn_gan.py的两个split(1, , )<ul>
+<li>第一个位置的1 和 第三个位置的数据互换位置</li>
+</ul>
+</li>
+<li>rnn_gan.py的9处: tf.nn.rnn_cell换为:tf.contrib.rnn</li>
+<li>tf.concat in 1.0 is indeed axis and not concat_dim<ul>
+<li>concat_dim替换为axis</li>
+</ul>
+</li>
+<li>rnn_gan.py的3处: 先定义lstm_cell()函数, 再调用: tf.contrib.rnn.MultiRNNCell([lstm<em>cell() for </em> in range(FLAGS.num_layers_g)], state_is_tuple=True)</li>
+<li>tf.pack has been renamed as tf.stack.</li>
+<li>tf.nn.bidirectional_rnn 替换为: tf.contrib.rnn.static_bidirectional_rnn</li>
+<li>1.0和1.1的区别直接修改版本了~: conda install tensorflow==1.0</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>python3:<br>    import urllib.parse<br>    import urllib.request<br>    urllib2.Request &gt; urllib.request.Request()<br>    urllib2.urlopen &gt; urllib.request.urlopen()<br>              data = response.read().decode(‘latin-1’), ‘latin’不能直接用’utf-8’</p>
+<ul>
+<li><p>kill:</p>
+<ul>
+<li>ps -ef | grep python</li>
+<li>ps -aux ; 以BSD风格显示进程, 常用</li>
+<li>pstree </li>
+<li>kill -9 12312 ; 通过进程号杀死进程</li>
+<li>-9表示强制杀死</li>
+<li>kill -9 -1 ; 表示杀死当前用户的所有进程</li>
+<li>pkill python ; 通过程序的名字杀死所有进程</li>
+<li>killall python ; 通过程序的名字杀死所有进程</li>
+<li>xkill ; 杀死桌面图形界面的程序, 然后鼠标点哪哪终止, 右键取消</li>
+</ul>
+</li>
+<li><p>区分Linux发行版：</p>
+<ul>
+<li>radhat或centos存在：/etc/redhat-release 这个文件</li>
+<li>debian或ubuntu 存在 /etc/debian_version 这个文件</li>
+</ul>
+</li>
+<li><p>安装xgboost：</p>
+</li>
+</ul>
+<ul>
+<li><p>非root用户安装软件：</p>
+<ol>
+<li>获取源代码，一般是wget方式，ubuntu可以使用apt-get source来获取源代码。</li>
+<li>解压源代码，一般使用tar -zxvf xxx.tar.gz即可</li>
+<li>切换到解压后的目录，运行 ./configure。其选项可以通过 ./configure –help来获取，非root用户下最重要的应该是定义安装目录，即应该定义 ./configure –prefix=/path/to/bin， 对于一些依赖库，可能还需要使用 ./configure  –prefix=xxx –with-xx-dir=xxx这种形式。</li>
+<li>接着是编译源代码和安装软件： make &amp;&amp;  make install。这两条命令可以分开来用，因为编译的时候可以指定参数 -j来并行编译，这样能够加快编译进度。。</li>
+<li>更新path路径。使用export PATH=/path/to/bin:$PATH，这句话在shell窗口运行只在本次会话中有效，可以将其写到.bashrc或者.bash_profile里面使其对当前用户有效。<br>6.如果安装的是动态链接库，则需要更新动态链接库路径： export LD_LIBRARY_PATH=/path/to/library:$LD_LIBRARY_PATH，同样是export命令，最好将其写在.bashrc这类文件下面以便登陆的时候自动调用。</li>
+</ol>
+</li>
+<li><p>install pycharm</p>
+<ol>
+<li>获取pycharm.tar.gz</li>
+<li>cp pycharm.tar.gz ~/software/</li>
+<li>tar -zxvf pycharm.tar.gz</li>
+<li>./bin/pycharm.sh</li>
+<li>创建desktop:<ul>
+<li>sudo vi /usr/share/applications/pycharm.desktop<br>[Desktop Entry]<br>Encoding=UTF-8<br>Type=Application<br>Name=pycharm //程序名称, 必选<br>GenericName=Pycharm3<br>Comment=Pycharm-edu-3.5.1:The Python IDE //程序描述, 可选<br>Exec=”/home/yuziqi/software/pycharm/pycharm-edu-3.5.1/bin/pycharm.sh” %f //程序启动命令, 必选<br>Icon=/home/yuziqi/software/pycharm/pycharm-edu-3.5.1/bin/pycharm.png //程序图标. 可选<br>Terminal=false // 是否在终端运行, 可选<br>Categories=Application;Development; // 注明在菜单栏中显示的类别, 可选</li>
+<li>sudo chmod +x /usr/share/applications/pycharm.desktop</li>
+<li>cp /usr/chare/applications/pycharm.desktop ~/Desktop/</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<h1 id="shell"><a href="#shell" class="headerlink" title="shell:"></a>shell:</h1><ol>
+<li>ll -rt</li>
+</ol>
+<h1 id="vim技巧："><a href="#vim技巧：" class="headerlink" title="vim技巧："></a>vim技巧：</h1><ul>
+<li>配置vim：<a href="https://github.com/ma6174/vim" target="_blank" rel="external">https://github.com/ma6174/vim</a></li>
+<li>手动配置vim：<ul>
+<li>vim ~/.vimrc</li>
+<li>set nu “显示行号，nonu不显示行号</li>
+<li>set hlserarch “搜索时关键字高亮反白</li>
+<li>set backspace=2 “允许退格键删除</li>
+<li>set autoindent “自动缩进</li>
+<li>set showmode “显示左下角状态行</li>
+<li>set ruler “显示右下角，行列信息</li>
+<li>set bg=dark “背景色为暗色</li>
+<li>set mouse=a “允许鼠标移动光标</li>
+<li>set tabstop=4</li>
+<li>set softtabstop=4 “设置tab键宽度</li>
+<li>syntax on “语法检查，语法高亮</li>
+<li>colorscheme cpp “使用cpp高亮方案</li>
+<li></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>vim技巧：</p>
+<ol>
+<li>w跳词头，e跳词尾</li>
+<li>ctrl+s是停止输入;ctrl+q是继续输入;看不见输入的内容了，直接输入exit回车，退出该终端;</li>
+<li>ctrl+a回到文件开头</li>
+</ol>
+<ul>
+<li><p>vim粘贴：</p>
+<ol>
+<li>系统粘贴板：复制后 - 在vim的编辑模式直接shift+inset键;</li>
+<li>vim粘贴板：esc正常模式 - v进入可视模式 - 选中文本 - 按y复制 - 用p粘贴</li>
+</ol>
+</li>
+<li><p>vim撤销：</p>
+<ol>
+<li>:u 或 :u[2]</li>
+<li>ctrl+R: 重做操作</li>
+</ol>
+</li>
+</ul>
+</li>
+<li><p>git上配置的vim使用：</p>
+<ol>
+<li>F5编译，F8调试</li>
+<li>自动插入文件头;</li>
+<li>F2取消代码中的空行;</li>
+<li>ctrl+P 自动补全</li>
+<li></li>
+</ol>
+</li>
+</ul>
+<h1 id="在github上托管博客"><a href="#在github上托管博客" class="headerlink" title="在github上托管博客"></a>在github上托管博客</h1><ol>
+<li>create a repository and named ：hacker.github.io<ul>
+<li>进入github，找到设置，最下面有删除</li>
+</ul>
+</li>
+<li><p>clone the repository: sudo git clone <a href="https://github.com/hacker.github.io/" target="_blank" rel="external">https://github.com/hacker.github.io/</a></p>
+</li>
+<li><p>最终打开：</p>
+<ul>
+<li><a href="https://a550461053.github.io/hacker" target="_blank" rel="external">https://a550461053.github.io/hacker</a></li>
+</ul>
+</li>
+</ol>
+<h1 id="git使用"><a href="#git使用" class="headerlink" title="git使用:"></a>git使用:</h1><ol>
+<li>选择问题：<ul>
+<li>上传代码库：github，完美</li>
+<li>写博客平台：<ul>
+<li>csdn：交互多</li>
+<li>github.io：300M上限，贴图麻烦</li>
+<li>WordPress：需要搭建服务器，麻烦，但功能多，爬虫、SEO</li>
+</ul>
+</li>
+<li>写博客目的：<ul>
+<li>如果为了提高知名度，网上都是团队来做，而且偏简单的教程反而受众</li>
+<li>如果为了工作面试，那时间不如用来专做技术，面试一谈便知深浅</li>
+<li>总结就是，技术没做好，没必要写，技术有了一定的积淀，再去写，反而有含金量，容易推广</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>创建版本库:<ul>
+<li>cd mygit</li>
+<li>git config –global user.name “yuziqi”</li>
+<li>git config –global user.email “a550461053@gmail.com”</li>
+<li>git config user.name </li>
+<li>git config user.email</li>
+<li>git init</li>
+<li>nautious .git</li>
+<li>vim 1.py</li>
+</ul>
+</li>
+<li>文件添加到版本库: <ul>
+<li>添加到暂存区: git add 1.py</li>
+<li>文件提交到仓库: git commit -m “注释信息”</li>
+<li>查看是否还有未提交的文件: git status</li>
+<li>查看修改内容: git diff 1.py</li>
+<li>提交修改:<ul>
+<li>git add 1.py</li>
+<li>git status -s ; 或者 git diff</li>
+<li>git commit -m “文件增加了一行”</li>
+<li>git status</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>版本回退:<ul>
+<li>查看版本历史记录: git log –pretty=oneline</li>
+<li>直接回退版本: git reset –hard HEAD<ul>
+<li>git reset –hard HEAD^ 上个版本</li>
+<li>git reset –hard HEAD~100 上100个</li>
+</ul>
+</li>
+<li>cat 1.py</li>
+<li>git log –pretty=oneline</li>
+<li>查看回退的版本号为948a21b: git reflog</li>
+<li>git reset –hard 948a21b</li>
+</ul>
+</li>
+<li>撤销修改:<ul>
+<li>法一: 重新提交源文件</li>
+<li>法二: git reset –hard HEAD~100</li>
+<li>法三: git checkout – 1.py : 撤销工作区的修改<ul>
+<li>1.py修改后还没放到暂存区</li>
+<li>1.py已经放到暂存区了,就回到添加暂存区后的状态</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>删除文件:<ul>
+<li>rm 2.py</li>
+<li>git add 2.py</li>
+<li>git rm 2.py</li>
+<li>继续恢复: git checkout – 2.py</li>
+</ul>
+</li>
+<li><p>远程仓库github：</p>
+<ul>
+<li><ol>
+<li>远程github创建一个repo, 勾选README.md</li>
+</ol>
+</li>
+<li><ol>
+<li>克隆到本地: <ul>
+<li>git clone <a href="https://github.com/a550461053/matlab-seg.git" target="_blank" rel="external">https://github.com/a550461053/matlab-seg.git</a></li>
+<li>指定深度为1: git clone git://xxoo –depth 1</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><ol>
+<li>上传文件: git init<ul>
+<li>touch README.md</li>
+<li>git add README.md</li>
+<li>git commit -m ‘first test commit’</li>
+<li>执行一次就够了，git remote add origin <a href="https://github.com/a550461053/matlab-seg.git" target="_blank" rel="external">https://github.com/a550461053/matlab-seg.git</a> </li>
+<li>git push origin master</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><ol>
+<li>push文件:<ul>
+<li>git add .</li>
+<li>git commit -m ‘first commit’</li>
+<li>git remote add origin <a href="https://github.com/a550461053/matlab-seg.git" target="_blank" rel="external">https://github.com/a550461053/matlab-seg.git</a></li>
+<li>git push origin master</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><ol>
+<li>报错处理<ul>
+<li>fatal: remote origin already exists<ul>
+<li>先执行: git remote rm origin</li>
+</ul>
+</li>
+<li>error:failed to push som refs to…….<ul>
+<li>先执行: git pull origin master</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><ol>
+<li>设置免密码登录</li>
+</ol>
+</li>
+</ul>
+</li>
+<li><p>创建分支：</p>
+<ul>
+<li>创建分支：git branch dev</li>
+<li>切换分支：git checkout dev</li>
+<li>创建+切换：git checkout -b dev</li>
+<li>查看当前分支：git branch</li>
+<li>合并分支：在master下，git merge dev</li>
+<li>删除分支：git branch -d dev</li>
+<li></li>
+</ul>
+</li>
+<li>多人协作：<ul>
+<li>查看远程库：git remote ； git remote -v</li>
+<li>推送分支：<ul>
+<li>master始终要与远程同步</li>
+<li>bug分支可以先合并到master</li>
+<li>git push origin master</li>
+<li>git push origin dev</li>
+</ul>
+</li>
+<li>抓取分支：<ul>
+<li>先获取最新提交：</li>
+<li>git branch –set-upstream dev origin/dev</li>
+<li>git pull</li>
+</ul>
+</li>
+<li>一般协作过程：<ul>
+<li>1.视图git push origin branch dev推送自己的修改</li>
+<li>2.若推送失败，则因为远程分支比你的本地更新早，需要先git pull合并</li>
+<li>3.若合并有冲突，需要解决冲突，并本地提交；在用git push origin branch dev推送</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>常用命令：<ul>
+<li>cd G:/</li>
+<li>查看历史记录：git log</li>
+<li>查看历史记录的版本号：git reflog</li>
+<li>对工作区的文件修改撤销：git checkout 2.py</li>
+<li></li>
+</ul>
+</li>
+</ol>
+<h1 id="Ubuntu提速"><a href="#Ubuntu提速" class="headerlink" title="Ubuntu提速"></a>Ubuntu提速</h1><ol>
+<li>查看分析：<ul>
+<li>sudo systemd-analyze plot &gt; boot.svg</li>
+<li>看图分析问题</li>
+<li>sudo systemctl disable apt-daily.service- 但我不能推荐这个，因为它需要注意，你的包信息保持最新，并被告知更新。</li>
+</ul>
+</li>
+<li>多核启动：<ul>
+<li>Ubuntu默认是以单核启动的：</li>
+<li>sudo vim /etc/init.d/rc</li>
+<li>把CONCURRENCY=makefile, 原来为none</li>
+<li></li>
+</ul>
+</li>
+<li>关闭服务<ul>
+<li>sudo apt install sysv-rc-conf</li>
+<li>启动：sudo sysv-rc-conf</li>
+<li>貌似不好用，则大招：</li>
+<li>sudo update-rc.d -f mysql remove<br>查看当前系统的运行级别(default:5)<br>runlevel    // who -r 命令亦可<br>相关文件夹<br>/usr/lib/insserv/insserv 用来执行系统启动时脚本的应用程序<br>/etc/init.d/<em>  放系统启动时运行的脚本<br>/etc/init/</em>  放系统启动时相关服务的配置文件</li>
+</ul>
+</li>
+<li><p>设置启动挂载盘：</p>
+<ul>
+<li>sudo vim /etc/fstab</li>
+</ul>
+</li>
+<li><p>电源管理:</p>
+<ul>
+<li>sudo apt install tlp</li>
+<li>tlp配置: /etc/default/tlp 默认不需要修改</li>
+<li>启动tlp:<ul>
+<li>sudo tlp start</li>
+<li>sudo tlp-stat</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>任务管理器：兼容性不好~</p>
+<ul>
+<li>Conky:<a href="https://webcache.googleusercontent.com/search?q=cache:X_X6Sigvv4UJ:https://askubuntu.com/questions/321018/setting-up-conky-on-ubuntu+&amp;cd=13&amp;hl=en&amp;ct=clnk&amp;gl=hk" target="_blank" rel="external">https://webcache.googleusercontent.com/search?q=cache:X_X6Sigvv4UJ:https://askubuntu.com/questions/321018/setting-up-conky-on-ubuntu+&amp;cd=13&amp;hl=en&amp;ct=clnk&amp;gl=hk</a></li>
+<li>sudo apt install conky conky-all</li>
+<li>cd &amp;&amp; wget -O .start-conky <a href="http://goo.gl/6RrEw" target="_blank" rel="external">http://goo.gl/6RrEw</a></li>
+<li>chmod +x .start-conky</li>
+<li>打开startup applications preferences:<ul>
+<li>也就是gnome-session-properties</li>
+<li>/home/yuziqi/.start-conky</li>
+</ul>
+</li>
+<li>Conky-Manager:<ul>
+<li>sudo apt-add-repository ppa:teejee2008/ppa</li>
+<li>sudo apt update</li>
+<li>sudo apt install conky-manager</li>
+</ul>
+</li>
+<li>自启动在conky-manager的setting选项里</li>
+</ul>
+</li>
+<li><p>视频管理：</p>
+<ul>
+<li>WinFF</li>
+</ul>
+</li>
+<li>TechPill</li>
+<li>WMail</li>
+<li>htop<ul>
+<li>sudo pacman -S htop</li>
+</ul>
+</li>
+<li>weather report</li>
+<li></li>
+</ol>
+<h1 id="kali-linux"><a href="#kali-linux" class="headerlink" title="kali-linux:"></a>kali-linux:</h1><ul>
+<li><p>Ubuntu安装kali：Katoolin</p>
+<ul>
+<li>sudo apt-get install git</li>
+<li>sudo git clone <a href="https://github.com/LionSec/katoolin.git" target="_blank" rel="external">https://github.com/LionSec/katoolin.git</a></li>
+<li>将katoolin目录下的python脚本复制到/usr/bin/目录下：sudo cp katoolin/katoolin.py /usr/bin/katoolin</li>
+<li>sudo chmod ugo+x /usr/bin/katoolin</li>
+<li>启动：sudo katoolin</li>
+<li>安装工具包：<ul>
+<li>输入back返回上一级, 输入gohome返回主菜单; 按Ctrl+C退出katoolin。</li>
+<li>安装所有：1 2 back 2 0</li>
+<li>安装局部：1 2 back 2 3 1：选择安装aircrack-ng无线网密码破解工具：</li>
+<li>安装kali程序菜单：<ul>
+<li>1 2 back 3</li>
+<li>1 2 back 4</li>
+<li>dash中搜索：indicator</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>wifi:</p>
+<ul>
+<li>准备:<ul>
+<li>service network-manager stop</li>
+<li>杀掉进程: sudo airmon-ng check kill</li>
+<li>如果要恢复wifi使用, <ul>
+<li>需要: airmon-ng stop wlan0</li>
+<li>然后: sudo service network-manager start</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>1.查看无线网卡: airmon-ng ; ifconfig </li>
+<li>隐藏自己, 修改mac:<ul>
+<li>先停止无线接口:<ul>
+<li>airmon-ng stop wlp3s0</li>
+<li>或者: ifconfig wlp3s0 down</li>
+</ul>
+</li>
+<li>macchanger –mac 00:11:22:33:44:55 wlp3s0</li>
+<li>重启无线接口:<ul>
+<li>airmon-ng start wlp3s0</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>若启动失败:<ul>
+<li>rfkill list</li>
+<li>解锁全部: rfkill unblock all</li>
+</ul>
+</li>
+<li>2.搜索无线:<ul>
+<li>start后发现monitor mode在mon9:<ul>
+<li>sudo airodump-ng mon9</li>
+<li>显示很慢..</li>
+</ul>
+</li>
+<li>关闭nm管理:<ul>
+<li>sudo service network-manager stop # 停止nm服务</li>
+<li>或者: sudo /etc/init.d/network-manager stop</li>
+<li>取消开机启动: chkconfig network-manager off</li>
+</ul>
+</li>
+<li>关闭wpa_supplicant:(不需要)<ul>
+<li>wpa_supplicant用来对数据流进行加密, 在网卡up的时候启动;</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>3.抓取握手包：<ul>
+<li>sudo airodump-ng -c 6 –bssid C8:3A:35:30:C8:12 -w ~/yuyu mon9</li>
+<li>-c表示channel，-w表示保存的路径和前缀名    </li>
+</ul>
+</li>
+<li>4.强行设备重连：<ul>
+<li>新建一个终端</li>
+<li>aireplay-ng -0 2 -a C8:3A:35:30:3E:C8 -c B8:E8:45:00:CC mon9</li>
+<li>-0表示发起deauthentication泛洪攻击，2表示断开次数，-a是BSSID，-c是设备</li>
+<li>若成功，则上一步会捕捉到握手包，显示WPA handshake:</li>
+<li>断开监控：airmon-ng stop mon9</li>
+</ul>
+</li>
+<li>5.破解：<ul>
+<li>aircrack-ng -a2 -b C8:3A:35:30:3E:C8 -w /usr/share/wordlists/rock.txt ~/yuyu01.cap</li>
+<li>yuyu01.cap就是上一步捕捉到的握手包yuyu01.cap</li>
+<li>后记可以使用GPU加速破解</li>
+</ul>
+</li>
+<li>WPS破解pin:<ul>
+<li>pin码:<ul>
+<li>8位纯数字组成的识别码:<ul>
+<li>1234 + 567 + 0</li>
+<li>第一部分和第二部分没关联</li>
+<li>最后的0是对第二部分的校验码</li>
+</ul>
+</li>
+<li>破解:    <ul>
+<li>先对单独的第一部分pin匹配, 一共0000-9999</li>
+<li>然后确定第二部分, 一共000-999</li>
+<li>最后一位自动得出</li>
+<li>一共11000种情况</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>扫描路由器是否开启WPS功能:<ul>
+<li>wash -i wlan0</li>
+<li>WPS Locked为no的都可以破解</li>
+</ul>
+</li>
+<li>使用reaver破解:<ul>
+<li>reaver -i mon0 -b mac -S -vv</li>
+<li>-b目标mac地址, -S最小的DH key, -vv显示警告</li>
+<li>reaver默认从0000开始, 加上-p 9000就是从9000开始</li>
+<li>pin过快会pin死路由器, 加上-d5 -t5延迟5秒</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>升级hacker:<ul>
+<li>获取wifi密码后, 可以进一步使用kali下的中间人攻击, 从而进行流量分析</li>
+</ul>
+</li>
+<li>总结:<ul>
+<li>wifi密码不要和路由器的管理密码一样</li>
+<li>关闭路由器的WPS功能</li>
+<li>使用路由器的白名单功能</li>
+<li>不要连接公共wifi</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="nodejs"><a href="#nodejs" class="headerlink" title="nodejs"></a>nodejs</h2><ol>
+<li><p>mogodb:</p>
+<ul>
+<li>sudo apt install mongo</li>
+<li>测试: sudo -E mongo<ul>
+<li>show ; show dbs ; use test ;</li>
+<li>db.post.insert({‘Title’:’testfirst’, ‘Name’:’yu’})</li>
+<li>db.post.findOne()</li>
+</ul>
+</li>
+<li>cmd:<ul>
+<li>db.nodedb.find()</li>
+<li>show collections</li>
+<li>创建hello集合: 并插入一条记录:db.hello.insert({“name”:”testdb”})</li>
+<li>删除当前数据库: db.dropDatabase()</li>
+<li>collection级操作:<ul>
+<li>db.createCollection(“hello”)</li>
+<li>db.hello.insert({“name”: “123”})</li>
+<li>db.hello.drop()</li>
+<li>db.renameCollection(“HELLO”)</li>
+<li>db.HELLO.getIndexes()</li>
+<li>db.HELLO.update({}, {$set:{“ex”: “barrymore”}}, false, true)<ul>
+<li>查询条件; 对象; 不存在该记录,就不插入对象?; 只更新找到的第一条记录?</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>node</p>
+<ul>
+<li>node -v</li>
+<li>更新：</li>
+<li><p>node更新:        </p>
+<ul>
+<li>npm cache clean -f</li>
+<li>npm install -g n</li>
+<li>n stable</li>
+<li>npm install -g npm</li>
+<li>node -v; n ls; </li>
+<li>npm update -g packageName</li>
+<li>node-gyp<ul>
+<li>是用于编译Node.js的本机插件模块的Node.js中编写的跨平台命令行工具。<br>设置python版本: npm config  set python /usr/bin/python2.7<br>支持普通用户: sudo npm install –unsafe-perm -g node-inspector<br>Debian的pakcage: sudo -E apt install libxkbfile-dev<br>truffle-init-webpack@0.0.1 no repository field</li>
+<li>sudo -E npm -g install webpack@2.1.0-beta.27 –save-dev</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>版本更新问题:<br>  rm -rf node_modules // force remove node_modules directory<br>  npm install</p>
+</li>
+</ul>
+</li>
+<li><p>包管理工具: npm</p>
+<ul>
+<li>…</li>
+</ul>
+</li>
+<li><p>express框架:</p>
+<ul>
+<li>express: nodejs的MVC开发框架<ul>
+<li>npm install -g express</li>
+</ul>
+</li>
+<li>express-generator: 命令工具<ul>
+<li>npm install -g express-generator</li>
+<li>express –version</li>
+</ul>
+</li>
+<li>库:<ul>
+<li>npm install mongoose</li>
+<li>npm  install multer</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>创建工程:</p>
+<ul>
+<li>express -e test //</li>
+<li>目录:<ul>
+<li>bin: 启动文件,默认npm start</li>
+<li>public: 静态文件,放置js, css, img等</li>
+<li>routes: 路由信息文件,控制地址路由</li>
+<li>views: 视图文件,放置模板文件ejs或jade等, 相当于html</li>
+<li></li>
+</ul>
+</li>
+<li>启动:<ul>
+<li>npm install ; 自动检测package.json文件,安装相应模块</li>
+<li>npm start</li>
+<li>默认端口是3000, 可以在bin下的www文件查看</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>基础:</p>
+<ul>
+<li>require: <ul>
+<li>require/exports/module三个预先定义好的变量可供使用</li>
+<li>require函数, 传入模块<ul>
+<li>相对路径 ./</li>
+<li>绝对路径 / </li>
+</ul>
+</li>
+<li>exports对象, 是当前模块的导出对象</li>
+<li>module对象, 访问当前模块的一些信息,主要是替换当前模块的导出对象</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>express and webpack</p>
+<ul>
+<li>Express本质是一系列middleware的集合，因此，适合Express的webpack开发工具是webpack-dev-middleware和webpack-hot-middleware。</li>
+<li>// “dev”: “webpack-dev-server”</li>
+</ul>
+</li>
+</ol>
+<p>应用程序有两种模式C/S、B/S。<br>C/S是客户端/服务器端程序，也就是说这类程序一般独立运行。<br>B/S就是浏览器端/服务器端应用程序，一般借助IE等浏览器来运行。</p>
+<p>服务器端是远程服务器，运行结果是由服务器产生的；<br>    所有的动态网页都是在服务器端执行的，例如ASP、PHP、JSP；<br>客户端就是网友的电脑。<br>    所有的静态网页都是在客户端执行的，例如JavaScript、Flash都是属于静态网页。 </p>
+<ol>
+<li>小米网】【实习】研发实习生招聘 :<a href="http://www.newsmth.net/nForum/#!article/Intern/249203" target="_blank" rel="external">http://www.newsmth.net/nForum/#!article/Intern/249203</a></li>
+<li>算法工程师☆机器学习 :<a href="http://www.newsmth.net/nForum/#!article/Intern/249200" target="_blank" rel="external">http://www.newsmth.net/nForum/#!article/Intern/249200</a></li>
+<li>奇虎360】测试实习生 :<a href="http://www.newsmth.net/nForum/#!article/Intern/246985" target="_blank" rel="external">http://www.newsmth.net/nForum/#!article/Intern/246985</a></li>
+<li>中国信通院】规划所招募实习生:<a href="http://www.newsmth.net/nForum/#!article/Intern/249190" target="_blank" rel="external">http://www.newsmth.net/nForum/#!article/Intern/249190</a></li>
+<li>Kika北京】Kika Tech招聘人工智能数据分析实习生:<a href="http://www.newsmth.net/nForum/#!article/Intern/249187" target="_blank" rel="external">http://www.newsmth.net/nForum/#!article/Intern/249187</a></li>
+<li>东北证券固收总部-量化研究员: <a href="http://www.newsmth.net/nForum/#!article/Intern/249186" target="_blank" rel="external">http://www.newsmth.net/nForum/#!article/Intern/249186</a></li>
+<li>凤凰网】数据分析师: <a href="http://www.newsmth.net/nForum/#!article/Intern/249183" target="_blank" rel="external">http://www.newsmth.net/nForum/#!article/Intern/249183</a></li>
+<li>妙计旅行】Python开发 实习优秀可转正: <a href="http://www.newsmth.net/nForum/#!article/Intern/249179" target="_blank" rel="external">http://www.newsmth.net/nForum/#!article/Intern/249179</a></li>
+<li>【汽车之家】商业广告审核运营实习生: <a href="http://www.newsmth.net/nForum/#!article/Intern/249177" target="_blank" rel="external">http://www.newsmth.net/nForum/#!article/Intern/249177</a><br>10.【汽车之家】新媒体运营实习岗: <a href="http://www.newsmth.net/nForum/#!article/Intern/249176" target="_blank" rel="external">http://www.newsmth.net/nForum/#!article/Intern/249176</a></li>
+<li>华兴资本招聘HR实习生】:<a href="http://www.newsmth.net/nForum/#!article/Intern/249173" target="_blank" rel="external">http://www.newsmth.net/nForum/#!article/Intern/249173</a></li>
+<li>理光中国研究院】自然语言处理实习生: <a href="http://www.newsmth.net/nForum/#!article/Intern/249006" target="_blank" rel="external">http://www.newsmth.net/nForum/#!article/Intern/249006</a></li>
+<li>理光中国研究院】数据挖掘实习生: <a href="http://www.newsmth.net/nForum/#!article/Intern/249005" target="_blank" rel="external">http://www.newsmth.net/nForum/#!article/Intern/249005</a></li>
+<li>【理光中国研究院】计算机视觉实习生: <a href="http://www.newsmth.net/nForum/#!article/Intern/249007" target="_blank" rel="external">http://www.newsmth.net/nForum/#!article/Intern/249007</a></li>
+<li>360智能搜索实验室】暑期实习和应届校招研究培训项目: <a href="http://www.newsmth.net/nForum/#!article/Intern/249167" target="_blank" rel="external">http://www.newsmth.net/nForum/#!article/Intern/249167</a></li>
+<li>海航科技集团数字化转型中心招聘机器学习实习生: <a href="http://www.newsmth.net/nForum/#!article/Intern/249147" target="_blank" rel="external">http://www.newsmth.net/nForum/#!article/Intern/249147</a></li>
+<li>消消乐系列游戏暑期实习生补招计划 - <a href="http://www.newsmth.net/nForum/#!article/Intern/246944数据分析实习生" target="_blank" rel="external">http://www.newsmth.net/nForum/#!article/Intern/246944数据分析实习生</a>: <a href="http://www.newsmth.net/nForum/#!article/Intern/248050" target="_blank" rel="external">http://www.newsmth.net/nForum/#!article/Intern/248050</a></li>
+<li>医学图像算法实习生: <a href="http://www.newsmth.net/nForum/#!article/Intern/246944" target="_blank" rel="external">http://www.newsmth.net/nForum/#!article/Intern/246944</a></li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>thank you for donating~</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.png" alt="Batista Yu WeChat Pay"/>
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="Batista Yu Alipay"/>
+        <p>Alipay</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/11/05/sublime/" rel="next" title="sublime">
+                <i class="fa fa-chevron-left"></i> sublime
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/11/05/github_blog/" rel="prev" title="Tutorial of Hexo and Github web">
+                Tutorial of Hexo and Github web <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Batista Yu</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">Artikel</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/a550461053" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Ubuntu管理日记"><span class="nav-number">1.</span> <span class="nav-text">Ubuntu管理日记</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#net-for-xingongsuo"><span class="nav-number"></span> <span class="nav-text">net for xingongsuo</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#auto-ens33"><span class="nav-number"></span> <span class="nav-text">auto ens33</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#shell"><span class="nav-number"></span> <span class="nav-text">shell:</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#vim技巧："><span class="nav-number"></span> <span class="nav-text">vim技巧：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#在github上托管博客"><span class="nav-number"></span> <span class="nav-text">在github上托管博客</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#git使用"><span class="nav-number"></span> <span class="nav-text">git使用:</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Ubuntu提速"><span class="nav-number"></span> <span class="nav-text">Ubuntu提速</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#kali-linux"><span class="nav-number"></span> <span class="nav-text">kali-linux:</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#nodejs"><span class="nav-number">1.</span> <span class="nav-text">nodejs</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Batista Yu</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Erstellt mit  <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

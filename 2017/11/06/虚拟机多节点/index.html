@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+  <link rel="stylesheet" media="all" href="/lib/Han/dist/han.min.css?v=3.3">
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="安装vm12:  安装vmwaretools 点击install tools 解压到桌面 进入 sudo ./vmware-install.pl -d 重启 如要卸载: ./vmware-tools-distrib/bin/vmware-uninstall-tools.pl   修改下载源 先用nat模式联网(ipv6地址修改), 下载安装各种软件 sudo mkdir -p /home/yuz">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Fake it till you make it">
+<meta property="og:url" content="http://yoursite.com/2017/11/06/虚拟机多节点/index.html">
+<meta property="og:site_name" content="Fake it till you make it">
+<meta property="og:description" content="安装vm12:  安装vmwaretools 点击install tools 解压到桌面 进入 sudo ./vmware-install.pl -d 重启 如要卸载: ./vmware-tools-distrib/bin/vmware-uninstall-tools.pl   修改下载源 先用nat模式联网(ipv6地址修改), 下载安装各种软件 sudo mkdir -p /home/yuz">
+<meta property="og:updated_time" content="2017-11-06T06:28:07.510Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Fake it till you make it">
+<meta name="twitter:description" content="安装vm12:  安装vmwaretools 点击install tools 解压到桌面 进入 sudo ./vmware-install.pl -d 重启 如要卸载: ./vmware-tools-distrib/bin/vmware-uninstall-tools.pl   修改下载源 先用nat模式联网(ipv6地址修改), 下载安装各种软件 sudo mkdir -p /home/yuz">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/11/06/虚拟机多节点/"/>
+
+
+
+
+
+  <title> | Fake it till you make it</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Fake it till you make it</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Startseite
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            Über
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Kategorien
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archiv
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/06/虚拟机多节点/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Batista Yu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Fake it till you make it">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline"></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-11-06T14:28:07+08:00">
+                2017-11-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        <ul>
+<li><p>安装vm12:</p>
+<ul>
+<li>安装vmwaretools<ul>
+<li>点击install tools</li>
+<li>解压到桌面</li>
+<li>进入</li>
+<li>sudo ./vmware-install.pl -d</li>
+<li>重启</li>
+<li>如要卸载: ./vmware-tools-distrib/bin/vmware-uninstall-tools.pl</li>
+</ul>
+</li>
+<li>修改下载源</li>
+<li>先用nat模式联网(ipv6地址修改), 下载安装各种软件<ul>
+<li>sudo mkdir -p /home/yuziqi/…/github.com</li>
+</ul>
+</li>
+<li>再用桥接模式与宿主机构成局域网, 调试<ul>
+<li>注意桥接模式选择的网卡是本地有线enp4s0f1还是无线wlp3s0</li>
+</ul>
+</li>
+<li>安装wm12</li>
+<li>gcc&gt;5.0支持下, 打开前: sudo vmware-modconfig –console –install-all</li>
+</ul>
+</li>
+<li><p>虚拟机安装geth:</p>
+<ul>
+<li>更新本机软件: sudo apt update; sudo apt -f install </li>
+<li>git: git –version: 2.7.4</li>
+<li>nodejs: nodejs -v<ul>
+<li>Linux中node是另一个软件,需要安装插件来修改node命名</li>
+<li>若要使用node -v: sudo apt install nodejs-legacy</li>
+</ul>
+</li>
+<li>npm: npm -v</li>
+<li>go1.7: go version</li>
+<li>geth: <ul>
+<li>复制go-ethereum文件夹到虚拟机</li>
+<li>cd go-ethereum</li>
+<li>make geth</li>
+<li>./build/bin/geth</li>
+</ul>
+</li>
+<li>mist<br>  - </li>
+<li><p>测试:</p>
+<ul>
+<li>虚拟机桥接模式: ip 10.10.28.102 // ip 124.16.90.2</li>
+<li>git clone <a href="https://github.com/ethereum/go-ethereum" target="_blank" rel="external">https://github.com/ethereum/go-ethereum</a></li>
+<li>cd go-ethereum; make geth</li>
+<li>gedit init.json<br>{<br>“nonce”: “0x0000000000000042”,<br>“difficulty”: “0x400”,<br>“mixhash”: “0x0000000000000000000000000000000000000000000000000000000000000000”,<br>“coinbase”: “0x0000000000000000000000000000000000000000”,<br>“timestamp”: “0x00”,<br>“parentHash”: “0x0000000000000000000000000000000000000000000000000000000000000000”,<br>“extraData”: “0x11bbe8db4e347b4e8c937c1c8370e4b5ed33adb3db69cbdb7a38e1e50b1b82fa”,<br>“gasLimit”: “0x1388”,<br>“alloc”: {<br>},<br>“config”: {<br>“chainId”: 15,<br>“homesteadBlock”: 0,<br>“eip155Block”: 0,<br>“eip158Block”: 0<br>}<br>}</li>
+</ul>
+</li>
+<li><p>先删除之前的.app 和 .ethash, 然后: ./geth –datadir “~/app/chain” init init.json</p>
+</li>
+<li><p>启动网络: ./geth –rpc –rpccorsdomain “*” –ipcpath “~/app/chain/geth.ipc” –datadir “~/app/chain” –port “30303” –rpcapi “db,eth,net,web3” –networkid 100000 console</p>
+</li>
+<li><p>虚拟机: “enode://3519f8ae9f7492be1b2fa479456f0c156e5e969128d8207a678b1d1a6982eb4130c5f46adb099219d2e0d2435b739b346f4b0f7512993a23998e45d39bd13f9c@192.168.1.101:30303”</p>
+</li>
+<li>虚拟机: 124.16.90.2</li>
+<li><p>宿主机: admin.addPeer(“enode://3519f8ae9f7492be1b2fa479456f0c156e5e969128d8207a678b1d1a6982eb4130c5f46adb099219d2e0d2435b739b346f4b0f7512993a23998e45d39bd13f9c@124.16.90.2:30303”)</p>
+</li>
+<li><p>虚拟机初始化: ./geth  –datadir “~/app/chain” init init.json</p>
+</li>
+<li>虚拟机以太坊启动:</li>
+<li>./geth –rpc –rpcport 8545 –rpccorsdomain “*” –rpcapi “db,eth,net,web3” –ipcpath “~/app/chain/geth.ipc” –datadir “~/app/chain” –port “30303” –networkid 100000 console</li>
+<li>networkid 100001每个node的id相同</li>
+<li>查看虚拟机node URL: admin.nodeInfo.enode<br>“enode://8407de28f331c070491f85afd4112a8e71ba150f6b980e599e6cbe1216f899cef554e923a3f148c2feda1db12f0ea1355039775ad9cf9e61ca3a4b20d3ca682e@[::]:30303”</li>
+<li>宿主机以太坊启动: 同样的命令networkid 100000</li>
+<li>宿主机添加node: admin.addPeer(“enode://e8aabbc3aa45dc38492f8c406c311dae3eb6c7771275a9279a158534169d52fd28a64771e60fcc9a9691478ac438fc7fe7dc13eb1a35480a98d8014e6925f3c5@[192.168.1.187]:30303”)<ul>
+<li>查看节点: admin.peers</li>
+<li>这种方法太慢, 同步要好久</li>
+</ul>
+</li>
+<li>导出区块链:<ul>
+<li>宿主机: geth export filename</li>
+<li>虚拟机: geth import filename</li>
+</ul>
+</li>
+<li>同步虚拟机时间: <ul>
+<li>修改为上海时区<ul>
+<li>apt-get install ntp</li>
+</ul>
+</li>
+<li>/etc/init.d/ntp start</li>
+</ul>
+</li>
+<li></li>
+</ul>
+</li>
+</ul>
+<h1 id="任务"><a href="#任务" class="headerlink" title="任务"></a>任务</h1><p>智能合约是如何在两个节点存的<br>数据是如何存的<br>两个节点如何协作</p>
+<p>宿主机A: 添加两个用户, 户0给用户1转账:</p>
+<pre><code>- 用户0先挖矿, 赚足够支付的钱: miner.start()
+- eth.sendTransaction({from:eth.accounts[0], to:eth.accounts[1], value:web3.toWei(0.001, &quot;ether&quot;), gas:30000})
+- gas:
+    - 0.001 需要 21000gas
+    - 0.006 需要 121000gas
+    - 每million 的gas , 0.05ether
+    - gas要大于默认的交易gas: 21000
+    - init.js中的gaslimit默认是0x1388(5000), 改为0xC350(50000), 或者0xffffffff
+    - truffle工程的truffle.js的network的gas:500000,改大点
+</code></pre><p>虚拟机: miner.start()<br>宿主机: 检查余额: eth.getBalance(eth.accounts[1]), 交易成功</p>
+<ul>
+<li>单机运行测试:<ul>
+<li></li>
+</ul>
+</li>
+</ul>
+<p>参见：<a href="https://sanwen8.cn/p/3dcX1wi.html" target="_blank" rel="external">https://sanwen8.cn/p/3dcX1wi.html</a></p>
+<h2 id="多节点实验"><a href="#多节点实验" class="headerlink" title="多节点实验"></a>多节点实验</h2><p>A节点: miner: “0x2e7ac7512a1c95b395141a6181623bbf36f0b8a5”<br>B节点:<br>C节点:<br>A连接B, B连接C</p>
+<p>A节点 miner.start():<br>    epoch0 generating DAG in progress: 2m41.549s<br>    generated ethash verification cache: 32.762s<br>    epoch1 generating DAG  in progress: 17m14.1</p>
+<p>INFO [08-18|14:16:44] Commit new mining work                   number=243 txs=0 uncles=0 elapsed=180.33µs<br>INFO [08-18|14:16:44] Successfully sealed new block            number=243 hash=fc683a…10a59c<br>INFO [08-18|14:16:44] 🔗 block reached canonical chain          number=238 hash=b6e0d5…f3e8e5<br>INFO [08-18|14:16:44] 🔨 mined potential block                  number=243 hash=fc683a…10a59c</p>
+<p>A节点 eth.sendTransaction({from:eth.accounts[0], to:eth.accounts[1], value:web3.toWei(5, ‘ether’)}):<br>    INFO [08-18|14:22:58] Submitted transaction                    fullhash=0x62630d496193253e55af0ea47c0e5d4d787f7b232e0997a8a10fb9e548deb54f recipient=0x48ca728ecccafd114ec769860373fc47671778cf<br>    “0x62630d496193253e55af0ea47c0e5d4d787f7b232e0997a8a10fb9e548deb54f”</p>
+<p>miner.start(2);admin.sleepBlocks(1);miner.stop();    </p>
+<p>通过终端调用智能合约:<br>abi=[{“constant”:true,”inputs”:[],”name”:”get”,”outputs”:[{“name”:””,”type”:”bool”}],”payable”:false,”type”:”function”},{“constant”:false,”inputs”:[],”name”:”set”,”outputs”:[],”payable”:false,”type”:”function”}]<br>address=”0x91ee6082c09c72d7de14682b027f6fcdeb162c6b”<br>g=eth.contract(abi).at(address)<br>g.get()<br>g.set({from:eth.accounts[0]})<br>注意: 当调用set()的时候, 任何修改合约状态的操作都需要用户来签名交易</p>
+<h1 id="测试shh发送message"><a href="#测试shh发送message" class="headerlink" title="测试shh发送message"></a>测试shh发送message</h1><h1 id="见-https-github-com-ethereum-go-ethereum-wiki-Whisper-Usage"><a href="#见-https-github-com-ethereum-go-ethereum-wiki-Whisper-Usage" class="headerlink" title="见: https://github.com/ethereum/go-ethereum/wiki/Whisper-Usage"></a>见: <a href="https://github.com/ethereum/go-ethereum/wiki/Whisper-Usage" target="_blank" rel="external">https://github.com/ethereum/go-ethereum/wiki/Whisper-Usage</a></h1><p>./geth –shh  –rpc –rpccorsdomain “*” –ipcpath “~/app/chain/geth.ipc” –datadir “~/app/chain” –port “30303” –rpcapi “db,eth,net,web3,shh” –networkid 100000 console<br>shh.version<br>shh.info()<br>shh.setMaxMessageLength(999999) // 设置最大消息长度<br>shh.setMinimumPoW(2.12) //设置最小所需要的PoW<br>shh.allowP2PMessagesFromPeer(“enode://d25474361659861e9e651bc728a17e807a3359ca0d344afd544ed0f11a31faecaf4d74b55db53c6670fd624f08d5c79adfc8da5dd4a11b9213db49a3b750845e@52.178.209.125:30379”) // 允许发送历史消息<br>shh.hasKeyPair(“5e57b9ffc2387e18636e0a3d0c56b023264c16e78a2adcba1303cefc685e610f”) // 是否有该PK的私钥<br>shh.deleteKeyPair(“5e57b9ffc2387e18636e0a3d0c56b023264c16e78a2adcba1303cefc685e610f”) // 删除key<br>var key = shh.newKeyPair() // 创建一个加密标识ID号, 用来加密message,<br>shh.getPublickey(key) // 返回值是ID的PK<br>shh.getPrivateKey(key) // 返回值是ID的私钥<br>shh.generateSymmetricKey() // 产生一个随机的对称key<br>shh.addSymmetricKeyDirect(private_key) // 保存私钥, 返回ID<br>shh.addSymmetricKeyFromPassword(“test”)<br>shh.getSymmetricKey(key_ID) // 输入key的ID, 返回对称key<br>shh.hasSymmetricKey() //<br>shh.deleteSymmetricKey(“f6dcf21ed6a17bd78d8c4c63195ab997b3b65ea683705501eae82d32667adc92”)</p>
+<p>shh.getNewSubscriptionMessages(“02c1f5c953804acee3b68eda6c0afe3f1b4e0bec73c7445e10d45da333616412”)<br>shh.getFloatingMessages(“02c1f5c953804acee3b68eda6c0afe3f1b4e0bec73c7445e10d45da333616412”)<br>shh.subscribe({type: ‘asym’, pow: 12.3, topics: [‘0x5a4ea131’, ‘0x11223344’], key: ‘b874f3bbaf031214a567485b703a025cec27d26b2c4457d6b139e56ad8734cea’, sig: ‘0x048229fb947363cf13bb9f9532e124f08840cd6287ecae6b537cda2947ec2b23dbdc3a07bdf7cd2bfb288c25c4d0d0461d91c719da736a22b7bebbcf912298d1e6’})<br>shh.unsubscribe(“02c1f5c953804acee3b68eda6c0afe3f1b4e0bec73c7445e10d45da333616412”)<br>shh.post({type: ‘asym’, ttl: 7, topic: ‘0x07678231’, powTarget: 2.01, powTime: 2, payload: ‘0x68656c6c6f’, key: ‘0x048229fb947363cf13bb9f9532e124f08840cd6287ecae6b537cda2947ec2b23dbdc3a07bdf7cd2bfb288c25c4d0d0461d91c719da736a22b7bebbcf912298d1e6’})<br>subscribe: 格式:<br>    type       string<br>    key        string<br>    sig        string<br>    minPoW     float64<br>    topics     [][]byte<br>    allowP2P   bool<br>其中: type只能是sym或者asym<br>Post: 格式:<br>    type       string<br>    ttl        uint32<br>    sig        string<br>    key        string<br>    topic      [4]byte<br>    padding    []byte<br>    payload    []byte<br>    powTime    uint32<br>    powTarget  float64<br>    targetPeer string</p>
+<h1 id="test-the-Whisper-node-on-private-network"><a href="#test-the-Whisper-node-on-private-network" class="headerlink" title="test the Whisper node on private network"></a>test the Whisper node on private network</h1><p>geth –shh –testnet –nodiscover console<br>利用已有测试节点: enode://d25474361659861e9e651bc728a17e807a3359ca0d344afd544ed0f11a31faecaf4d74b55db53c6670fd624f08d5c79adfc8da5dd4a11b9213db49a3b750845e@52.178.209.125:30379<br>admin.addPeer(“enode://d25474361659861e9e651bc728a17e807a3359ca0d344afd544ed0f11a31faecaf4d74b55db53c6670fd624f08d5c79adfc8da5dd4a11b9213db49a3b750845e@52.178.209.125:30379”)</p>
+<h1 id="use-cases"><a href="#use-cases" class="headerlink" title="use cases"></a>use cases</h1><h2 id="geth-1-6-1之后-Whisper-v2升级为-v5版本-shh-newIdentity-函数被替换为subscribe"><a href="#geth-1-6-1之后-Whisper-v2升级为-v5版本-shh-newIdentity-函数被替换为subscribe" class="headerlink" title="geth 1.6.1之后 Whisper v2升级为 v5版本, shh.newIdentity()函数被替换为subscribe"></a>geth 1.6.1之后 Whisper v2升级为 v5版本, shh.newIdentity()函数被替换为subscribe</h2><h1 id="接收非对称加密信息"><a href="#接收非对称加密信息" class="headerlink" title="接收非对称加密信息:"></a>接收非对称加密信息:</h1><p>id = shh.newKeyPair()<br>pk = shh.getPublicKey(id) // 取出PK<br>f = shh.subscribe({type: ‘asym’, key: id}) //创建消息, 返回消息的ID<br>广播PK:<br>轮寻消息: shh.getNewSubscriptionMessages(f)<br>发送非对称加密: shh.post({type: ‘asym’, ttl: 7, powTarget: 2.5 powTime: 2, payload: ‘0x7777777777777777’, key: pk})</p>
+<h1 id="接收对称加密信息-共享相同的对称key"><a href="#接收对称加密信息-共享相同的对称key" class="headerlink" title="接收对称加密信息: 共享相同的对称key"></a>接收对称加密信息: 共享相同的对称key</h1><p>id = shh.addSymmetricKeyFromPassword(‘test’) // 更新为:id = shh.generateSymKeyFromPassword(‘test’)<br>f = shh.subscribe({type: ‘sym’, topics: [‘0x07678231’], key: id})<br>接收: shh.getNewSubscriptionMessages(f)<br>发送: shh.post({type: ‘sym’, ttl: 7, topic: ‘0x07678231’, powTarget: 2.01, powTime: 2, payload: ‘0x68656c6c6f’, key: id})<br>签名: s = shh.newKeyPair()<br>shh.post({sig: s, type: ‘sym’, ttl: 7, topic: ‘0x07678231’, powTarget: 2.01, powTime: 2, payload: ‘0x68656c6c6f’, key: id})</p>
+<h1 id="一次性会话聊天"><a href="#一次性会话聊天" class="headerlink" title="一次性会话聊天"></a>一次性会话聊天</h1><p>id_key = shh.newSymKey() //产生对称秘钥<br>key = shh.getSymKey(id_key) //取回对称秘钥<br>id = shh.addSymKey(key) // 目标peer安装秘钥<br>f = shh.newMessageFilter({type:topics:[‘0x07678231’], symKeyID: id}) // 所有参与节点都要subscribe这条消息,<br>shh.getFilterMessages(f) //正常轮训保存的subscribe的ID</p>
+<h1 id="mist-测试使用"><a href="#mist-测试使用" class="headerlink" title="mist 测试使用"></a>mist 测试使用</h1><p>官网钱包dapp: <a href="https://wallet.ethereum.org/" target="_blank" rel="external">https://wallet.ethereum.org/</a><br>Dapp:<br>Mist是一个去中心化应用浏览器。Mozilla火狐或者谷歌Chrome适用于web 2.0，而Mist浏览器适用于web 3.0而生（3.0时代将会是去中心化的）。<br>你可以用用Mist浏览器打开任何Ethereum去中心化应用。Ethereum Wallet DApp只是一个以太坊钱包应用<br>以太坊客户端默认启动连接的节点数位11-13个，如果觉得不够，可以使用在启动时增加启动参数 –maxpeers 100命令，让连接启动节点数增加到100上限，当然，也会大量消耗你的硬盘和CPU。</p>
+<p>测试：宿主机节点运行dapp, 其他节点或者任意的浏览器都可以运行dapp：<br>    但是我测试的是虚拟机节点，虚拟机节点本身有geth客户端，<br>    不过好像当时没有启动geth，还是能运行dapp。<br>    但我好像只是利用了打开网页的功能，并没有测试是否能够发起一笔交易，<br>    不过也应该能够通过宿主机节点发起交易。<br>    也就是说能够通过web2的浏览器打开dapp，而不是必须得需要web3支持的mist浏览器。<br>    那么这样的话，开发人员就需要把这个dapp通过应用市场卖给用户，用户再来使用dapp那就是在本地运行自己的节点。</p>
+<h1 id="p2p浏览器文件共享"><a href="#p2p浏览器文件共享" class="headerlink" title="p2p浏览器文件共享"></a>p2p浏览器文件共享</h1><p>git clone <a href="https://github.com/Peer5/ShareFest.git" target="_blank" rel="external">https://github.com/Peer5/ShareFest.git</a><br>cd ShareFest<br>修改package.json把express改为&gt;=3.0 &lt;4.0<br>npm install –dedupe<br>npm start<br>打开网页: localhost:13337</p>
+<h1 id="测试多节点"><a href="#测试多节点" class="headerlink" title="测试多节点"></a>测试多节点</h1><p>如果一个主机开多个VM虚拟机，需要：<br>    CPU：单核性能强劲；多核心<br>    内存：足够用<br>    硬盘：一个硬盘顶多4个虚拟机，是最大的瓶颈，机械硬盘的4K随机读写瓶颈很大，miner开启后，硬盘处于100%读写占用，无法流畅运行主机的物理机；换固态<br>    显卡：没有影响，VM显卡都是靠CPU模拟出来的</p>
+<ol>
+<li><p>配置: </p>
+<ul>
+<li>sublime 安装:ethereum-solidity包</li>
+<li>remix: 提供在线编译和虚拟机测试运行</li>
+</ul>
+</li>
+<li><p>ethereum P2P:</p>
+<ul>
+<li>每个客户端都会有3个硬编码的bootnodes</li>
+<li>之间的发现和对等广播基于RLPx的 Kademlia DHT</li>
+<li>节点会有一个nodeID: 唯一标示</li>
+<li></li>
+</ul>
+</li>
+<li><p>最新whisper例子:</p>
+<ul>
+<li>status: <a href="https://github.com/status-im/status-go/blob/3d7f4a3a9653b45a1b66390c727ceec9f79ed924/static/tests/whisper.js" target="_blank" rel="external">https://github.com/status-im/status-go/blob/3d7f4a3a9653b45a1b66390c727ceec9f79ed924/static/tests/whisper.js</a></li>
+<li><a href="https://gist.github.com/rgeraldes/1aa4a4bcdae03d1d79ca02d4ce0fd0b1" target="_blank" rel="external">https://gist.github.com/rgeraldes/1aa4a4bcdae03d1d79ca02d4ce0fd0b1</a></li>
+<li>最新v5-API: <a href="https://github.com/ethereum/go-ethereum/wiki/Whisper-v5-RPC-API" target="_blank" rel="external">https://github.com/ethereum/go-ethereum/wiki/Whisper-v5-RPC-API</a></li>
+</ul>
+</li>
+<li><p>使用curl测试:</p>
+</li>
+</ol>
+<p>geth –shh –testnet –nodiscover –rpc –rpccorsdomain “<a href="http://localhost:3000" target="_blank" rel="external">http://localhost:3000</a>“ –shh console</p>
+<p>curl -X POST <a href="http://localhost:8545" target="_blank" rel="external">http://localhost:8545</a> –data ‘{“jsonrpc”:”2.0”,”method”:”shh_subscribe”,”params”:[“messages”, {<br>curl -X POST <a href="http://localhost:8545" target="_blank" rel="external">http://localhost:8545</a> –data ‘{“jsonrpc”:”2.0”,”method”:”shh_subscribe”,”params”:[“messages”, {<br>  topics: [‘0x5a4ea131’, ‘0x11223344’],<br>  symKeyID: ‘b874f3bbaf031214a567485b703a025cec27d26b2c4457d6b139e56ad8734cea’,<br>  sig: ‘0x048229fb947363cf13bb9f9532e124f08840cd6287ecae6b537cda2947ec2b23dbdc3a07bdf7cd2bfb288c25c4d0d0461d91c719da736a22b7bebbcf912298d1e6’,<br>  pow: 12.3(?)<br>  }],”id”:1}’</p>
+<p>curl -X POST <a href="http://localhost:3000" target="_blank" rel="external">http://localhost:3000</a> –data ‘{“jsonrpc”:”2.0”,”method”:”shh_post”,”params”:[{<br>  pubKey: ‘b874f3bbaf031214a567485b703a025cec27d26b2c4457d6b139e56ad8734cea’,<br>  ttl: 7,<br>  topic: ‘0x07678231’,<br>  powTarget: 2.01,<br>  powTime: 2,<br>  payload: ‘0x68656c6c6f’<br>  }],”id”:1}’</p>
+<h2 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h2><p>不考虑server</p>
+<ol>
+<li>初始化<ul>
+<li>设备的出厂ID号经过hash作为device_ID, 用于与hub通信的安全令牌<ul>
+<li>设备的唯一性标识没有规律, 随机的</li>
+</ul>
+</li>
+<li>每个用户都有一个以太坊账号user_ID</li>
+<li>每个hub节点有一个hub_ID<ul>
+<li>admin.node_info</li>
+</ul>
+</li>
+<li>绑定:<ul>
+<li>每个用户与其对应的hub节点</li>
+<li>每个hub节点与其对应的设备</li>
+<li>绑定过程为初始化过程, 需要由该hub_ID的用户发起交易完成操作, 无法修改;</li>
+<li>若后期需要添加, 删除, 修改绑定关系, 同样需要该hub_ID的用户才能发起交易</li>
+<li>设计访问权限:<ul>
+<li>只有该hub_ID的用户才能访问该homegroup[]变量</li>
+<li>对device_ID和hub_ID进行隐匿, 设为private变量<br>typedef HomeState struct {<br>user_ID,<br>hub_ID[],<br>device_ID[],<br>}<br>contract Smarthome {<br>HomeState homegroup[];<br>init(){<br>  homegroup[user_ID] = { … };<br>}<br>}</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>控制<ul>
+<li>威胁: 可非法控制未绑定的设备</li>
+</ul>
+</li>
+<li>授权    <ul>
+<li>威胁: <ul>
+<li>重复绑定, 不用提示原绑定者授权</li>
+<li>具体实施: 获取另一个用户的设备, 并通过自己用户的smart登录, 重新初始化自己的合约变量</li>
+</ul>
+</li>
+<li>应对:<ul>
+<li>首先需要非法获取用户的device,然后用自己的smart对该device操作</li>
+<li>智能合约的安全策略限制每个用户的访问权限</li>
+<li>需要重新用另一个user_ID登录并发起交易, gas</li>
+<li>增加闭环的操作:<ul>
+<li>每个hub会读取区块链的合约状态变量</li>
+<li>若发现设备的状态发生改变, 或者准备执行未授权的动作, 则向用户发送警告.<br>业务层接入协议的安全威胁:<br>1）窃听攻击：</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>威胁: <ul>
+<li>攻击者通过窃听网络通信链路上的数据，获取智能设备终端的隐私数据和敏感数据。例如，通过被动窃听网络可以获取健康医疗类智能硬件设备的数据，从而获得用户的隐私数据。</li>
+<li>具体实施: </li>
+</ul>
+</li>
+<li>应对: <ul>
+<li>数据<br>2）篡改攻击：攻击者通过主动插入到通信链路上，对数据的完整性进行攻击，即篡改数据报文的内容，例如，攻击者可以篡改智能设备向业务云提交的业务数据，向业务云提供错误的数据信息；<br>3）伪造攻击：即一种针对真实性的攻击，攻击者伪造一些看似来自合法来源的数据报文，以此诱骗通信的另一方。尤其是在智能设备的控制指令传输过程中，攻击者可以伪造一些携带控制指令的报文发给智能设备，从而达到未授权操作的效果。<br>4）重放攻击：从目前的分析来看，重放攻击主要分为两个方面，一个是针对未加密的通信协议重放控制指令攻击设备，另一个是对会话令牌的重复使用而发起的攻击行为。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<p>DDOS防御:</p>
+<pre><code>1. 带外: 网络中的设备是独立于路由器的, 路由器负责传输来自互联网的流量数据, 然后发送元数据样本, 向设备描述流量数据的内容;
+    - 如果系统检测到了可疑的数据包或探测到了DDOS攻击的苗头, 那么立即向用户发出警报
+    - 特点: 
+        - 允许安全人员不影响数据流通信的情况下对流量进行更加复杂的分析, 但是检测到攻击和防御实施之间还有延迟
+        - 较慢
+2. 带内: 直接面对所有的通信数据流, 并在对流量分析处理的过程中, 判断那些数据包应该丢弃, 然后将有效的数据包发送给终端用户或设备
+3. 内联系统: 可以查看从某个网络节点流向另外一个网络节点的通信流量, 并且可以实时过滤和处理这些流量.
+    - 相对而言: 带外设备几乎无法获取通信流量的样本, 而且数据早就到达目的地址.
+    - 特点: 
+        - 
+4. 其他:
+    - 内容分布网络(CDN)和流量过滤功能，他们会对网络通信流量进行过滤，并且将最终的数据发送给你
+5. IoTPOT:
+    - 用户IoT设备的蜜罐: 模拟各种IOT设备的特点欺骗攻击者
+</code></pre><ol>
+<li><p>登录</p>
+<ul>
+<li>使用的以太坊的账号登录, 保证验证登录的安全性</li>
+</ul>
+</li>
+<li><p>设备与app交互:<br> - </p>
+</li>
+<li>设备与</li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>thank you for donating~</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.png" alt="Batista Yu WeChat Pay"/>
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="Batista Yu Alipay"/>
+        <p>Alipay</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/11/05/github_blog/" rel="next" title="Tutorial of Hexo and Github web">
+                <i class="fa fa-chevron-left"></i> Tutorial of Hexo and Github web
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Batista Yu</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">Artikel</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/a550461053" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#任务"><span class="nav-number">1.</span> <span class="nav-text">任务</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#多节点实验"><span class="nav-number">1.1.</span> <span class="nav-text">多节点实验</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#测试shh发送message"><span class="nav-number">2.</span> <span class="nav-text">测试shh发送message</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#见-https-github-com-ethereum-go-ethereum-wiki-Whisper-Usage"><span class="nav-number">3.</span> <span class="nav-text">见: https://github.com/ethereum/go-ethereum/wiki/Whisper-Usage</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#test-the-Whisper-node-on-private-network"><span class="nav-number">4.</span> <span class="nav-text">test the Whisper node on private network</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#use-cases"><span class="nav-number">5.</span> <span class="nav-text">use cases</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#geth-1-6-1之后-Whisper-v2升级为-v5版本-shh-newIdentity-函数被替换为subscribe"><span class="nav-number">5.1.</span> <span class="nav-text">geth 1.6.1之后 Whisper v2升级为 v5版本, shh.newIdentity()函数被替换为subscribe</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#接收非对称加密信息"><span class="nav-number">6.</span> <span class="nav-text">接收非对称加密信息:</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#接收对称加密信息-共享相同的对称key"><span class="nav-number">7.</span> <span class="nav-text">接收对称加密信息: 共享相同的对称key</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#一次性会话聊天"><span class="nav-number">8.</span> <span class="nav-text">一次性会话聊天</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#mist-测试使用"><span class="nav-number">9.</span> <span class="nav-text">mist 测试使用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#p2p浏览器文件共享"><span class="nav-number">10.</span> <span class="nav-text">p2p浏览器文件共享</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#测试多节点"><span class="nav-number">11.</span> <span class="nav-text">测试多节点</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#过程"><span class="nav-number">11.1.</span> <span class="nav-text">过程</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Batista Yu</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Erstellt mit  <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
