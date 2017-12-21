@@ -158,7 +158,6 @@ title: github_blog的使用
 			branch: master
 		+ 命令行：hexo d
 	- 浏览器访问：https://a550461053.github.io/
-	- 
 5. Hexo-配置：
 	- 修改主题：
 		+ 安装主题：

@@ -1,4 +1,6 @@
-# Ubuntu管理日记
+---
+title: Ubuntu管理日记
+--- 
 
 
 ## 酷炫Ubuntu

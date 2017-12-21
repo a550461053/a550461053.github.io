@@ -1,4 +1,6 @@
-# sublime
+---
+title: sublime配置
+--- 
 
 ## tools
 1. tools>snippet:
