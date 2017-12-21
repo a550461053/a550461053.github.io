@@ -1,6 +1,10 @@
 ---
-title: sublime配置
---- 
+title: sublime
+date: 2017-12-21 10:41:32
+tags:
+---
+
+
 
 ## tools
 1. tools>snippet:

@@ -1,6 +1,9 @@
 ---
-title: ddos模拟
---- 
+title: ddos
+date: 2017-12-21 10:40:58
+tags:
+---
+
 
 ## trafgen工具
 1. trafgen属于netsniff-ng套件，

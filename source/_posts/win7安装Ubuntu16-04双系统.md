@@ -1,6 +1,9 @@
 ---
-title: win7装Ubuntu16.04双系统
---- 
+title: win7安装Ubuntu16.04双系统
+date: 2017-12-21 10:35:55
+tags:
+---
+
 
 
 -  **0.前言**  

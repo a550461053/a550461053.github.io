@@ -1,6 +1,8 @@
 ---
 title: Ubuntu管理日记
---- 
+date: 2017-12-21 10:38:09
+tags:
+---
 
 
 ## 酷炫Ubuntu
