@@ -1,0 +1,63 @@
+基准测试：算法与计算机系统之间的桥梁
+
+计算机：
+主体:数据结构+算法
+大数据生态下的主体：
+（分布式系统上的）数据结构+算法
+（分布式基础平台+编程管理工具）+（机器学习）算法
+系统+算法
+
+系统：the art of building complex systems
+计算机系统：计算抽象（进程、Transaction、 Tail latency尾巴延迟）
+    最复杂的artifact：Linux，Google，微信
+
+算法：
+    基础数学->应用数学->机器学习->数据挖掘->系统&应用
+
+开尔文：If you can't measure it, you can't improve it.
+
+基准测试：系统和算法的桥梁
+大数据基准测试本质：大数据系统的度量；
+标准：
+    Linpack：应用在Top500，测试：系统求解稠密线性代数方程组Ax=b的效率
+    HPPC：应用在高性能计算
+    PARSEC：应用在处理器
+    TPC Benchmarks：应用在数据库
+
+基准测试局限性：
+    云计算+大数据
+
+BigDataBench：
+    http://prof.ict.ac.cn/BigDataBench
+    增量式&迭代式构建方法
+
+大数据计算抽象：
+    Linear Algebra线代
+    Sampling采样
+    Transform operation
+    Graph operation
+    Logic  operation
+    Set operation
+    Statistic operation
+    Sort 
+
+DAG-like组合
+    
+负载&数据集
+
+软件栈实现：MapReduce、 MPI、 DataMPI、 Spark
+
+大数据负载流水线：Retiring、 Backend Bound、Frontend、Bad Speculation、
+    处理器优化：
+    错误预测，TopDown
+
+模拟器：
+
+
+
+写代码+忽悠投资开公司
+
+文件中：
+A B
+output：A+B
+
