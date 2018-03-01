@@ -91,7 +91,7 @@
 <meta property="og:site_name" content="Fake it till you make it">
 <meta property="og:description" content="数组array链表Linked List 定义：  123class ListNode(val):	self.val = val	self.next = None    分类：  典型问题：  求单链表长度:  比较简单，但需要一开始就养成链表为空判断的习惯。123456789def getLinkListLength(head):	if None == head:		return 0	p = h">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-01T09:26:52.377Z">
+<meta property="og:updated_time" content="2018-03-01T09:32:38.365Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据结构">
 <meta name="twitter:description" content="数组array链表Linked List 定义：  123class ListNode(val):	self.val = val	self.next = None    分类：  典型问题：  求单链表长度:  比较简单，但需要一开始就养成链表为空判断的习惯。123456789def getLinkListLength(head):	if None == head:		return 0	p = h">
@@ -352,14 +352,13 @@
 </ul>
 </li>
 <li><p>翻转链表：</p>
-</li>
-</ol>
 <ul>
 <li>两种都行<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">def reverseLinkList(head):</span><br><span class="line">	if None == head or None == head.next:</span><br><span class="line">		return head</span><br><span class="line">	p = head</span><br><span class="line">	pre = None</span><br><span class="line">	while p:</span><br><span class="line">		# 法一：保存p</span><br><span class="line">		#cur = p</span><br><span class="line">		#p = p.next</span><br><span class="line">		#cur.next = pre</span><br><span class="line">		#pre = cur</span><br><span class="line">		# 法二：保存p.next</span><br><span class="line">		next = p.next</span><br><span class="line">		p.next = pre</span><br><span class="line">		pre = p</span><br><span class="line">		p = next</span><br><span class="line">	return pre</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<ol>
-<li>返回单链表倒数第k个节点</li>
+</li>
+<li><p>返回单链表倒数第k个节点</p>
+</li>
 </ol>
 <ul>
 <li>思路：快慢指针，fast先走k次，然后slow和fast一起走，fast到达终点则slow为倒数第k个节点。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">def findLastKthNode(head, k):</span><br><span class="line">	if None == head or 0 == k:</span><br><span class="line">		return None</span><br><span class="line">	fast, slow = head, head</span><br><span class="line">	for i in range(k):</span><br><span class="line">		fast = fast.next</span><br><span class="line">	if None == fast:</span><br><span class="line">		return None</span><br><span class="line">	while fast:</span><br><span class="line">		slow = slow.next</span><br><span class="line">		fast = fast.next</span><br><span class="line">	return slow</span><br></pre></td></tr></table></figure>
@@ -469,7 +468,7 @@
 <li>红黑树RBT</li>
 <li>B-树</li>
 <li>B+树</li>
-<li>字典树</li>
+<li>字典树Trie：字符串查找</li>
 <li>后缀树</li>
 <li>广义后缀树</li>
 </ol>
