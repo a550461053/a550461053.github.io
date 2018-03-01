@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+  <link rel="stylesheet" media="all" href="/lib/Han/dist/han.min.css?v=3.3">
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="windows," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="环境变量：不区分大小写——使用cmd方式只在当前cmd有效，暂时性的 查看当前所有可用的环境变量：输入 set 即可查看。 查看某个环境变量：输入 “set 变量名”即可，比如想查看path变量的值，即输入 set path，不用！！！ 修改环境变量 ：输入 “set 变量名=变量内容” 设置为空：如果想将某一变量设置为空，输入“set 变量名=” 给变量追加内容（不同于3，那个是覆盖）：输入“">
+<meta name="keywords" content="windows">
+<meta property="og:type" content="article">
+<meta property="og:title" content="windows技巧">
+<meta property="og:url" content="http://yoursite.com/2017/12/21/windows技巧/index.html">
+<meta property="og:site_name" content="Fake it till you make it">
+<meta property="og:description" content="环境变量：不区分大小写——使用cmd方式只在当前cmd有效，暂时性的 查看当前所有可用的环境变量：输入 set 即可查看。 查看某个环境变量：输入 “set 变量名”即可，比如想查看path变量的值，即输入 set path，不用！！！ 修改环境变量 ：输入 “set 变量名=变量内容” 设置为空：如果想将某一变量设置为空，输入“set 变量名=” 给变量追加内容（不同于3，那个是覆盖）：输入“">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-03-01T07:19:56.145Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="windows技巧">
+<meta name="twitter:description" content="环境变量：不区分大小写——使用cmd方式只在当前cmd有效，暂时性的 查看当前所有可用的环境变量：输入 set 即可查看。 查看某个环境变量：输入 “set 变量名”即可，比如想查看path变量的值，即输入 set path，不用！！！ 修改环境变量 ：输入 “set 变量名=变量内容” 设置为空：如果想将某一变量设置为空，输入“set 变量名=” 给变量追加内容（不同于3，那个是覆盖）：输入“">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/12/21/windows技巧/"/>
+
+
+
+
+
+  <title>windows技巧 | Fake it till you make it</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Fake it till you make it</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">computer science, linux, blockchain, deeplearning, algorithm</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/21/windows技巧/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Batista Yu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Fake it till you make it">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">windows技巧</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-21T10:38:54+08:00">
+                2017-12-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        <ol>
+<li>环境变量：不区分大小写——使用cmd方式只在当前cmd有效，暂时性的</li>
+<li>查看当前所有可用的环境变量：输入 set 即可查看。</li>
+<li>查看某个环境变量：输入 “set 变量名”即可，比如想查看path变量的值，即输入 set path，不用！！！</li>
+<li>修改环境变量 ：输入 “set 变量名=变量内容”</li>
+<li>设置为空：如果想将某一变量设置为空，输入“set 变量名=”</li>
+<li><p>给变量追加内容（不同于3，那个是覆盖）：输入“set 变量名=%变量名%;变量内容”<br> getenv是获取系统的环境变更，对于windows在系统属性–&gt;高级–&gt;环境变量中设置的变量将显示在此(对于linux,通过export设置的变量将显示在此)<br> getProperties是获取系统的相关属性,包括文件编码,操作系统名称,区域,用户名等,此属性一般由jvm自动获取,不能设置.</p>
+</li>
+<li><p>资源管理器卡死：文件夹选项-查看-勾选“在单独的进程中打开文件夹窗口”</p>
+</li>
+<li><p>windows7自动关机：cmd - 输入：shutdown -f -s -t 3600*n个小时；-f表示不警告、-s关闭、-t多少秒后关闭；</p>
+<pre><code>取消自动关机：shutdown -a
+</code></pre></li>
+<li><p>markdown:<br>   <pre><br>   Pubkey script: OP_HASH160 &lt;Hash160(redeemScript)&gt; OP_EQUAL<br>Signature script: <sig> [sig] [sig…] <redeemscript><br>   <code></code></redeemscript></sig></pre></p>
+   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">printf(&quot;测试代码显示&quot;);</span><br></pre></td></tr></table></figure>
+<p>   测试行内<code>code</code>代码块显示；</p>
+</li>
+</ol>
+<p>![显示图片][image1]<br>[image1]:D:\yuziqi\学习记录\区块链\区块链笔记\a.jpg </p>
+<ol>
+<li><p>ip地址重复是路由器分配错误导致的，因为主机ip是自动获取的，所以重启路由器即可；没有有效ip，其实也可能是路由器分配错误导致，也可能是自己改成了静态ip地址，有可能是改了dns配置，也可能是路由器DHCP功能卡死，当然都可以改为自动ip和dns，重置自己主机的网络配置，然后重启主机，重新分配ip，一般不会分配错误，所以才可以；管理员权限命令行：netsh winsock reset</p>
+</li>
+<li><p>win10的powershell配置</p>
+<ul>
+<li>把开始按钮右键菜单（Win+X菜单）中的“Windows PowerShell”改回“命令提示符”</li>
+<li>shift+右键打开cmd：<ul>
+<li>打开注册表编辑器：regedit</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>word出现很抱歉。。。</p>
+<ul>
+<li>win+R，输入regedit</li>
+<li>找到以下键值：HKEY_CURRENT_USER\SOFTWARE\Microsoft\Office\16.0\Word\Options，在右侧新建DWORD值，取名为NoReReg，并输入数值为1 并确认，关闭注册表编辑器，重新打开Word 即可</li>
+<li>word16破解：直接用kms一键激活。</li>
+</ul>
+</li>
+<li><p>InftyReader公式识别工具：<br>1.将“InftyReg.dll”文件（crack文件夹中）复制到安装文件夹（InftyReader\bin 目录下）<br>2.打开软件，选择register，在“Serial No.” 中输入：111111-222222<br>3.点击“Online authentication”按钮<br>4.程序将关闭并提示错误消息（也可能不提示）<br>5.在“License key”中输入：11111111112222222222<br>6.破解成功</p>
+</li>
+<li><p>win10重装edge</p>
+<ul>
+<li><ol>
+<li>卸载edge：文件夹地址栏输入：%USERPROFILE%\AppData\Local\Packages </li>
+</ol>
+</li>
+<li>找到Microsoft.MicrosoftEdge_8wekyb3d8bbwe文件夹，删除之</li>
+<li><ol>
+<li>重装Edge浏览器：以管理员身份打开PowerShell：Get-AppXPackage -AllUsers -Name Microsoft.MicrosoftEdge | Foreach {Add-AppxPackage -DisableDevelopmentMode -Register “$($_.InstallLocation)\AppXManifest.xml” -Verbose}</li>
+</ol>
+</li>
+<li>按下回车，等待黄色背景滚动完毕后，重启计算机即可。</li>
+</ul>
+</li>
+</ol>
+<ol>
+<li><p>win10：<br>win+E快捷键修改为我的电脑：查看 - 选项 - 资源管理器改为此电脑；<br>修改alt+tab显示风格：改了不好看~regedit在HKEY_CURRENT_USER下搜索Explorer-新建一个32位值，键值为AltTabSettings，数据改为1，默认是3*7，搜索Desktop，修改CoolSwitchColumns即可。</p>
+<p>查看windows核心数：cmd   —— wmic —— cpu get * —— name代表CPU，numberofcores表示CPU核数，numberoflogicalprocessors表示是否超线程，为4</p>
+<p>关闭自动更新/补丁更新：打开更新和安全 - win更新 - 高级选项 - 如何提供更新 - 取消来自更多位置的更新；</p>
+</li>
+<li><p>win10 chrome：修改安装路径下的chrome.exe的名字。<br>（1）在桌面上建立一个“新建文本文档.txt”。<br>具体做法是：在桌面上空白处点击鼠标右键，在“新建”菜单中用鼠标左键点击“文本文档”。<br>（2）把“新建文本文档.txt”重命名为“Go.html”(可以随便取名字,只要后缀是html即可)。<br>具体做法是：鼠标移到“新建文本文档.txt”上，点击右键，找到“重命名”，点击左键，把“新建文本文档.txt”命名为“Go.html”。<br>双击“Go.html”文件，就可以打开默认的浏览器了（是个空白页面）。在地址栏输入你喜欢的主页，以后只需要点击地址栏下拉列表中的网址就可以啦。<br>Go.html是个空白文件，用它来启动浏览器的速度似乎更快哦！</p>
+</li>
+<li><p>win10关闭安全中心</p>
+<ul>
+<li>法0：<ul>
+<li>win10默认谦虚的方法，只要安装了第三方的安全软件，则自动退出defender</li>
+</ul>
+</li>
+<li>法1：<ul>
+<li>regedit</li>
+<li>进入：计算机\HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\SecurityHealthService</li>
+<li>修改start的值为4则关闭</li>
+<li>恢复则修改start为2</li>
+<li>重启wins资源管理器即可。</li>
+</ul>
+</li>
+<li>法2：<ul>
+<li>service.msc</li>
+<li>找到Security-center，禁用。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>sublime：</p>
+<ol>
+<li>package install不好用的话，add channel：<a href="https://packagecontrol.io/channel_v3.json" target="_blank" rel="noopener">https://packagecontrol.io/channel_v3.json</a></li>
+<li><p>配置java编译环境</p>
+<ul>
+<li><p>sublime的java.sublime-package，用压缩软件打开，找到JavaC.sublime-build并打开，添加：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">&quot;shell_cmd&quot;: &quot;runJava.bat \&quot;$file\&quot;&quot;,</span><br><span class="line">&quot;file_regex&quot;: &quot;^(...*?):([0-9]*):?([0-9]*)&quot;,</span><br><span class="line">&quot;selector&quot;: &quot;source.java&quot;,</span><br><span class="line">//添加下面一段可支持编译中文，亲测Java可用</span><br><span class="line">&quot;encoding&quot;: &quot;GBK&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>JDK/bin下，新建一个文件,命名为runJava.bat:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">@ECHO OFF</span><br><span class="line">cd %~dp1</span><br><span class="line">IF EXIST %~n1.class (</span><br><span class="line">DEL %~n1.class</span><br><span class="line">)</span><br><span class="line">javac -encoding UTF-8 %~nx1</span><br><span class="line">IF EXIST %~n1.class (</span><br><span class="line">java %~n1</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><p>cmd命令大全（第一部分）<br>　　winver———检查Windows版本<br>　　wmimgmt.msc—-打开windows管理体系结构(WMI)<br>　　wupdmgr——–windows更新程序<br>　　wscript——–windows脚本宿主设置<br>　　write———-写字板<br>　　winmsd———系统信息<br>　　wiaacmgr——-扫描仪和照相机向导<br>　　winchat——–XP自带局域网聊天</p>
+</li>
+</ol>
+<p>cmd命令大全（第二部分）<br>　　mem.exe——–显示内存使用情况<br>　　Msconfig.exe—系统配置实用程序<br>　　mplayer2——-简易widnows media player<br>　　mspaint——–画图板<br>　　mstsc———-远程桌面连接<br>　　mplayer2——-媒体播放机<br>　　magnify——–放大镜实用程序<br>　　mmc————打开控制台<br>　　mobsync——–同步命令<br>cmd命令大全（第三部分）<br>　　dxdiag———检查DirectX信息<br>　　drwtsn32—— 系统医生<br>　　devmgmt.msc— 设备管理器<br>　　dfrg.msc——-磁盘碎片整理程序<br>　　diskmgmt.msc—磁盘管理实用程序<br>　　dcomcnfg——-打开系统组件服务<br>　　ddeshare——-打开DDE共享设置<br>　　dvdplay——–DVD播放器<br>cmd命令大全（第四部分）<br>　　net stop messenger—–停止信使服务<br>　　net start messenger—-开始信使服务<br>　　notepad——–打开记事本<br>　　nslookup——-网络管理的工具向导<br>　　ntbackup——-系统备份和还原<br>　　narrator——-屏幕“讲述人”<br>　　ntmsmgr.msc—-移动存储管理器<br>　　ntmsoprq.msc—移动存储管理员操作请求<br>　　netstat -an—-(TC)命令检查接口<br>cmd命令大全（第五部分）<br>　　syncapp——–创建一个公文包<br>　　sysedit——–系统配置编辑器<br>　　sigverif——-文件签名验证程序<br>　　sndrec32——-录音机<br>　　shrpubw——–创建共享文件夹<br>　　secpol.m转载自电脑十万个为什么<a href="http://www.qq880.com，请保留此标记sc-----本地安全策略" target="_blank" rel="noopener">http://www.qq880.com，请保留此标记sc-----本地安全策略</a><br>　　syskey———系统加密，一旦加密就不能解开，保护windows xp系统的双重密码<br>　　services.msc—本地服务设置<br>　　Sndvol32——-音量控制程序<br>　　sfc.exe——–系统文件检查器<br>　　sfc /scannow—windows文件保护<br>cmd命令大全（第六部分）<br>　　tsshutdn——-60秒倒计时关机命令<br>　　tourstart——xp简介（安装完成后出现的漫游xp程序）<br>　　taskmgr——–任务管理器<br>　　eventvwr——-事件查看器<br>　　eudcedit——-造字程序<br>　　explorer——-打开资源管理器<br>　　packager——-对象包装程序<br>　　perfmon.msc—-计算机性能监测程序<br>　　progman——–程序管理器<br>　　regedit.exe—-注册表<br>　　rsop.msc——-组策略结果集<br>　　regedt32——-注册表编辑器<br>　　rononce -p —-15秒关机<br>　　regsvr32 /u *.dll—-停止dll文件运行<br>　　regsvr32 /u zipfldr.dll——取消ZIP支持<br>cmd命令大全（第七部分）<br>　　cmd.exe——–CMD命令提示符<br>　　chkdsk.exe—–Chkdsk磁盘检查<br>　　certmgr.msc—-证书管理实用程序<br>　　calc———–启动计算器<br>　　charmap——–启动字符映射表<br>　　cliconfg——-SQL SERVER 客户端网络实用程序<br>　　Clipbrd——–剪贴板查看器<br>　　conf———–启动netmeeting<br>　　compmgmt.msc—计算机管理<br>　　cleanmgr——-垃圾整理<br>　　ciadv.msc——索引服务程序<br>　　osk————打开屏幕键盘<br>　　odbcad32——-ODBC数据源管理器<br>　　oobe/msoobe /a—-检查XP是否激活<br>　　lusrmgr.msc—-本机用户和组<br>　　logoff———注销命令<br>　　iexpress——-木马捆绑工具，系统自带<br>　　Nslookup——-IP地址侦测器<br>　　fsmgmt.msc—–共享文件夹管理器<br>　　utilman——–辅助工具管理器<br>　　gpedit.msc—–组策略</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>thank you for donating~</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.png" alt="Batista Yu 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="Batista Yu 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/windows/" rel="tag"># windows</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/12/21/Ubuntu管理日记/" rel="next" title="Ubuntu管理日记">
+                <i class="fa fa-chevron-left"></i> Ubuntu管理日记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/12/21/虚拟机多节点/" rel="prev" title="虚拟机多节点">
+                虚拟机多节点 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Batista Yu</p>
+              <p class="site-description motion-element" itemprop="description">do research like playing</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/a550461053" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Batista Yu</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

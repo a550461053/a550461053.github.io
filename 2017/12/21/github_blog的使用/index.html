@@ -1,0 +1,1070 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+  <link rel="stylesheet" media="all" href="/lib/Han/dist/han.min.css?v=3.3">
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="github,blog,hexo,next," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="github做blog方法比较略 github使用 选择问题： 上传代码库：github，完美 写博客平台： csdn：交互多 github.io：300M上限，贴图麻烦 WordPress：需要搭建服务器，麻烦，但功能多，爬虫、SEO   写博客目的： 如果为了提高知名度，网上都是团队来做，而且偏简单的教程反而受众 如果为了工作面试，那时间不如用来专做技术，面试一谈便知深浅 总结就是，技术没做好">
+<meta name="keywords" content="github,blog,hexo,next">
+<meta property="og:type" content="article">
+<meta property="og:title" content="github_blog的使用">
+<meta property="og:url" content="http://yoursite.com/2017/12/21/github_blog的使用/index.html">
+<meta property="og:site_name" content="Fake it till you make it">
+<meta property="og:description" content="github做blog方法比较略 github使用 选择问题： 上传代码库：github，完美 写博客平台： csdn：交互多 github.io：300M上限，贴图麻烦 WordPress：需要搭建服务器，麻烦，但功能多，爬虫、SEO   写博客目的： 如果为了提高知名度，网上都是团队来做，而且偏简单的教程反而受众 如果为了工作面试，那时间不如用来专做技术，面试一谈便知深浅 总结就是，技术没做好">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-03-01T07:24:45.377Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="github_blog的使用">
+<meta name="twitter:description" content="github做blog方法比较略 github使用 选择问题： 上传代码库：github，完美 写博客平台： csdn：交互多 github.io：300M上限，贴图麻烦 WordPress：需要搭建服务器，麻烦，但功能多，爬虫、SEO   写博客目的： 如果为了提高知名度，网上都是团队来做，而且偏简单的教程反而受众 如果为了工作面试，那时间不如用来专做技术，面试一谈便知深浅 总结就是，技术没做好">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/12/21/github_blog的使用/"/>
+
+
+
+
+
+  <title>github_blog的使用 | Fake it till you make it</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Fake it till you make it</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">computer science, linux, blockchain, deeplearning, algorithm</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/21/github_blog的使用/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Batista Yu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Fake it till you make it">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">github_blog的使用</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-21T10:49:35+08:00">
+                2017-12-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="github做blog方法比较"><a href="#github做blog方法比较" class="headerlink" title="github做blog方法比较"></a>github做blog方法比较</h2><p>略</p>
+<h2 id="github使用"><a href="#github使用" class="headerlink" title="github使用"></a>github使用</h2><ol>
+<li>选择问题：<ul>
+<li>上传代码库：github，完美</li>
+<li>写博客平台：<ul>
+<li>csdn：交互多</li>
+<li>github.io：300M上限，贴图麻烦</li>
+<li>WordPress：需要搭建服务器，麻烦，但功能多，爬虫、SEO</li>
+</ul>
+</li>
+<li>写博客目的：<ul>
+<li>如果为了提高知名度，网上都是团队来做，而且偏简单的教程反而受众</li>
+<li>如果为了工作面试，那时间不如用来专做技术，面试一谈便知深浅</li>
+<li>总结就是，技术没做好，没必要写，技术有了一定的积淀，再去写，反而有含金量，容易推广</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>创建版本库:<ul>
+<li>cd mygit</li>
+<li>git config –global user.name “yuziqi”</li>
+<li>git config –global user.email “<a href="mailto:a550461053@gmail.com" target="_blank" rel="noopener">a550461053@gmail.com</a>“</li>
+<li>git config user.name </li>
+<li>git config user.email</li>
+<li>git init</li>
+<li>nautious .git</li>
+<li>vim 1.py</li>
+</ul>
+</li>
+<li>文件添加到版本库: <ul>
+<li>添加到暂存区: git add 1.py</li>
+<li>文件提交到仓库: git commit -m “注释信息”</li>
+<li>查看是否还有未提交的文件: git status</li>
+<li>查看修改内容: git diff 1.py</li>
+<li>提交修改:<ul>
+<li>git add 1.py</li>
+<li>git status -s ; 或者 git diff</li>
+<li>git commit -m “文件增加了一行”</li>
+<li>git status</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>版本回退:<ul>
+<li>查看版本历史记录: git log –pretty=oneline</li>
+<li>直接回退版本: git reset –hard HEAD<ul>
+<li>git reset –hard HEAD^ 上个版本</li>
+<li>git reset –hard HEAD~100 上100个</li>
+</ul>
+</li>
+<li>cat 1.py</li>
+<li>git log –pretty=oneline</li>
+<li>查看回退的版本号为948a21b: git reflog</li>
+<li>git reset –hard 948a21b</li>
+</ul>
+</li>
+<li>撤销修改:<ul>
+<li>法一: 重新提交源文件</li>
+<li>法二: git reset –hard HEAD~100</li>
+<li>法三: git checkout – 1.py : 撤销工作区的修改<ul>
+<li>1.py修改后还没放到暂存区</li>
+<li>1.py已经放到暂存区了,就回到添加暂存区后的状态</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>删除文件:<ul>
+<li>rm 2.py</li>
+<li>git add 2.py</li>
+<li>git rm 2.py</li>
+<li>继续恢复: git checkout – 2.py</li>
+</ul>
+</li>
+<li><p>远程仓库github：</p>
+<ul>
+<li><ol>
+<li>远程github创建一个repo, 勾选README.md</li>
+</ol>
+</li>
+<li><ol>
+<li>克隆到本地: <ul>
+<li>git clone <a href="https://github.com/a550461053/matlab-seg.git" target="_blank" rel="noopener">https://github.com/a550461053/matlab-seg.git</a></li>
+<li>指定深度为1: git clone git://xxoo –depth 1</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><ol>
+<li>上传文件: git init<ul>
+<li>touch README.md</li>
+<li>git add README.md</li>
+<li>git commit -m ‘first test commit’</li>
+<li>执行一次就够了，git remote add origin <a href="https://github.com/a550461053/matlab-seg.git" target="_blank" rel="noopener">https://github.com/a550461053/matlab-seg.git</a> </li>
+<li>git push origin master</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><ol>
+<li>push文件:<ul>
+<li>git add .</li>
+<li>git commit -m ‘first commit’</li>
+<li>git remote add origin <a href="https://github.com/a550461053/matlab-seg.git" target="_blank" rel="noopener">https://github.com/a550461053/matlab-seg.git</a></li>
+<li>git push origin master</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><ol>
+<li>报错处理<ul>
+<li>fatal: remote origin already exists<ul>
+<li>先执行: git remote rm origin</li>
+</ul>
+</li>
+<li>error:failed to push som refs to…….<ul>
+<li>先执行: git pull origin master</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><ol>
+<li>设置免密码登录</li>
+</ol>
+</li>
+</ul>
+</li>
+<li><p>创建分支：</p>
+<ul>
+<li>创建分支：git branch dev</li>
+<li>切换分支：git checkout dev</li>
+<li>创建+切换：git checkout -b dev</li>
+<li>查看当前分支：git branch</li>
+<li>合并分支：在master下，git merge dev</li>
+<li>删除分支：git branch -d dev</li>
+<li></li>
+</ul>
+</li>
+<li>多人协作：<ul>
+<li>查看远程库：git remote ； git remote -v</li>
+<li>推送分支：<ul>
+<li>master始终要与远程同步</li>
+<li>bug分支可以先合并到master</li>
+<li>git push origin master</li>
+<li>git push origin dev</li>
+</ul>
+</li>
+<li>抓取分支：<ul>
+<li>先获取最新提交：</li>
+<li>git branch –set-upstream dev origin/dev</li>
+<li>git pull</li>
+</ul>
+</li>
+<li>一般协作过程：<ul>
+<li>1.视图git push origin branch dev推送自己的修改</li>
+<li>2.若推送失败，则因为远程分支比你的本地更新早，需要先git pull合并</li>
+<li>3.若合并有冲突，需要解决冲突，并本地提交；在用git push origin branch dev推送</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>常用命令：<ul>
+<li>cd G:/</li>
+<li>查看历史记录：git log</li>
+<li>查看历史记录的版本号：git reflog</li>
+<li>对工作区的文件修改撤销：git checkout 2.py</li>
+</ul>
+</li>
+</ol>
+<h2 id="Hexo-github"><a href="#Hexo-github" class="headerlink" title="Hexo+github"></a>Hexo+github</h2><ol>
+<li>Node.js:<ul>
+<li>sudo apt install nodejs</li>
+<li>nodejs -v</li>
+<li>sudo apt install npm</li>
+<li>npm -v</li>
+</ul>
+</li>
+<li>git<ul>
+<li>sudo apt install git</li>
+</ul>
+</li>
+<li>Hexo：<ul>
+<li>mkdir hexo</li>
+<li>npm install hexo-cli</li>
+<li>hexo init blog<ul>
+<li>hexo不能用，一般是没装好，</li>
+<li>npm不支持nodejsv9，所以需要npm uninstall -g npm删除原有的npm</li>
+<li>然后再次执行hexo init blog即可</li>
+<li>后来再次使用npm不行了，但sudo可以</li>
+<li>使用hash -r即可</li>
+</ul>
+</li>
+<li>cd blog</li>
+<li>npm install 安装依赖项</li>
+<li>hexo clean # 删除hexo g生成的静态网页</li>
+<li>hexo g # or: hexo generate生成静态网页，public文件夹</li>
+<li>hexo s # or: hexo server,<a href="http://localhost:4000/运行本地服务器，查看网页" target="_blank" rel="noopener">http://localhost:4000/运行本地服务器，查看网页</a></li>
+<li>此时打开：localhost:4000即可访问</li>
+</ul>
+</li>
+<li>Hexo-部署<ul>
+<li>借用github pages：<ul>
+<li>仓库存放个人主页，但仓库名字得是username/username.github.io</li>
+<li>通过<a href="http://username.github.io访问主页" target="_blank" rel="noopener">http://username.github.io访问主页</a></li>
+<li>个人主页的网站内容是在master分支下的</li>
+</ul>
+</li>
+<li>创建自己的github pages：<ul>
+<li>也就是创建一个repo：batista.github.io</li>
+<li>提交一次git commit</li>
+<li>通过连接<a href="http://batista.github.io" target="_blank" rel="noopener">http://batista.github.io</a></li>
+</ul>
+</li>
+<li>配置github：<ul>
+<li>git config –global user.name “a550461053”</li>
+<li>git config –global user.email “<a href="mailto:550461053@qq.com" target="_blank" rel="noopener">550461053@qq.com</a>“</li>
+<li>创建公钥：<ul>
+<li>ssh-keygen -C <a href="mailto:&#39;550461053@qq.com" target="_blank" rel="noopener">&#39;550461053@qq.com</a>‘ -t rsa</li>
+<li>一直回车，直到生成~/.ssh/id_rsa.pub，打开</li>
+<li>在github的settings里面，直到id_rsa.pub文件的密钥复制进去即可</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>部署hexo到github pages：<ul>
+<li>安装部署工具：<ul>
+<li>npm install hexo-deployer-git –save</li>
+</ul>
+</li>
+<li>修改_config.xml文件：</li>
+<li>特别注意：type:这种写法的冒号后面一定要有空格，不然无效</li>
+<li>deploy:<br>  type: git<br>  repo: <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:batista/batista.github.io.git<br>  branch: master</li>
+<li>命令行：hexo d</li>
+</ul>
+</li>
+<li>浏览器访问：<a href="https://a550461053.github.io/" target="_blank" rel="noopener">https://a550461053.github.io/</a></li>
+</ul>
+</li>
+<li>Hexo-配置：<ul>
+<li>修改主题：<ul>
+<li>安装主题：<ul>
+<li>hexo clean </li>
+<li>git clone <a href="https://github.com/litten/hexo-theme-yilia.git" target="_blank" rel="noopener">https://github.com/litten/hexo-theme-yilia.git</a> themes/yilia</li>
+<li>或者用next：</li>
+<li>git clone <a href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="noopener">https://github.com/iissnan/hexo-theme-next</a> themes/next</li>
+</ul>
+</li>
+<li>启动主题：<ul>
+<li>修改hexo目录下的config.yml文件中的theme属性，设置为yilia或者为next</li>
+</ul>
+</li>
+<li>更新主题：<ul>
+<li>cd themes/yilia</li>
+<li>git pull</li>
+<li>hexo g</li>
+<li>hexo d</li>
+</ul>
+</li>
+<li>修改主题配置：<ul>
+<li>next下面也有一个_config.yml</li>
+<li>修改scheme：可以切换不同的样式</li>
+</ul>
+</li>
+<li>PS: 有时候有点延迟</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>hello world：<ul>
+<li>hexo的文件在/source/_post下</li>
+<li>hexo new “firstblog”</li>
+<li>会自动在_post下生成一个firstblog.md</li>
+<li>然后添加相应的内容即可</li>
+<li>hexo d</li>
+</ul>
+</li>
+<li>添加评论<br> - </li>
+<li>添加打赏<br> - </li>
+<li>多终端同步：<ul>
+<li>在username.github.io下新建一个hexo分支<ul>
+<li>在hexo的根目录下新建hexo分支</li>
+<li>git init </li>
+<li>git add source # 这里不使用git add . 是因为文件夹下含有node_model文件夹比较大，所以有选择的添加文件</li>
+<li>git commit -m “hexo blog source file”</li>
+<li>git branch hexo # 新建hexo分支</li>
+<li>git checkout hexo # 切换到hexo分支</li>
+<li>git remote add origin <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:username/username.github.io.git # 本地与github对接</li>
+<li>git push origin hexo # push到github的hexo分支上</li>
+</ul>
+</li>
+<li>另一端clone和push更新：<ul>
+<li>git clone -b hexo <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:yourname/yourname.github.io.git  #将Github中hexo分支clone到本地</li>
+<li>cd  yourname.github.io  # 切换到刚刚clone的文件夹内</li>
+<li>npm install    //注意，这里一定要切换到刚刚clone的文件夹内执行，安装必要的所需组件，不用再init</li>
+<li>hexo new post “new blog name”   //新建一个.md文件，并编辑完成自己的博客内容</li>
+<li>git add source  //经测试每次只要更新sorcerer中的文件到Github中即可，因为只是新建了一篇新博客</li>
+<li>git commit -m “XX”</li>
+<li>git push origin hexo  //更新分支</li>
+<li>hexo d -g   # push更新完分支之后将自己写的博客对接到自己搭的博客网站上，同时同步了Github中的master</li>
+</ul>
+</li>
+<li>更新hexo：<ul>
+<li>B端更新后，A端也要更新：</li>
+<li>git pull origin hexo # pull完成本地与远程的融合</li>
+<li>然后后面就一样了</li>
+<li>hexo new “…”</li>
+<li>git add source </li>
+<li>git commit -m “..”</li>
+<li>git push origin hexo</li>
+<li>hexo d -g</li>
+<li></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>增加tag选项：<ul>
+<li>hexo new page tag</li>
+<li>然后会在_post同级下创建文件夹tags</li>
+<li>进入tags，修改index.md</li>
+<li>添加type: tags</li>
+<li>在主题配置文件中，menu项下，把tags打开：<ul>
+<li>tags: /tags</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>常见问题：<ul>
+<li>显示Uber等字体：修改hexo的配置文件_config.xml默认字体为zh-han即可</li>
+</ul>
+</li>
+<li></li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>thank you for donating~</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.png" alt="Batista Yu 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="Batista Yu 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/github/" rel="tag"># github</a>
+          
+            <a href="/tags/blog/" rel="tag"># blog</a>
+          
+            <a href="/tags/hexo/" rel="tag"># hexo</a>
+          
+            <a href="/tags/next/" rel="tag"># next</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/12/21/sublime的使用/" rel="next" title="sublime的使用">
+                <i class="fa fa-chevron-left"></i> sublime的使用
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/03/01/设计模式/" rel="prev" title="设计模式">
+                设计模式 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Batista Yu</p>
+              <p class="site-description motion-element" itemprop="description">do research like playing</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/a550461053" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#github做blog方法比较"><span class="nav-number">1.</span> <span class="nav-text">github做blog方法比较</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#github使用"><span class="nav-number">2.</span> <span class="nav-text">github使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo-github"><span class="nav-number">3.</span> <span class="nav-text">Hexo+github</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Batista Yu</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+  <link rel="stylesheet" media="all" href="/lib/Han/dist/han.min.css?v=3.3">
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="windows,linux,双系统,分区," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="0.前言   1.准备工作 2.win7系统分区 3.Ubuntu系统盘制作 4.引导Ubuntu系统盘 5.设置开机引导 6.解决时间错乱   0.前言由于虚拟机不能通过校园网免流量上Google，and今天没课，一早上起来就赶紧准备装双系统，开启Linux之旅。资料查完后，主要有两种方式，硬盘和U盘两种方式，因为手上有个8G U盘，所以采用U盘方式，Ubuntu16.04的镜像也就1.38G">
+<meta name="keywords" content="windows,linux,双系统,分区">
+<meta property="og:type" content="article">
+<meta property="og:title" content="win7安装Ubuntu16.04双系统">
+<meta property="og:url" content="http://yoursite.com/2017/12/21/win7安装Ubuntu16.04双系统/index.html">
+<meta property="og:site_name" content="Fake it till you make it">
+<meta property="og:description" content="0.前言   1.准备工作 2.win7系统分区 3.Ubuntu系统盘制作 4.引导Ubuntu系统盘 5.设置开机引导 6.解决时间错乱   0.前言由于虚拟机不能通过校园网免流量上Google，and今天没课，一早上起来就赶紧准备装双系统，开启Linux之旅。资料查完后，主要有两种方式，硬盘和U盘两种方式，因为手上有个8G U盘，所以采用U盘方式，Ubuntu16.04的镜像也就1.38G">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://i.imgur.com/9EFYsOY.jpg">
+<meta property="og:updated_time" content="2018-03-01T07:17:12.670Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="win7安装Ubuntu16.04双系统">
+<meta name="twitter:description" content="0.前言   1.准备工作 2.win7系统分区 3.Ubuntu系统盘制作 4.引导Ubuntu系统盘 5.设置开机引导 6.解决时间错乱   0.前言由于虚拟机不能通过校园网免流量上Google，and今天没课，一早上起来就赶紧准备装双系统，开启Linux之旅。资料查完后，主要有两种方式，硬盘和U盘两种方式，因为手上有个8G U盘，所以采用U盘方式，Ubuntu16.04的镜像也就1.38G">
+<meta name="twitter:image" content="http://i.imgur.com/9EFYsOY.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/12/21/win7安装Ubuntu16.04双系统/"/>
+
+
+
+
+
+  <title>win7安装Ubuntu16.04双系统 | Fake it till you make it</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Fake it till you make it</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">computer science, linux, blockchain, deeplearning, algorithm</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/21/win7安装Ubuntu16.04双系统/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Batista Yu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Fake it till you make it">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">win7安装Ubuntu16.04双系统</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-21T10:35:55+08:00">
+                2017-12-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        <ul>
+<li><strong>0.前言</strong>  </li>
+<li><strong>1.准备工作</strong></li>
+<li><strong>2.win7系统分区</strong></li>
+<li><strong>3.Ubuntu系统盘制作</strong></li>
+<li><strong>4.引导Ubuntu系统盘</strong></li>
+<li><strong>5.设置开机引导</strong></li>
+<li><strong>6.解决时间错乱</strong></li>
+</ul>
+<hr>
+<h2 id="0-前言"><a href="#0-前言" class="headerlink" title="0.前言"></a><strong>0.前言</strong></h2><p>由于虚拟机不能通过校园网免流量上Google，and今天没课，一早上起来就赶紧准备装双系统，开启Linux之旅。资料查完后，主要有两种方式，硬盘和U盘两种方式，因为手上有个8G U盘，所以采用U盘方式，Ubuntu16.04的镜像也就1.38G，不算大。</p>
+<ul>
+<li><p><strong>知识</strong></p>
+<ol>
+<li><p><strong>分区作用</strong>：</p>
+<ul>
+<li>有利于管理，系统单独放一个区，和其他文件分开，产生的碎片很少，系统比较稳定，也延长硬盘寿命。</li>
+<li>软件放一个区，因为软件的安装和升级都会产生碎片，单独放在一起容易碎片整理。</li>
+<li>多媒体或BT等大文件也单独放一个区，因为BT对硬盘损坏比较大；</li>
+<li>多个分区容错较强；</li>
+<li>只是用文件夹分类会降低区文件搜索的速度，而且增删的过程也会产生较多的碎片；</li>
+<li>分区将硬盘分成几个部分，有利于管理，但是也不能滥分，大范围使用分区，小范围使用文件夹。</li>
+</ul>
+</li>
+<li><p><strong>硬盘分区：</strong></p>
+<ul>
+<li>硬盘分区=基本分区+扩展分区 &lt;= 4</li>
+<li>扩展分区不能直接使用，需要继续分成若干逻辑分区</li>
+<li>逻辑分区不能安装操作系统，因为要访问逻辑分区需要进行多次跳转，所以无法启动操作系统，只能放主分区启动；</li>
+<li>动态分区：操作系统接管整个磁盘，自己来调整磁盘，是微软推出给windows的，Linux下的是lvm；动态分区是不能装双系统的。</li>
+<li>我的电脑是120G固态+1T硬盘，固态是主分区，硬盘由于之前被我分区了，并改成了动态硬盘，所以需要先改为基本分区。这里推荐工具：见下，具体的使用就不说了，系统自带的磁盘管理器太卡了，没事就死机。</li>
+<li>Anna的电脑本来分了4个主分区，导致后来怎么弄都无法直接从win10启动Ubuntu，后来找到问题就在这，因为win10下的MBR分区表最多存在4个主分区，所以就无法从win10启动Ubuntu了，解决方法有2个：<ul>
+<li>GTP分区表可以存在N个主分区，把MBR改成GPT</li>
+<li>重新分区</li>
+</ul>
+</li>
+<li>UEFI和Legacy：<ul>
+<li>UEFI是最新的BIOS启动格式</li>
+<li>Legacy是老式的BIOS启动格式</li>
+<li>UEFI=Legacy+UEFI</li>
+</ul>
+</li>
+<li>Secure Boot：<ul>
+<li>其规格的本意是，让操作系统厂商自行选择公钥，通过认证。但是实际上，只有微软公司才有能力，让主板厂商内置它的公钥，其他公司都不具备这种能力。</li>
+<li>由于微软保护windows安全，所以安装Linux系统的时候还是关闭BIOS中的Secure Boot选项。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Linux分区：</strong></p>
+<ol>
+<li><p>普通用户</p>
+<pre><code>| /boot | 1G   | 启动分区，主分区 |
+ | ----- | ------ |:-------|
+  | /        | 40G    |          |
+</code></pre><p>   | /home | 150G     | 余下空间 |<br>   | swap  | 8G      | 差不多和内存一样大  |</p>
+<ol>
+<li>服务器用户<br> | /boot | 200M   |  启动分区 |<br>  | —— | —— |:——-|<br>   | /        | 10G    |  |<br>| /home | 40G     | 余下空间 |<br>| swap  | 2G      |            |<br>| /usr  | 10G      | 系统软件 | （可合并）<br>| /opt  | 10G    | 用户软件 |<br>| /tmp  | 2G     | 临时文件   |<br>| /var  | 2G     | 系统日志记录分区 |</li>
+</ol>
+</li>
+</ol>
+<ol>
+<li>注意点：<ul>
+<li>大数据库一般要加大/usr挂载点<ul>
+<li>多用户、下载类、多存储文件等要加大/home挂载点</li>
+<li>文件小，用户多要注意/tmp和/var挂载点大小</li>
+<li>/tmp和/var都是服务器时候才使用的，独立出来便于提高性能</li>
+<li>随着硬盘容量的增大，无法引导Linux内核的现象再次出现，这也就是著名的137GB限制。很遗憾，Grub是无法引导137GB之后的分区中的Linux内核的。如果你不巧遇到了这样的情况，你就要考虑把/boot独立挂载到位于137GB前方的独立分区中，或者索性就把 Linux的分区都往前移动，让根目录所在分区位于137GB之前。</li>
+<li>安全的分区方案原则：系统数据和普通用户数据分离放置于不同的分区，即/home</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>汗~linux系统的1G对应1000M<h2 id="1-准备工作"><a href="#1-准备工作" class="headerlink" title="1.准备工作"></a><strong>1.准备工作</strong></h2></li>
+</ol>
+</li>
+</ol>
+</li>
+</ul>
+<p>早上没睡醒一样，一不小心点了前一个study盘的删除卷，结果浪费了一下午恢复。so特别提醒，有重要的文件还是上传到云盘吧，防止误操作，增加容错~<br><img src="http://i.imgur.com/9EFYsOY.jpg" alt=""></p>
+<p>误删了一个文档卷，悲催恢复了一下午，很好的教训~</p>
+<p><strong>环境:</strong></p>
+<ul>
+<li>系统：Ubuntu16.04，网上都有</li>
+<li>系统引导工具：EasyBCD，下载：<a href="http://pan.baidu.com/s/1i5wVx7B" target="_blank" rel="noopener">http://pan.baidu.com/s/1i5wVx7B</a></li>
+<li>U盘启动制作工具：UltarISO，下载：<a href="http://pan.baidu.com/s/1kVbmD3D" target="_blank" rel="noopener">http://pan.baidu.com/s/1kVbmD3D</a></li>
+<li>硬盘误删恢复工具：DiskGenus，下载：<a href="http://pan.baidu.com/s/1qYBAr3Q（仅为了防止误操作）" target="_blank" rel="noopener">http://pan.baidu.com/s/1qYBAr3Q（仅为了防止误操作）</a></li>
+<li>分区管理工具：分区助手PA，下载：<a href="http://pan.baidu.com/s/1qYBAr3Q" target="_blank" rel="noopener">http://pan.baidu.com/s/1qYBAr3Q</a></li>
+</ul>
+<h2 id="2-win7系统分区"><a href="#2-win7系统分区" class="headerlink" title="2.win7系统分区"></a><strong>2.win7系统分区</strong></h2><p>右击我的电脑，管理 —— 磁盘管理：<br>最好是压缩最后一个卷的内容，压缩出合适大小，然后把这个卷删除，我以后就用Linux了，所以分了200G，任性~</p>
+<h2 id="3-Ubuntu系统盘制作"><a href="#3-Ubuntu系统盘制作" class="headerlink" title="3.Ubuntu系统盘制作"></a><strong>3.Ubuntu系统盘制作</strong></h2><p>很简单，用ultraISO工具，具体使用见百度经验：<a href="http://jingyan.baidu.com/article/b24f6c82cf50e086bfe5dae9.html" target="_blank" rel="noopener">http://jingyan.baidu.com/article/b24f6c82cf50e086bfe5dae9.html</a></p>
+<h2 id="4-引导Ubuntu系统盘"><a href="#4-引导Ubuntu系统盘" class="headerlink" title="4.引导Ubuntu系统盘"></a><strong>4.引导Ubuntu系统盘</strong></h2><ul>
+<li>笔记本按F7进入(我的神舟是这样)选择U盘启动，进入后一步步看着执行即可，有一步要选择other，也就是自己来分区。</li>
+<li><p>分区swap选择logical，boot选择primary，其他都是logical，原因参见win10的MBR分区，硬盘格式全都选择最新的Ext4，bootloader要选择当前Ubuntu的/boot所在磁盘，我的分区如下：</p>
+<p>  | /boot | 1G   | 启动分区，主分区 |</p>
+<pre><code>| ----- | ------ |:-------|
+</code></pre><p>  | /        | 45G    |          |<br>  | /home | 150G     | 余下空间 |</p>
+<p>  swap主要是利用磁盘空间来虚拟内存使用，没有分，因为我的内存是8G，够用了，不需来要缓存~</p>
+</li>
+</ul>
+<h2 id="5-设置开机引导"><a href="#5-设置开机引导" class="headerlink" title="5.设置开机引导"></a><strong>5.设置开机引导</strong></h2><ul>
+<li>打开EasyBCD2.2 —— Add New Entry —— 选择Linux —— Type:GRUB2, Name=任意，Drive:选择之前分区的/boot，一般都是容量最小的那个 —— Add Entry 。</li>
+<li>这也只是改为默认是win7启动而已，感觉没什么必要，Ubuntu命令行修改默认Grub也可以搞定。</li>
+</ul>
+<h2 id="6-解决时间错乱"><a href="#6-解决时间错乱" class="headerlink" title="6.解决时间错乱"></a><strong>6.解决时间错乱</strong></h2><ol>
+<li><p>问题： </p>
+<ul>
+<li>装完之后，win7时间错乱了，查了一下，win和Linux两者默认看待系统硬件时间的方式不同。</li>
+<li>Ubuntu使用UTC即Universal Time Coordinated，协调世界时；</li>
+<li>Linux/Unix/Mac把硬件时间当作 UTC，操作系统中显示的时间是硬件时间经过换算得来的，比如说北京时间是GMT+8，则系统中显示时间是硬件时间+8。</li>
+<li>windows使用GMT即Greenwich Mean Time，格林尼治平时。</li>
+<li>windows把系统硬件时间当作本地时间(local time)，即操作系统中显示的时间跟BIOS中显示的时间是一样的。</li>
+</ul>
+</li>
+<li><p>解决：<br> 两种方法都可，我选择了第一种；</p>
+<ol>
+<li>Linux下：<ul>
+<li>让Ubuntu不是用UTC</li>
+<li><code>sudo gedit /etc/default/rcS</code></li>
+<li>找到:UTC=yes</li>
+<li>改成no即可<ul>
+<li>新方法：<ul>
+<li>timedatectl set-local-rtc 1 –adjust-system-clock</li>
+<li>然后重启</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>windows下：<ul>
+<li>让windows把硬件时间当做UTC：</li>
+<li>开始 —— 运行 —— CMD：</li>
+<li><code>Reg add HKLM\SYSTEM\CurrentControlSet\Control\TimeZoneInformation /v RealTimeIsUniversal /t REG_DWORD /d 1</code></li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="7-后续爆炸性问题"><a href="#7-后续爆炸性问题" class="headerlink" title="7.后续爆炸性问题"></a><strong>7.后续爆炸性问题</strong></h2><ul>
+<li>主要问题：<ul>
+<li>想给ubuntu分配5G的固态来启动，所以重装ubuntu，先卸载，也就是直接格式化200G的那个盘，然后重启，同样的操作，结果忽略了很重要的一点就是没有把windows下面的引导该回去，也就是先把ubuntu的那个给删掉。</li>
+<li>我没删，所以重启后gg了，win进不去，直接到了grub rescure 界面，这还好办：<ul>
+<li>ls 查看一下分区<ul>
+<li>set root=(hd0,msdos2),选择ubuntu的启动的那个盘</li>
+<li>set prefix=(hd0,msdos2)/grub,这是我的，网上也有/boot/grub的，目录不一样；</li>
+<li>insmod=normal</li>
+<li>normal 启动即可进入ubuntu的grub</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>但是只能进ubuntu了，还是进不到win7下；</li>
+<li>折腾了一下午，还是不行，晚上上课，就和同学拷了个win10，重装系统~~</li>
+<li>然后总结就是，windows的引导不能乱改，改了找不到路径，就进不去了，当然可以直接用winpe系统盘进入修复，但我的被我先试了太多乱七八糟的方法，遂爆炸~</li>
+<li>最后就是用win10下，继续重装ubuntu双系统了，只是win10还需要先设置一下，具体参考：<a href="http://www.jianshu.com/p/2eebd6ad284d" target="_blank" rel="noopener">http://www.jianshu.com/p/2eebd6ad284d</a></li>
+</ul>
+<p>[TOC]</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>thank you for donating~</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.png" alt="Batista Yu 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="Batista Yu 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/windows/" rel="tag"># windows</a>
+          
+            <a href="/tags/linux/" rel="tag"># linux</a>
+          
+            <a href="/tags/双系统/" rel="tag"># 双系统</a>
+          
+            <a href="/tags/分区/" rel="tag"># 分区</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/12/21/Ubuntu管理日记/" rel="prev" title="Ubuntu管理日记">
+                Ubuntu管理日记 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Batista Yu</p>
+              <p class="site-description motion-element" itemprop="description">do research like playing</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/a550461053" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#0-前言"><span class="nav-number">1.</span> <span class="nav-text">0.前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-准备工作"><span class="nav-number">2.</span> <span class="nav-text">1.准备工作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-win7系统分区"><span class="nav-number">3.</span> <span class="nav-text">2.win7系统分区</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Ubuntu系统盘制作"><span class="nav-number">4.</span> <span class="nav-text">3.Ubuntu系统盘制作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-引导Ubuntu系统盘"><span class="nav-number">5.</span> <span class="nav-text">4.引导Ubuntu系统盘</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-设置开机引导"><span class="nav-number">6.</span> <span class="nav-text">5.设置开机引导</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-解决时间错乱"><span class="nav-number">7.</span> <span class="nav-text">6.解决时间错乱</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-后续爆炸性问题"><span class="nav-number">8.</span> <span class="nav-text">7.后续爆炸性问题</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Batista Yu</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
