@@ -1,0 +1,1218 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+  <link rel="stylesheet" media="all" href="/lib/Han/dist/han.min.css?v=3.3">
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="数据结构,链表,树,堆栈," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="数学基础 斯特林公式 n! = sqrt(2PIn) * (n/e)^n   卡特兰数 递归式1：h(n) = h(0)h(n-1) + h(1)h(n-2) + … + h(n-1)h(0), h(0) = h(1) = 1 递归式2：h(n) = (4(n-2)/(n+1)) * h(n-1) 解为： Cn = C(2n, n) / (n+1) = (2n)! / (n!*(n+1)!) Cn">
+<meta name="keywords" content="数据结构,链表,树,堆栈">
+<meta property="og:type" content="article">
+<meta property="og:title" content="面试准备:数据结构">
+<meta property="og:url" content="http://yoursite.com/2018/03/01/面试准备-数据结构/index.html">
+<meta property="og:site_name" content="Fake it till you make it">
+<meta property="og:description" content="数学基础 斯特林公式 n! = sqrt(2PIn) * (n/e)^n   卡特兰数 递归式1：h(n) = h(0)h(n-1) + h(1)h(n-2) + … + h(n-1)h(0), h(0) = h(1) = 1 递归式2：h(n) = (4(n-2)/(n+1)) * h(n-1) 解为： Cn = C(2n, n) / (n+1) = (2n)! / (n!*(n+1)!) Cn">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-03-07T11:58:39.869Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="面试准备:数据结构">
+<meta name="twitter:description" content="数学基础 斯特林公式 n! = sqrt(2PIn) * (n/e)^n   卡特兰数 递归式1：h(n) = h(0)h(n-1) + h(1)h(n-2) + … + h(n-1)h(0), h(0) = h(1) = 1 递归式2：h(n) = (4(n-2)/(n+1)) * h(n-1) 解为： Cn = C(2n, n) / (n+1) = (2n)! / (n!*(n+1)!) Cn">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/03/01/面试准备-数据结构/"/>
+
+
+
+
+
+  <title>面试准备:数据结构 | Fake it till you make it</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Fake it till you make it</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">computer science, linux, blockchain, deeplearning, algorithm</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/01/面试准备-数据结构/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Batista Yu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Fake it till you make it">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">面试准备:数据结构</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-01T15:25:39+08:00">
+                2018-03-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="数学基础"><a href="#数学基础" class="headerlink" title="数学基础"></a>数学基础</h2><ol>
+<li>斯特林公式<ul>
+<li>n! = sqrt(2PIn) * (n/e)^n</li>
+</ul>
+</li>
+<li>卡特兰数<ul>
+<li>递归式1：h(n) = h(0)h(n-1) + h(1)h(n-2) + … + h(n-1)h(0), h(0) = h(1) = 1</li>
+<li>递归式2：h(n) = (4(n-2)/(n+1)) * h(n-1)</li>
+<li>解为：<ul>
+<li>Cn = C(2n, n) / (n+1) = (2n)! / (n!*(n+1)!)</li>
+<li>Cn = C(2n, n) - C(2n , n+1)</li>
+<li>C0 = 1 and Cn+1 = sum(Ci*Cn-i), i from 0 to n</li>
+</ul>
+</li>
+<li>性质：<ul>
+<li>所有的奇数卡特兰数Cn都满足n = 2^k - 1</li>
+</ul>
+</li>
+<li>前几项：<ul>
+<li>1,1,2,5,14,42,132,429,…</li>
+</ul>
+</li>
+<li>应用场景：<ul>
+<li>1.括号化问题<ul>
+<li>矩阵链乘： P=a1×a2×a3×……×an，依据乘法结合律，不改变其顺序，只用括号表示成对的乘积，试问有几种括号化的方案？(h(n)种)</li>
+</ul>
+</li>
+<li>2.出栈次序问题。<ul>
+<li>一个栈(无穷大)的进栈序列为1,2,3,..n,有多少个不同的出栈序列?</li>
+<li>类似：<ul>
+<li>(1)有2n个人排成一行进入剧场。入场费5元。其中只有n个人有一张5元钞票，另外n人只有10元钞票，剧院无其它钞票，问有多少中方法使得只要有10元的人买票，售票处就有5元的钞票找零？(将持5元者到达视作将5元入栈，持10元者到达视作使栈中某5元出栈)</li>
+<li>(2)在圆上选择2n个点,将这些点成对连接起来，使得所得到的n条线段不相交的方法数。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>3.将多边行划分为三角形问题。<ul>
+<li>将一个凸多边形区域分成三角形区域的方法数?</li>
+<li>类似：一位大城市的律师在她住所以北n个街区和以东n个街区处工作。每天她走2n个街区去上班。如果她从不穿越（但可以碰到）从家到办公室的对角线，那么有多少条可能的道路？</li>
+<li>类似：在圆上选择2n个点,将这些点成对连接起来使得所得到的n条线段不相交的方法数?</li>
+</ul>
+</li>
+<li>4.给顶节点组成二叉树的问题。<ul>
+<li>给定N个节点，能构成多少种形状不同的二叉树？(一定是二叉树!</li>
+<li>先去一个点作为顶点,然后左边依次可以取0至N-1个相对应的,右边是N-1到0个,两两配对相乘,就是h(0)<em>h(n-1) + h(2)</em>h(n-2) + … + h(n-1)h(0)=h(n))</li>
+<li>答：能构成h（N）个</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><h2 id="数组array"><a href="#数组array" class="headerlink" title="数组array"></a>数组array</h2></li>
+</ol>
+<h2 id="链表Linked-List"><a href="#链表Linked-List" class="headerlink" title="链表Linked List"></a>链表Linked List</h2><ul>
+<li><p>定义：</p>
+<ul>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">class ListNode(val):</span><br><span class="line">	self.val = val</span><br><span class="line">	self.next = None</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>分类：</p>
+</li>
+<li><p>典型问题：</p>
+<ol>
+<li><p>求单链表长度:</p>
+<ul>
+<li>比较简单，但需要一开始就养成链表为空判断的习惯。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">def getLinkListLength(head):</span><br><span class="line">	if None == head:</span><br><span class="line">		return 0</span><br><span class="line">	p = head</span><br><span class="line">	length = 0</span><br><span class="line">	while p:</span><br><span class="line">		length += 1</span><br><span class="line">		p = p.next</span><br><span class="line">	return length</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>翻转链表：</p>
+<ul>
+<li>两种都行<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">def reverseLinkList(head):</span><br><span class="line">	if None == head or None == head.next:</span><br><span class="line">		return head</span><br><span class="line">	p = head</span><br><span class="line">	pre = None</span><br><span class="line">	while p:</span><br><span class="line">		# 法一：保存p</span><br><span class="line">		#cur = p</span><br><span class="line">		#p = p.next</span><br><span class="line">		#cur.next = pre</span><br><span class="line">		#pre = cur</span><br><span class="line">		# 法二：保存p.next</span><br><span class="line">		next = p.next</span><br><span class="line">		p.next = pre</span><br><span class="line">		pre = p</span><br><span class="line">		p = next</span><br><span class="line">	return pre</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>返回单链表倒数第k个节点</p>
+</li>
+</ol>
+<ul>
+<li>思路：快慢指针，fast先走k次，然后slow和fast一起走，fast到达终点则slow为倒数第k个节点。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">def findLastKthNode(head, k):</span><br><span class="line">	if None == head or 0 == k:</span><br><span class="line">		return None</span><br><span class="line">	fast, slow = head, head</span><br><span class="line">	for i in range(k):</span><br><span class="line">		fast = fast.next</span><br><span class="line">	if None == fast:</span><br><span class="line">		return None</span><br><span class="line">	while fast:</span><br><span class="line">		slow = slow.next</span><br><span class="line">		fast = fast.next</span><br><span class="line">	return slow</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ol>
+<li>查找中间节点</li>
+</ol>
+<ul>
+<li>思路：快慢指针，和上面类似<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">def getMiddleNode(head):</span><br><span class="line">	if None == head or None.next == None:</span><br><span class="line">		return head</span><br><span class="line">	slow, fast = head, head</span><br><span class="line">	while fast.next:</span><br><span class="line">		slow = slow.next</span><br><span class="line">		fast = fast.next.next</span><br><span class="line">	return slow</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ol>
+<li><p>判断两个链表是否相交</p>
+<ul>
+<li>思路：两个链表分别遍历，判断尾节点是否相等<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">def isIntersect(head1, head2):</span><br><span class="line">	p1, p2 = head1, head2</span><br><span class="line">	while p1:</span><br><span class="line">		p1 = p1.next</span><br><span class="line">	while p2:</span><br><span class="line">		p2 = p2.next</span><br><span class="line">	if p1 == p2:</span><br><span class="line">		return True</span><br><span class="line">	else:</span><br><span class="line">		return False</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>求两个单链表相交的第一个节点</p>
+<ul>
+<li>思路：先求出两个链表的长度，然后让长链表的head先走长度之差，再一起往前走，直到相等<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">def getIntersectPoint(head1, head2):</span><br><span class="line">	p1, p2 = head1, head2</span><br><span class="line">	length1 = length2 = 0</span><br><span class="line">	while p1:</span><br><span class="line">		length1 += 1</span><br><span class="line">		p1 = p1.next</span><br><span class="line">	while p2:</span><br><span class="line">		length2 += 1</span><br><span class="line">		p2 = p2.next</span><br><span class="line">	p1, p2 = head1, head2</span><br><span class="line">	if length1 &gt; length2:</span><br><span class="line">		for i in range(length1 - length2):</span><br><span class="line">			p1 = p1.next</span><br><span class="line">	else:</span><br><span class="line">		for i in range(length2 - length1):</span><br><span class="line">			p2 = p2.next</span><br><span class="line">	while p1 != p2:</span><br><span class="line">		p1 = p1.next</span><br><span class="line">		p2 = p2.next</span><br><span class="line">	return p1</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>判断是否有环：</p>
+</li>
+</ol>
+<ul>
+<li>思路：快慢指针，fast前进2步，slow每次前进1步，这样如果有环最终fast和slow会相遇一次，没环则fast到达终点。</li>
+<li>证明为什么有环必相遇：<ul>
+<li>方法一：<ul>
+<li>哲学法：运动是相对的，从slow看，也就是slow静止，fast相当于是每次前进一步，则两者必然相遇</li>
+</ul>
+</li>
+<li>方法二：<ul>
+<li>等价法：设环长度为L步，head到环入口点距离a，当slow从入口点处开始继续走x步的时候，假设两者相遇，则有：</li>
+<li>slow:a+x -&gt; a + x%L </li>
+<li>fast:2(a+x) -&gt; a + (a+2x)%L</li>
+<li>两者相遇等价于a + x%L == a + (a+2x)%L</li>
+<li>根据求余%的可加性，等价于(a+x)%L==0有解</li>
+<li>等价于a+x = nL</li>
+<li>存在整数x，满足x = nL - a</li>
+<li>所以两者可以相遇</li>
+</ul>
+</li>
+<li>方法三：<ul>
+<li>数学归纳法：</li>
+<li>①slow与fast差1步：那么slow继续走1，fast继续走2，则两者相遇</li>
+<li>②slow与fast查2步：那么slow继续走1，fast继续走2，则转化为问题①，两者相遇</li>
+<li>③假设slow与fast差n-1步时，两者相遇</li>
+<li>④当slow与fast差n步时，slow走1，fast走2，进一步转化为问题③，两者相遇</li>
+<li>综上，两者相遇</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>证明为什么有环必相遇于slow的第一圈内：<ul>
+<li>方法一：<ul>
+<li>哲学法：运动是相对的，从slow角度看，当slow处于环的入口点时，fast处于环上的某一点，slow不动，相当于fast在追赶slow直到入口点相遇，所以fast需要跑的步数m在0-L之间，也即在slow再走m步，不到L步之内就相遇了。</li>
+</ul>
+</li>
+<li>方法二：<ul>
+<li>数学归纳法：</li>
+<li>由上一个问题的数归法，可得，slow与fast差n步时，再走n步即相遇，而两者在圈内的距离是小于L的，so证毕<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">def hasCycle(head):</span><br><span class="line">	slow = fast = head</span><br><span class="line">	while fast and fast.next:</span><br><span class="line">		slow = slow.next</span><br><span class="line">		fast = fast.next.next</span><br><span class="line">		if fast == slow:</span><br><span class="line">			return True</span><br><span class="line">	return False</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ol>
+<li><p>取出环的入口点：</p>
+<ul>
+<li>思路：快慢指针，slow每次1，fast每次2，当两者相遇后，slow继续每次1，同时fast置位head，从头开始每次1步，当两者再次相遇时，就是入口点</li>
+<li>证明：<ul>
+<li>head -&gt; 入口点 -&gt; 第一次相遇点 </li>
+<li>设head到入口点距离为a，环长为L，入口点到第一次相遇点距离b，fast已经走了n圈</li>
+<li>2(a+b) = a+b + nL </li>
+<li>a = nL - b = (n-1)L + L - b</li>
+<li>所以，当fast从head出发到入口点时，走了a，slow继续从第一次相遇点也走了a=L-b+(n-1)L（多走了n-1圈）</li>
+<li>所以他们在入口点处相遇。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">def getCycleStart(head):</span><br><span class="line">	slow = fast = head</span><br><span class="line">	if None == head or None == head.next:</span><br><span class="line">		return None</span><br><span class="line"></span><br><span class="line">	while fast and fast.next:</span><br><span class="line">		slow = slow.next</span><br><span class="line">		fast = fast.next.next</span><br><span class="line">		if None == slow or None == fast:</span><br><span class="line">			return None</span><br><span class="line">		if slow == fast:</span><br><span class="line">			break</span><br><span class="line">	fast = head</span><br><span class="line">	while fast and slow:</span><br><span class="line">		if fast == slow:</span><br><span class="line">			return slow</span><br><span class="line">		fast = fast.next</span><br><span class="line">		slow = slow.next</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>合并两个有序链表：</p>
+<ul>
+<li>思路：直接迭代或者递归都可以<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">def merge2Lists(self, head1, head2):  # leetcode类方法</span><br><span class="line">	# 法一：迭代</span><br><span class="line">	p1, p2 = head1, head2</span><br><span class="line">	dummy = ListNode(0)</span><br><span class="line">	p = dummy</span><br><span class="line">	while p1 and p2:</span><br><span class="line">		if p1.val &lt; p2.val:</span><br><span class="line">			p.next = p1</span><br><span class="line">			p1 = p1.next</span><br><span class="line">		else:</span><br><span class="line">			p.next = p2</span><br><span class="line">			p2 = p2.next</span><br><span class="line">		p = p.next</span><br><span class="line">	p.next = p1 if p1 else p2  # 简写为p.next = p1 or p2</span><br><span class="line">	return dummy.next</span><br><span class="line">	# 法二：递归</span><br><span class="line">	if not p1 or not p2:</span><br><span class="line">		return p1 or p2  </span><br><span class="line">	if p1.val &lt; p2.val:</span><br><span class="line">		p1.next = self.merge2Lists(p1.next, p2)</span><br><span class="line">		return p1</span><br><span class="line">	else:</span><br><span class="line">		p2.next = self.merge2Lists(p1, p2.next)</span><br><span class="line">		return p2</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>合并k个有序链表：</p>
+<ul>
+<li>思路：二分法<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">def mergeKLists(self, lists):  # leetcode类方法</span><br><span class="line">	if len(lists) &lt; 1:</span><br><span class="line">		return None</span><br><span class="line">	return self.helper(lists, 0, len(lists) - 1)</span><br><span class="line"></span><br><span class="line">	def helper(self, lists, left, right):</span><br><span class="line">		if left &lt; right:</span><br><span class="line">			mid = left + (right - left) // 2</span><br><span class="line">			return self.merge2Lists(self.helper(lists, left, mid), </span><br><span class="line">				self.helper(lists, mid + 1, right))</span><br><span class="line">		return lists[left]</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li></li>
+</ol>
+</li>
+</ul>
+<h2 id="树Tree"><a href="#树Tree" class="headerlink" title="树Tree"></a>树Tree</h2><ol>
+<li><p>Tree</p>
+<ul>
+<li>定义：一种抽象数据类型ADT，用来模拟具有树状结构的数据集和。</li>
+<li>概念：（以下基数为1,基数为1时树的深度=树的高度=最大层数）<ul>
+<li>节点的深度：对于任意节点n，n的深度为从根到n的唯一路径长，根的深度为1</li>
+<li>节点的高度：对于任意节点n，n的高度为从n到一片树叶的最长路径长，所有树叶的高度为1</li>
+<li>节点的层次：从根开始为第一层，以此类推</li>
+<li>节点的度：一个节点含有的子树的个数称为该节点的度</li>
+<li>树的度：一棵树中，最大的节点的度称为树的度</li>
+<li>叶节点或终端节点：度为零的节点</li>
+<li>非终端节点或分支节点：度不为零的节点</li>
+<li>父亲节点或父节点：若一个节点含有子节点，则这个节点称为其子节点的父节点</li>
+<li>孩子节点或子节点：一个节点含有的子树的根节点称为该节点的子节点</li>
+<li>兄弟节点：具有相同父节点的节点互称为兄弟节点</li>
+<li>堂兄弟节点：父节点在同一层的节点互为堂兄弟</li>
+<li>节点的祖先：从根到该节点所经分支上的所有节点</li>
+<li>子孙：以某节点为根的子树中任意节点都称为该节点的子孙</li>
+<li>森林：由m棵互不相交的树的集合</li>
+</ul>
+</li>
+<li>特性：</li>
+<li>分类：<ul>
+<li>无序树：树中任意节点的子节点之间没有顺序关系，也称为自由树</li>
+<li>有序树：树中任意节点的子节点之间又顺序关系<ul>
+<li>二叉树：每个节点最多含有两个子树的树</li>
+<li>完全二叉树：对于一颗二叉树，假设深度为d(d&gt;1)，除了第d层外，其它各层的节点数目均已达到最大值，且第d层所有节点从左向右连续地紧密排列，这样的二叉树称为完全二叉树</li>
+<li>满二叉树：所有叶子节点都在最底层的完全二叉树</li>
+<li>平衡二叉树AVL：当且仅当任何节点的两棵子树的高度差不大于1的二叉树</li>
+<li>二叉查找树：树中的每个节点，它的左子树中所有项小于x中的项，他的右子树中的所有项都大于x中的项</li>
+<li>霍夫曼树：带权路径最短的二叉树称为哈夫曼树或最优二叉树</li>
+<li>B树：一种对读写操作进行优化的自平衡的二叉查找树，能够保持数据有序，拥有多于两个子树。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>实现：<ul>
+<li>定义：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">class TreeNode(object):</span><br><span class="line">	def __init__(self, val=None, left=None, right=None):</span><br><span class="line">		self.val = val</span><br><span class="line">		self.left = left</span><br><span class="line">		self.right = right</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>二叉树</p>
+<ul>
+<li>定义：二叉树的每个节点最多只有二棵子树，二叉树的子树有左右之分，次序不能颠倒</li>
+<li>性质：<ul>
+<li>第i层至多有2^(i-1)个节点</li>
+<li>深度为k的二叉树至多有2^k-1个节点，k&gt;=1，最少有k个节点</li>
+<li>对任何一棵二叉树T，如果其终端结点数为n0，度为2的结点数为n2，则n0=n2+1。</li>
+<li>具有n个节点的完全二叉树的深度为log2(n+1)</li>
+<li>给定n个节点，能构成h(n)种不同的二叉树，其中h(n)为卡特兰数的第n项，h(n) = C(2n, n) / (n+1)</li>
+<li>设有i个枝点，I为所有枝点的道路长度总和，J为叶的道路长度总和J=I+2^i。</li>
+</ul>
+</li>
+<li>遍历分类：<ul>
+<li>深度优先DFS：<ul>
+<li>先序、中序、后序</li>
+<li>递归方法+用栈实现的迭代方法</li>
+</ul>
+</li>
+<li>广度优先BFS：<ul>
+<li>只有用队列实现的迭代方法</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>实现：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br></pre></td><td class="code"><pre><span class="line">class binary_tree(object):</span><br><span class="line">	def __init__(self):</span><br><span class="line">		self.root = TreeNode()</span><br><span class="line"></span><br><span class="line">	def isEmpty(self):</span><br><span class="line">		if self.root.val == None:</span><br><span class="line">			return True</span><br><span class="line">		else:</span><br><span class="line">			return False</span><br><span class="line">	# 1. 插入</span><br><span class="line">	def add(self, data):</span><br><span class="line">		node = TreeNode(data)</span><br><span class="line">		if self.isEmpty():</span><br><span class="line">			self.root = node</span><br><span class="line">		else:</span><br><span class="line">			treeNode = self.root</span><br><span class="line">			queue = []</span><br><span class="line">			queue.append(self.root)</span><br><span class="line">			while queue:</span><br><span class="line">				treeNode = queue.pop(0)</span><br><span class="line">				if treeNode.left == None:</span><br><span class="line">					treeNode.left = node</span><br><span class="line">					return</span><br><span class="line">				elif treeNode.right == None:</span><br><span class="line">					treeNode.right = node</span><br><span class="line">					return </span><br><span class="line">				else:</span><br><span class="line">					queue.append(treeNode.left)</span><br><span class="line">					queue.append(treeNode.right)</span><br><span class="line">	# 2. 先序遍历</span><br><span class="line">	def pre_order(self, start):</span><br><span class="line">		if start == None:</span><br><span class="line">			return start</span><br><span class="line">		print(start.val)			# 根</span><br><span class="line">		self.pre_order(start.left)	# 左</span><br><span class="line">		self.pre_order(start.right) # 右</span><br><span class="line">    # 3. 中序遍历</span><br><span class="line">    # 3.1 递归</span><br><span class="line">    def in_order(self, start):</span><br><span class="line">        if start == None:</span><br><span class="line">            return None</span><br><span class="line">        self.mid_order(start.left)      # 左</span><br><span class="line">        print(start.val)                # 根</span><br><span class="line">        self.mid_order(start.right)     # 右</span><br><span class="line">    # 3.2 迭代</span><br><span class="line">    def in_order_2_stack(self, root):</span><br><span class="line">        # 思路：栈来模拟递归的过程，用栈的方法，顺序保存，过程中维护一个node表示当前走到的结点（不是中序遍历的那个结点）</span><br><span class="line">        # 算法时间复杂度也是O(n)，空间复杂度是栈的大小O(logn)</span><br><span class="line">        list_ = []</span><br><span class="line">        stack_ = []</span><br><span class="line">        while root or len(stack_) &gt;= 1:</span><br><span class="line">            if root:</span><br><span class="line">                stack_.append(root)</span><br><span class="line">                root = root.left</span><br><span class="line">            else:</span><br><span class="line">                root = stack_.pop(-1)</span><br><span class="line">                list_.append(root.val)</span><br><span class="line">                root = root.right</span><br><span class="line">        return list_</span><br><span class="line">    # 3.3 高大上法 Morris Traversal</span><br><span class="line">   	def in_order_morris(self, root):</span><br><span class="line">        # 思路：利用前驱节点的right指针保存，用O(1)的空间复杂度</span><br><span class="line">        cur = root</span><br><span class="line">        while cur:</span><br><span class="line">            if cur.left == None: </span><br><span class="line">                list_.append(cur.val)  # 左</span><br><span class="line">                cur = cur.right</span><br><span class="line">            else:</span><br><span class="line">                predecessor = cur.left</span><br><span class="line">                while predecessor.right and predecessor.right != cur:  # 注意两个条件，否则进入cur的right子树，死循环</span><br><span class="line">                    predecessor = predecessor.right</span><br><span class="line">                if predecessor.right == None:  # a</span><br><span class="line">                    predecessor.right = cur</span><br><span class="line">                    cur = cur.left</span><br><span class="line">                if predecessor.right == cur: # b.恢复原树结构</span><br><span class="line">                    predecessor.right = None</span><br><span class="line">                    list_.append(cur.val) # 根</span><br><span class="line">                    cur = cur.right       # 右</span><br><span class="line">        return list_</span><br><span class="line"></span><br><span class="line">    # 4. 后序遍历</span><br><span class="line">    def post_order(self, start):</span><br><span class="line">        if start == None:</span><br><span class="line">            return</span><br><span class="line">        self.post_order(start.left)     # 左</span><br><span class="line">        self.post_order(start.right)    # 右</span><br><span class="line">        print(start.val)                # 根</span><br><span class="line">    # 5. 层次遍历1</span><br><span class="line">    def level_order(self, start):</span><br><span class="line">    	if start == None:</span><br><span class="line">    		return</span><br><span class="line">    	else:</span><br><span class="line">    		queue = []</span><br><span class="line">    		queue.append(start)</span><br><span class="line">    		while len(queue) &gt;= 1:</span><br><span class="line">    			front = queue.pop(0)</span><br><span class="line">    			if front.left != None:</span><br><span class="line">    				queue.append(front.left)</span><br><span class="line">    			if front.right != None:</span><br><span class="line">    				queue.append(front.right)</span><br><span class="line">    			print(front.val)</span><br><span class="line">    # 6. 层次 - 遍历保存每层val</span><br><span class="line">    def save_level_order(self, start):</span><br><span class="line">        res_ = []</span><br><span class="line">        cur = 0  # 这次用的双指针 进行层次遍历</span><br><span class="line">        end = 1</span><br><span class="line">        if start == None:</span><br><span class="line">            return None</span><br><span class="line">        else:</span><br><span class="line">            vec = []</span><br><span class="line">            vec.append(start)</span><br><span class="line">            while cur &lt; len(vec):  # 外循环，无法添加更多node，最终截止，</span><br><span class="line">                temp = []</span><br><span class="line">                while cur &lt; end:</span><br><span class="line">                    temp.append(vec[cur].val)</span><br><span class="line">                    if vec[cur].left != None:</span><br><span class="line">                        vec.append(vec[cur].left)</span><br><span class="line">                    if vec[cur].right != None:</span><br><span class="line">                        vec.append(vec[cur].right)</span><br><span class="line">                    cur += 1</span><br><span class="line">                end = len(vec)</span><br><span class="line">                res_.append(temp)  # temp保存每层的值，res_为最终结果</span><br><span class="line">        return res_</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>满二叉树和完全二叉树：</p>
+<ul>
+<li>定义：除最后一层无任何子节点外，每层上的所有节点都有两个子节点。</li>
+<li>性质：<ul>
+<li>一棵树深度为h，最大层数为k，深度与最大层数相同，k=h</li>
+<li>叶子数为2^h</li>
+<li>第k层的节点数是：2^(k-1)</li>
+<li>总结点数是：2^(k-1)，且总结点数一定是奇数。</li>
+</ul>
+</li>
+<li>完全二叉树定义：设二叉树深度为h，除第h层外，其他各层（1-(h-1)层）的节点数都达到最大个数，第h层所有节点都连续集中在最左边，就是完全二叉树</li>
+<li>性质：<ul>
+<li>完全二叉树是效率很高的数据结构，堆是一种完全二叉树或者近似完全二叉树，所以效率极高，像十分常用的排序算法、Dijkstra算法、Prim算法等都要用堆才能优化，二叉排序树的效率也要借助平衡性来提高，而平衡性基于完全二叉树。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>二叉搜索树BST<ul>
+<li>定义：二叉排序树Binary Sort Tree<ul>
+<li>若左子树不为空，则左子树上所有节点的值均小于它的根节点的值</li>
+<li>若右子树不为空，则右子树上所有节点的志军大于或等于他的根节点的值</li>
+<li>左右子树也分别是二叉排序树</li>
+<li>没有键值相等的节点</li>
+</ul>
+</li>
+<li>性质：<ul>
+<li>对二叉搜索树进行中序遍历，即可得到有序的数列</li>
+<li>二叉搜索树的时间复杂度：<ul>
+<li>和二分查找一样，插入和查找的时间复杂度均为O(logn)，但是在最坏的情况下仍然会有O(n)的时间复杂度</li>
+<li>原因：在插入和删除元素的时候，树没有保持平衡</li>
+<li>说明：但是我们追求的是在最坏的情况下，仍然有较好的时间复杂度，这也就是平衡查找树设计的初衷</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>二叉查找树的高度决定了二叉查找树的查找效率</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>实现：<ul>
+<li>插入：<ul>
+<li>若当前的二叉查找树为空，则插入的元素为根节点</li>
+<li>若插入的元素值小于根节点值，则将元素插入到左子树中</li>
+<li>若插入的元素值不小于根节点值，则将元素插入到右子树中</li>
+</ul>
+</li>
+<li>删除：<ul>
+<li>p为叶子节点，直接删除该节点，再修改其父节点的指针</li>
+<li>p为单支节点(即只有左子树或右子树),让p的子树与p的父节点相连，删除p即可</li>
+<li>p的左子树和右子树均不空：找到p的后继y，因为y一定没有左子树，所以可以删除y，并让y的父亲节点称为y的右子树的父亲节点，并用y的值代替p的值；或者方法二是找到p的前驱x，x一定没有右子树，所以可以删除x，并让x的父节点成为y的左子树的父节点</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>平衡搜索树AVL：<ul>
+<li>定义：<ul>
+<li>背景：<ul>
+<li>一般的二叉搜索树BST，其期望高度是log2n，其各项操作的时间复杂度O(log2n)同时也由此而决定，但是在某些极端情况下，比如插入的序列是有序的，此时二叉搜索树就退化为链，此时的时间复杂度将退化为线性O(n)。</li>
+<li>可以通过随机化建立二叉搜索树来尽量的避免这种情况，但是在进行了多次的操作之后，由于在删除时，我们总是选择将待删除节点的后继代替它本身，这样就会造成总是右边的节点数目减少，以至于树向左偏沉。这同时也会造成树的平衡性受到破坏，提高它的操作的时间复杂度。于是就有了平衡二叉树。</li>
+</ul>
+</li>
+<li>又被称为AVL树（有别于AVL算法）</li>
+</ul>
+</li>
+<li>性质：<ul>
+<li>一 棵空树或它的左右两个子树的高度差的绝对值不超过1，并且左右两个子树都是一棵平衡二叉树</li>
+<li>最小二叉平衡树的节点的公式：<ul>
+<li>F(n)=F(n-1)+F(n-2)+1</li>
+</ul>
+</li>
+<li>时间复杂度：<ul>
+<li>查找、插入和删除在平均和最坏情况下都是O(logn)。</li>
+<li>增加和删除可能需要通过一次或多次树旋转来重新平衡这个树。这个方案很好的解决了二叉查找树退化成链表的问题，把插入，查找，删除的时间复杂度最好情况和最坏情况都维持在O(logN)。</li>
+<li>但是频繁旋转会使插入和删除牺牲掉O(logN)左右的时间，不过相对二叉查找树来说，时间上稳定了很多。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>实现：<ul>
+<li>插入</li>
+<li>删除</li>
+<li>旋转：<ul>
+<li>AVL树的自平衡操作</li>
+<li>单旋转：<ul>
+<li>左左 和 右右</li>
+</ul>
+</li>
+<li>双旋转：<ul>
+<li>左右 和 右左</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>平衡二叉树红黑树RBT<ul>
+<li>定义：红黑树是一种自平衡二叉查找树，是在计算机科学中用到的一种数据结构，典型的用途是实现关联数组，最早称为：对称二叉B树</li>
+<li>性质：<ul>
+<li>1节点是红色或黑色</li>
+<li>2根是黑色</li>
+<li>3所有叶子节点都是黑色（NIL）</li>
+<li>4每个红色节点必须有两个黑色的子节点</li>
+<li>(从每个叶子节点到根的所有路径上不能有两个连续的红色节点)</li>
+<li>5从任意节点到其每个叶子的所有简单路径都包含相同数目的黑色节点</li>
+<li>推出结论：从根到叶子的最长的可能路径不多于最短的可能路径的两倍长</li>
+</ul>
+</li>
+<li>时间复杂度：<ul>
+<li>它是复杂的，但它的操作有着良好的最坏情况运行时间，并且在实践中是高效的: 它可以在O(logn)时间内做查找，插入和删除，这里的n是树中元素的数目。</li>
+</ul>
+</li>
+<li>实现：<ul>
+<li>插入</li>
+<li>删除</li>
+<li>颜色变更：O(log(n))</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>B-树</p>
+<ul>
+<li>定义：<ul>
+<li>B树也是一种用于查找的平衡树，但不是二叉树，能够用来存储排序后的数据</li>
+<li>B树，概括来说是一个一般化的二叉查找树，可以拥有多于2个子节点。</li>
+<li>与自平衡二叉查找树不同，B-树为系统最优化大块数据的读和写操作。B-tree算法减少定位记录时所经历的中间过程，从而加快存取速度。这种数据结构常被应用在数据库和文件系统的实作上。</li>
+<li>1) 定义任意非叶子结点最多只有M个儿子；且M&gt;2；</li>
+<li>2) 根结点的儿子数为[2, M]；</li>
+<li>3) 除根结点以外的非叶子结点的儿子数为[M/2, M]；</li>
+<li>4) 每个结点存放至少M/2-1（取上整）和至多M-1个关键字；（至少2个关键字）</li>
+<li>5) 非叶子结点的关键字个数=指向儿子的指针个数-1；</li>
+<li>6) 非叶子结点的关键字：K[1], K[2], …, K[M-1]；且K[i] &lt; K[i+1]；</li>
+<li>7) 非叶子结点的指针：P[1], P[2], …, P[M]；其中P[1]指向关键字小于K[1]的子树，P[M]指向关键字大于K[M-1]的子树，其它P[i]指向关键字属于(K[i-1], K[i])的子树；</li>
+<li>8) 所有叶子结点位于同一层；</li>
+</ul>
+</li>
+<li>性质：</li>
+<li></li>
+</ul>
+</li>
+<li><p>B+树</p>
+<ul>
+<li>定义：<ul>
+<li>B+树是B树的变体，也是一种多路搜索树：</li>
+<li>1) 其定义基本与B-树相同，除了：</li>
+<li>2) 非叶子结点的子树指针与关键字个数相同；</li>
+<li>3) 非叶子结点的子树指针P[i]，指向关键字值属于[K[i], K[i+1])的子树（B-树是开区间）；</li>
+<li>4) 为所有叶子结点增加一个链指针；</li>
+<li>5) 所有关键字都在叶子结点出现；</li>
+</ul>
+</li>
+<li>性质：<ul>
+<li>1.所有关键字都出现在叶子结点的链表中（稠密索引），且链表中的关键字恰好是有序的；</li>
+<li>2.不可能在非叶子结点命中；</li>
+<li>3.非叶子结点相当于是叶子结点的索引（稀疏索引），叶子结点相当于是存储（关键字）数据的数据层；</li>
+<li>4.更适合文件索引系统。</li>
+</ul>
+</li>
+<li>实现：</li>
+</ul>
+</li>
+<li>B*树<ul>
+<li>定义：<ul>
+<li>B*树是B+树的变体，在B+树的非根和非叶子结点再增加指向兄弟的指针，将结点的最低利用率从1/2提高到2/3。</li>
+</ul>
+</li>
+<li>性质：<ul>
+<li>特点：B*树分配新结点的概率比B+树要低，空间使用率更高。</li>
+</ul>
+</li>
+<li>实现：</li>
+</ul>
+</li>
+<li>字典树Trie：字符串查找<ul>
+<li>定义：<ul>
+<li>Tire树称为字典树，又称单词查找树，Trie树，是一种树形结构，是一种哈希树的变种。</li>
+<li>来自retrieve， 读作：/traɪ/ “try”或者/tri:/ “tree” </li>
+<li>典型应用是用于统计，排序和保存大量的字符串（但不仅限于字符串），所以经常被搜索引擎系统用于文本词频统计。</li>
+</ul>
+</li>
+<li>性质：<ul>
+<li>1) 根节点不包含字符，除根节点外每一个节点都只包含一个字符；</li>
+<li>2) 从根节点到某一节点，路径上经过的字符连接起来，为该节点对应的字符串；</li>
+<li>3) 每个节点的所有子节点包含的字符都不相同。</li>
+</ul>
+</li>
+<li>特点：<ul>
+<li>如果字符的种数为n，则每个结点的出度为n，这也是空间换时间的体现，浪费了很多的空间。</li>
+<li>插入查找的复杂度为O(n)，n为字符串长度。</li>
+</ul>
+</li>
+<li>优缺点：<ul>
+<li>最大限度地减少无谓的字符串比较，查询效率比哈希表高。</li>
+<li>缺点就是空间开销大。</li>
+</ul>
+</li>
+<li>应用：<ul>
+<li>串的快速检索：<ul>
+<li>给出N个单词组成的熟词表，以及一篇全用小写英文书写的文章，请你按最早出现的顺序写出所有不在熟词表中的生词。</li>
+<li>在这道题中，我们可以用数组枚举，用哈希，用字典树，先把熟词建一棵树，然后读入文章进行比较，这种方法效率是比较高的。</li>
+</ul>
+</li>
+<li>串的排序：给定N个互不相同的仅由一个单词构成的英文名，让你将他们按字典序从小到大输出。用字典树进行排序，采用数组的方式创建字典树，这棵树的每个结点的所有儿子很显然地按照其字母大小排序。对这棵树进行先序遍历即可。</li>
+<li>最长公共前缀：对所有串建立字典树，对于两个串的最长公共前缀的长度即他们所在的结点的公共祖先个数，于是，问题就转化为求公共祖先的问题。</li>
+</ul>
+</li>
+<li>实现：</li>
+<li>LeetCode：<ul>
+<li>LeetCode：<ol>
+<li>Implement Trie (Prefix Tree)这道题是实现一个前缀树，作为基础题啦</li>
+<li>Add and Search Word - Data structure design这道题是把前缀树做一个简单的变形</li>
+<li>Concatenated Words</li>
+<li>Word Search II</li>
+<li>Maximum XOR of Two Numbers in an Array</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>后缀树</li>
+<li>广义后缀树</li>
+</ol>
+<h2 id="堆Heap"><a href="#堆Heap" class="headerlink" title="堆Heap"></a>堆Heap</h2><h2 id="栈Stack"><a href="#栈Stack" class="headerlink" title="栈Stack"></a>栈Stack</h2><p>## </p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>thank you for donating~</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.png" alt="Batista Yu 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="Batista Yu 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/数据结构/" rel="tag"># 数据结构</a>
+          
+            <a href="/tags/链表/" rel="tag"># 链表</a>
+          
+            <a href="/tags/树/" rel="tag"># 树</a>
+          
+            <a href="/tags/堆栈/" rel="tag"># 堆栈</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/01/基准测试/" rel="next" title="基准测试">
+                <i class="fa fa-chevron-left"></i> 基准测试
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/03/07/面试准备-大数据/" rel="prev" title="面试准备:大数据">
+                面试准备:大数据 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Batista Yu</p>
+              <p class="site-description motion-element" itemprop="description">do research like playing</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">32</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/a550461053" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#数学基础"><span class="nav-number">1.</span> <span class="nav-text">数学基础</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数组array"><span class="nav-number">2.</span> <span class="nav-text">数组array</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#链表Linked-List"><span class="nav-number">3.</span> <span class="nav-text">链表Linked List</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#树Tree"><span class="nav-number">4.</span> <span class="nav-text">树Tree</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#堆Heap"><span class="nav-number">5.</span> <span class="nav-text">堆Heap</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#栈Stack"><span class="nav-number">6.</span> <span class="nav-text">栈Stack</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Batista Yu</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
