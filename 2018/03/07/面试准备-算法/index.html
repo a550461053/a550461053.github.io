@@ -91,7 +91,7 @@
 <meta property="og:site_name" content="Fake it till you make it">
 <meta property="og:description" content="算法概述 NP： non-deterministic polynomial problem非确定性问题(难)   NPC： NP完全问题(最难)   P问题： polynomial problem多项式问题(易)   一般算法分类：  判定性问题： 最优化问题：  标准分治： 动态规划： 贪心算法： | 算法比较 | 标准分治 | 动态规划 | 贪心算法 |  | ——– | :——: | :——">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-07T11:58:37.611Z">
+<meta property="og:updated_time" content="2018-03-12T06:46:44.423Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="面试准备:算法">
 <meta name="twitter:description" content="算法概述 NP： non-deterministic polynomial problem非确定性问题(难)   NPC： NP完全问题(最难)   P问题： polynomial problem多项式问题(易)   一般算法分类：  判定性问题： 最优化问题：  标准分治： 动态规划： 贪心算法： | 算法比较 | 标准分治 | 动态规划 | 贪心算法 |  | ——– | :——: | :——">
@@ -415,25 +415,111 @@
 </ul>
 </li>
 </ul>
-<h1 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h1><ul>
-<li>思路：</li>
-<li>算法条件：<ul>
-<li>最优化原理：<ul>
-<li>问题的最优解包含的子问题的解也是最优的，则称该问题具有最优子结构，即满足最优化原理</li>
+<h1 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h1><h2 id="DP概念"><a href="#DP概念" class="headerlink" title="DP概念"></a>DP概念</h2><ol>
+<li>DP问题特征：<ol>
+<li>重叠子问题：能够分解为重叠的若干子问题<ul>
+<li>子问题的重叠性：两个子问题其实是同一个子问题，只是作为了不同问题的子问题而已。</li>
 </ul>
 </li>
-<li>无后效性：<ul>
-<li>某阶段状态一旦确定，就不受这个状态以后决策的影响，也就是说，某状态以后的过程不会影响以后的状态，只与当前状态有关。</li>
+<li>最优子结构：一个问题的最优解包含其子问题的最优解。<ul>
+<li>子问题的无关性：同一个原问题的一个子问题的解不影响另一个子问题的解，也就是子问题之间不共享资源，相互独立。</li>
 </ul>
 </li>
-<li>有重叠子问题：<ul>
-<li>子问题之间不独立，一个子问题在下一阶段决策中可能被多次使用。</li>
+<li>无后效性：每个状态都是过去历史的完整总结</li>
+</ol>
+</li>
+<li>设计DP算法步骤：<ol>
+<li>分段：原问题分解为若干相互重叠的子问题</li>
+<li>分析：分析问题是否具有最优子结构，并找到递推式</li>
+<li>求解：利用递推式自底向上计算</li>
+<li>重构最优解：将每个子问题所做的选择存在一个表中，这样就不必根据代价来重构这些信息，增加O(1)的时间。</li>
+</ol>
+</li>
+<li>实现方法：<ul>
+<li>带备忘的自顶向下法(top-down with memoization):<ul>
+<li>按照自然的递归形式进行求解，每个递归过程带备忘，记录之前的计算结果</li>
+<li>时间复杂度：<ul>
+<li>求解一个已经计算出结果的子问题时，直接返回结果，所以该方法也是对每个子问题只求解一次，所以求解规模为n个子问题，递归循环迭代n次，所以for循环过程的迭代次数也是一个等差数列，由聚合分析(aggregate analysis，n个序列最坏时间复杂度就是T(n))所以也是O(n2).</li>
 </ul>
 </li>
 </ul>
 </li>
-<li>优点：<ul>
-<li>高效的解决贪心和分治无法解决的问题。</li>
+<li>自底向上法(bottom-up method):<ul>
+<li>将子问题按规模排序，由小到大进行求解</li>
+<li>时间复杂度：<ul>
+<li>主体是嵌套的双重循环，内层for循环的迭代次数构成一个等差数列，所以是O(n2)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>子问题图：<ul>
+<li>计算时间复杂度可以通过子问题图来构建</li>
+<li>子问题图G=(V,E)</li>
+<li>子问题的求解时间：与对应顶点的度(出射边的数目)成正比V</li>
+<li>子问题的个数：等于子问题图的定点数E</li>
+<li>动态规划运行时间：子问题的时间之和，so与顶点和边的数量程线性关系。</li>
+</ul>
+</li>
+<li>DP思想：<br>每个子问题对应决策过程的一个阶段，一般来说，子问题的重叠关系表现在对给定问题求解的递推关系（也就是动态规划函数）中，将子问题的解求解一次并填入表中，当需要再次求解子问题时，可以通过查表获得该子问题的解而不用再次求解，从而避免了大量重复计算。</li>
+<li>好处：<ol>
+<li>问题规模越大，好处越明显</li>
+<li>题目规模n，分治法O(2^n)，DP仅为O(n2)</li>
+</ol>
+</li>
+<li>与贪心区别：<ol>
+<li>动态规划法先求子问题的解，然后通过求解子问题构造原问题的解；贪心算法是直接地解原问题。</li>
+<li>动态规划法通过对若干局部最优解的比较，去掉了次优解，从而产生了更高一层次的局部最优解。 相当于对较低层次的局部最优解进行贪心的选择而得到高一级的局部最优解，因而最终产生一个最高层次的局部最优解。贪心法每阶段只作一个挑选，各阶段的解一经选出就固定不变了，后阶段的局部最优是基于前阶段的挑选，所以往往只能求出次优解。</li>
+</ol>
+</li>
+<li>与分治法区别：<ol>
+<li>共同点：把一个大问题分解为若干较小的子问题，通过求解子问题而得到原问题的解。</li>
+<li>不同点：分治法每次分解的子问题数目比较少，子问题之间界限清楚，也就是递归的每一步生成的子问题都是新的，处理的过程通常是自顶向下进行；动态规划法分解的子问题可能比较多，而且是重叠子问题，为了重用已经计算的结果，要把计算的中间结果全部保存起来，通常是自底向上进行。</li>
+</ol>
+</li>
+</ol>
+<h2 id="DP题型"><a href="#DP题型" class="headerlink" title="DP题型"></a>DP题型</h2><ol>
+<li>简单基础DP<ol>
+<li>递推：<ul>
+<li>超级楼梯Fibonacci.py</li>
+<li>数字三角形tri3.py</li>
+</ul>
+</li>
+<li>背包：<ul>
+<li>01bag.py</li>
+</ul>
+</li>
+<li>LIS：最长递增子序列<ul>
+<li>LIS.py</li>
+</ul>
+</li>
+<li>LCS：最长公共子序列<ul>
+<li>LCS.py</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>区间DP<br> 一般是枚举区间，把区间分成左右两部分，然后求出左右区间再合并<br> 1.</li>
+<li>树形DP<br> 建立在树的数据结构上的DP，一般状态比较好想，通过dfs维护从根到叶子或叶子到根的状态转移</li>
+<li>数位DP<br> 数位dp,主要用来解决统计满足某类特殊关系或有某些特点的区间内的数的个数，它是按位来进行计数统计的，可以保存子状态，速度较快。数位dp做多了后，套路基本上都差不多，关键把要保存的状态给抽象出来，保存下来。</li>
+<li>概率/期望DP</li>
+<li>状态压缩DP<br> TSP<br> 插头DP</li>
+<li>数据结构优化DP<ol>
+<li>二进制优化</li>
+<li>单调队列优化</li>
+<li>斜率优化</li>
+<li>四边形不等式优化</li>
+</ol>
+</li>
+</ol>
+<ul>
+<li>LeetCode例题：<ul>
+<li><ol>
+<li>Maximum Product Subarray：最大连续子数组乘积<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">def maxProduct(nums):</span><br><span class="line">	# 法一：原始版一维动态规划，空间复杂度O(n)</span><br><span class="line">	if nums == [0]: return 0</span><br><span class="line">	dp, res_min, res_max = [nums[0]]*len(nums), [nums[0]]*len(nums), [nums[0]]*len(nums)</span><br><span class="line">	for i in range(1, len(nums)):</span><br><span class="line">		res_max[i] = max(nums[i], max(res_max[i-1]*nums[i], res_min[i-1]*nums[i]))</span><br><span class="line">		res_min[i] = min(nums[i], min(res_max[i-1]*nums[i], res_min[i-1]*nums[i]))</span><br><span class="line">		dp[i] = max(dp[i-1], res_max[i])</span><br><span class="line">	return dp[-1]</span><br><span class="line"></span><br><span class="line">	# 法二：优化版动态规划，空间复杂度O(1)</span><br><span class="line">	# 思路：只需要i-1的结果，所以只需要用last分别保存上一次结果即可</span><br><span class="line">	if nums == [0]: return 0</span><br><span class="line">	dp = res_min = res_max = nums[0]</span><br><span class="line">	for i in nums[1:]:</span><br><span class="line">		last_max, last_min = res_max, res_min</span><br><span class="line">		res_max = max(i, max(last_max*i, last_min*i))</span><br><span class="line">		res_min = min(i, min(last_max*i, last_min*i))</span><br><span class="line">		dp = max(dp, res_max)</span><br><span class="line">	return dp</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
 </ul>
 </li>
 </ul>
@@ -585,7 +671,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-count">20</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -598,7 +684,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">32</span>
+                  <span class="site-state-item-count">34</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -641,7 +727,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#算法概述"><span class="nav-number">1.</span> <span class="nav-text">算法概述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#分治法"><span class="nav-number">2.</span> <span class="nav-text">分治法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#贪心算法"><span class="nav-number">3.</span> <span class="nav-text">贪心算法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#动态规划"><span class="nav-number">4.</span> <span class="nav-text">动态规划</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#算法概述"><span class="nav-number">1.</span> <span class="nav-text">算法概述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#分治法"><span class="nav-number">2.</span> <span class="nav-text">分治法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#贪心算法"><span class="nav-number">3.</span> <span class="nav-text">贪心算法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#动态规划"><span class="nav-number">4.</span> <span class="nav-text">动态规划</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#DP概念"><span class="nav-number">4.1.</span> <span class="nav-text">DP概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DP题型"><span class="nav-number">4.2.</span> <span class="nav-text">DP题型</span></a></li></ol></li></ol></div>
             
 
           </div>

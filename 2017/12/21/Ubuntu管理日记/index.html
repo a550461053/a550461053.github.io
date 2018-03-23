@@ -91,7 +91,7 @@
 <meta property="og:site_name" content="Fake it till you make it">
 <meta property="og:description" content="Ubuntu常识 linux文件系统： /usr/bin: 一般存放为系统安装的应用 /usr/local/bin: 一般存放为用户自己编译创建的应用     酷炫Ubuntu 开机时间： uptime uptime -v 查看版本 开机密码：   sudo su第一次安装用户可以使用命令 然后切换到root后：passwd，即可修改root密码   忘记密码：   重启，按住shift，选择ad">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-01T07:20:19.353Z">
+<meta property="og:updated_time" content="2018-03-14T03:09:37.757Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Ubuntu管理日记">
 <meta name="twitter:description" content="Ubuntu常识 linux文件系统： /usr/bin: 一般存放为系统安装的应用 /usr/local/bin: 一般存放为用户自己编译创建的应用     酷炫Ubuntu 开机时间： uptime uptime -v 查看版本 开机密码：   sudo su第一次安装用户可以使用命令 然后切换到root后：passwd，即可修改root密码   忘记密码：   重启，按住shift，选择ad">
@@ -447,19 +447,23 @@
 </li>
 </ul>
 <ul>
-<li>查看CPU：<ul>
+<li><p>查看CPU：</p>
+<ul>
 <li>物理cpu个数：cat /proc/cpuinfo | grep ‘physical id’ | sort | uniq | wc -l</li>
 <li>查看cpu几核：cat /proc/cpuinfo | grep ‘cores’ | uniq</li>
 <li>查看逻辑CPU: cat /proc/cpuinfo | grep ‘processor’ | wc -l</li>
 <li>结果为：1,4,4所以说逻辑也为1*4，也就不支持超线程</li>
 </ul>
 </li>
-<li>快捷键：<ul>
-<li>vi的时候，使用ctrl+s会锁定屏幕，无法输入，使用ctrl+q解锁即可</li>
-<li></li>
+<li><p>top高级：</p>
+<ul>
+<li>高级htop：sudo apt install htop</li>
+<li>流量检测：<ul>
+<li>sudo apt install nethogs</li>
+<li>使用：sudo nethogs eth0 指定网卡</li>
 </ul>
 </li>
-<li><p>移动Unity所处位置：<br>  gsettings set com.canonical.Unity.Launcher launcher-position Bottom</p>
+</ul>
 </li>
 <li><p>桌面实时流量：</p>
 <ul>
@@ -470,6 +474,14 @@
 <li>自启动在软件自己的设置里面</li>
 <li>显示的内容可自定义</li>
 </ul>
+</li>
+<li><p>快捷键：</p>
+<ul>
+<li>vi的时候，使用ctrl+s会锁定屏幕，无法输入，使用ctrl+q解锁即可</li>
+<li></li>
+</ul>
+</li>
+<li><p>移动Unity所处位置：<br>  gsettings set com.canonical.Unity.Launcher launcher-position Bottom</p>
 </li>
 <li><p>创建链接文件：软链接即可，可跨文件系统：ln -s 源文件 目标文件</p>
 <ul>
@@ -870,6 +882,14 @@
 <li>搜狗很容易出问题: <ul>
 <li>就是回车+分号同时按的时候</li>
 <li>此时: 运行一下fictx即可</li>
+</ul>
+</li>
+<li>fcitx占用过多内存和cpu：<ul>
+<li>fcitx的云服务器默认为google，打不开就会频繁请求，占用资源。</li>
+<li>打开fcitx的配置界面</li>
+<li>查看addon - 勾选advance</li>
+<li>选择cloud pinyin选项 - configure</li>
+<li>将cloud pinyin source 改为baidu即可</li>
 </ul>
 </li>
 </ul>
@@ -2458,7 +2478,7 @@ sudo chmod 777 myshare
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-count">20</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2471,7 +2491,7 @@ sudo chmod 777 myshare
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">32</span>
+                  <span class="site-state-item-count">34</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

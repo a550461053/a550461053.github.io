@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+  <link rel="stylesheet" media="all" href="/lib/Han/dist/han.min.css?v=3.3">
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="canvas,javascript," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="当前的一个项目任务是实现动态粒子拓扑连线3D效果图，采用angular2基于typescript实现，这方面的资料比较少，所以需要借鉴javascript的资源，调研了很多实现方案，最终选择了canvas来实现，查到的资料系统的汇总一下。 坐标与颜色 坐标 2D坐标系： 左上角为原点 x: width，也就是从左往右 y: height，从上往下 当然也有负的x/y坐标，默认是hidden的，但还">
+<meta name="keywords" content="canvas,javascript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="canvas实现动态3D效果">
+<meta property="og:url" content="http://yoursite.com/2018/03/14/canvas实现动态3D效果/index.html">
+<meta property="og:site_name" content="Fake it till you make it">
+<meta property="og:description" content="当前的一个项目任务是实现动态粒子拓扑连线3D效果图，采用angular2基于typescript实现，这方面的资料比较少，所以需要借鉴javascript的资源，调研了很多实现方案，最终选择了canvas来实现，查到的资料系统的汇总一下。 坐标与颜色 坐标 2D坐标系： 左上角为原点 x: width，也就是从左往右 y: height，从上往下 当然也有负的x/y坐标，默认是hidden的，但还">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-03-23T11:01:31.971Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="canvas实现动态3D效果">
+<meta name="twitter:description" content="当前的一个项目任务是实现动态粒子拓扑连线3D效果图，采用angular2基于typescript实现，这方面的资料比较少，所以需要借鉴javascript的资源，调研了很多实现方案，最终选择了canvas来实现，查到的资料系统的汇总一下。 坐标与颜色 坐标 2D坐标系： 左上角为原点 x: width，也就是从左往右 y: height，从上往下 当然也有负的x/y坐标，默认是hidden的，但还">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/03/14/canvas实现动态3D效果/"/>
+
+
+
+
+
+  <title>canvas实现动态3D效果 | Fake it till you make it</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Fake it till you make it</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">computer science, linux, blockchain, deeplearning, algorithm</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/14/canvas实现动态3D效果/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Batista Yu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Fake it till you make it">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">canvas实现动态3D效果</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-14T18:58:00+08:00">
+                2018-03-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>当前的一个项目任务是实现动态粒子拓扑连线3D效果图，采用angular2基于typescript实现，这方面的资料比较少，所以需要借鉴javascript的资源，调研了很多实现方案，最终选择了canvas来实现，查到的资料系统的汇总一下。</p>
+<h1 id="坐标与颜色"><a href="#坐标与颜色" class="headerlink" title="坐标与颜色"></a>坐标与颜色</h1><ol>
+<li>坐标<ul>
+<li>2D坐标系：<ul>
+<li>左上角为原点</li>
+<li>x: width，也就是从左往右</li>
+<li>y: height，从上往下</li>
+<li>当然也有负的x/y坐标，默认是hidden的，但还是存在的，就是原点向向上向左。</li>
+</ul>
+</li>
+<li>3D坐标系：<br>  + </li>
+</ul>
+</li>
+<li>颜色<ul>
+<li>RGB模式：<ul>
+<li>红/绿/蓝（255，255，255）</li>
+<li>一个255对应FF，十六进制表示就是：#FFFFFF</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h1 id="2D转3D原理"><a href="#2D转3D原理" class="headerlink" title="2D转3D原理"></a>2D转3D原理</h1><ul>
+<li>人眼看3D原理：<ul>
+<li>眼睛对焦距离：<ul>
+<li>人眼对焦和相机的光学变焦原理是一样的，只是人眼对焦非常精准迅速。观察一个物体时，根据眼睛的对焦距离就可以判断出物体距离眼睛的距离。</li>
+</ul>
+</li>
+<li>视差：<ul>
+<li>3D中最重要的概念：视差。<ul>
+<li>两只眼睛同时观看物体的差别：两只眼睛看到同一个立体实体的画面是不一样的。</li>
+<li>在移动中观测物体的差别：同上。</li>
+</ul>
+</li>
+<li>没有视差就没有3D，人之所以能感受到立体，就是因为两只眼睛左右错开6cm多，所以两只眼睛看到的东西会有一点差异，这就是视差，只要能模拟出这种差异，人眼就能感受到立体感。</li>
+</ul>
+</li>
+<li>物体的几何形变：<ul>
+<li>一辆车在往前开，窗户外马路边的树飞速倒退，远一点的房子退的慢一点，更远的山几乎没有动。</li>
+</ul>
+</li>
+<li>光影、遮罩而产生的层次感：<ul>
+<li>遮挡：物体a把物体b挡住了一部分，我们会认为物体a在物体b前面，也就是a离我们的眼睛更近。</li>
+<li>光影：比如同一个路灯下，ab两个物体，其中一个影子几乎很短，另外一个影子很长（这个长短是相对于ab物体自身而言，不是绝对长度），则可以认为a物体离路灯很近，而b物体离得远。</li>
+</ul>
+</li>
+<li>大脑的想象：<ul>
+<li>终极武器，这是人最难以用机器模拟的特点。人最大的特点就是拥有丰富的想象力，而且这个想象力是无处不在的。比如你看到一只猫卧在地上，你会更具生活经验想象出它应该有四条腿缩在身子下面；你看到一个人的左半边，你会不由自主的在脑海中把它的右半边被挡住的耳朵胳膊等补上去。</li>
+<li>想象力大部分时候是准的，但是偶尔也会出错⋯⋯最典型的应用就是魔术，魔术不是让观众看到了假的，二是诱导力观众的想象力，使观众把看不到的或者看不清的或者没注意看的东西在大脑中靠想象力补出来。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>3D电影原理</p>
+<ul>
+<li>2D电影：<ul>
+<li>2d电影里面因为物体的运动和摄像镜头的运动，使得它比静态的画面更能使人感受到”3d“的效果。</li>
+<li>比如2d电影里面的一辆车在往前开，窗户外马路边的树飞速倒退，远一点的房子退的慢一点，更远的山几乎没有动，这个强烈的视觉效果可以促使大脑构想一个3d的场景：车在马路上飞驰，马路两旁有很多树，马路不远处有很多房子，更远处有绵延的群山。</li>
+</ul>
+</li>
+<li>3D电影：<ul>
+<li>3d电影之所以区别于2d电影，是因为它是唯一满足条件2的，由于左右眼看到了两个角度的不同画面，因此有”真实“的3d感。</li>
+<li>制作原理-偏光原理：<ul>
+<li>3D立体电影的制作有多种形式，其中较为广泛采用的是偏光眼镜法。</li>
+<li>制作：它以人眼观察景物的方法，利用两台并列安置的电影摄影机，分别代表人的左、右眼，同步拍摄出两条略带水平视差的电影画面。</li>
+<li>放映：将两条电影影片分别装入左、右电影放映机，并在放映镜头前分别装置两个偏振轴互成90度的偏振镜。两台放映机需同步运转，同时将画面投放在金属银幕上，形成左像右像双影。</li>
+<li>观看：当观众戴上特制的偏光眼镜时，由于左、右两片偏光镜的偏振轴互相垂直，并与放映镜头前的偏振轴相一致；致使观众的左眼只能看到左像、右眼只能看到右像，通过双眼汇聚功能将左、右像叠和在视网膜上，由大脑神经产生三维立体的视觉效果。展现出一幅幅连贯的立体画面，使观众感到景物扑面而来、或进入银幕深凹处，能产生强烈的“身临其境”感。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>2D转3D电影：<ul>
+<li>这是一种伪3D电影：通过把2D电影的前景、中景、背景剪下来，重新贴到一个立体的动态高浮雕上，然后分别用表示左右眼的虚拟摄影机重新拍摄一次，在放映就是3D了。</li>
+<li>逐帧绘制景深：也就是产生了人眼看3D效果需要的视差。</li>
+<li>例子：《泰坦尼克号》目前2D拍摄转3D效果最好的一部电影。<ul>
+<li>其原理也是一样的，人工扣图，把后面被遮挡额物体全部三维重建。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>区分真正的3D电影：<ul>
+<li>戴上眼镜看画面，左右眼轮流睁开</li>
+<li>真3D：<ul>
+<li>看见两个画面不一样，能看到前景后面遮挡的背景</li>
+</ul>
+</li>
+<li>2D转3D：<ul>
+<li>看见的画面不一样，但是玻璃杯、头发这些物体的边缘看起来很奇怪，有一种空气烧热的扭动感</li>
+</ul>
+</li>
+<li>假3D：<ul>
+<li>看见两个一模一样的画面。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>2D-3D算法：</p>
+<ul>
+<li><h1 id="动画实现requestAnimationFrame用法"><a href="#动画实现requestAnimationFrame用法" class="headerlink" title="动画实现requestAnimationFrame用法"></a>动画实现requestAnimationFrame用法</h1></li>
+</ul>
+</li>
+<li>背景：由于我要实现的功能，需要重复调用我的paint()函数，导致paint()函数内部的requestAnimationFrame对同样的callback执行多次，也就导致我的动画效果多次重叠渲染了，所以对requestAnimationFrame的使用研究了一番。</li>
+<li>浏览器渲染原理：<ul>
+<li>DNS 查询</li>
+<li>TCP 连接</li>
+<li>HTTP 请求即响应</li>
+<li>服务器响应</li>
+<li>客户端渲染：<ul>
+<li>处理 HTML 标记并构建 DOM 树。</li>
+<li>处理 CSS 标记并构建 CSSOM 树。</li>
+<li>将 DOM 与 CSSOM 合并成一个渲染树。</li>
+<li>根据渲染树来布局，以计算每个节点的几何信息。</li>
+<li>将各个节点绘制到屏幕上。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>绘制频率：<ul>
+<li>页面上每一帧变化都是系统绘制出来的(GPU或者CPU)</li>
+<li>但这种绘制又和PC游戏的绘制不同，它的最高绘制频率受限于显示器的刷新频率(而非显卡)</li>
+<li>所以大多数情况下最高的绘制频率只能是每秒60帧(frame per second，以下用fps简称)，对应于显示器的60Hz。</li>
+<li>60fps是一个最理想的状态，在日常对页面性能的测试中，60fps也是一个重要的指标，the closer the better。</li>
+</ul>
+</li>
+<li>刷新频率：<ul>
+<li>图像在屏幕上更新的速度，也即屏幕上的图像每秒钟出现的次数，它的单位是赫兹（Hz）。</li>
+<li>刷新频率越高，屏幕上图像闪烁感就越小，稳定性也就越高，换言之对视力的保护也越好。</li>
+<li>一般人的眼睛、不容易察觉75Hz以上刷新频率带来的闪烁感，因此最好能将您显示卡刷新频率调到75Hz以上。</li>
+<li><em>显示卡</em>：并不是所有的显示卡都能够在最大分辨率下达到70Hz以上的刷新频率（这个性能取决于显示卡上RAMDAC的速度），而且显示器也可能因为带宽不够而不能达到要求。影响刷新率最主要的还是显示器的带宽。</li>
+<li>显示器带宽：是显示器视频放大器通频带宽度的简称，指电子枪每秒钟在屏幕上扫过的最大总像素数，以MHz(兆赫兹)为单位。 带宽的值越大，显示器性能越好。</li>
+</ul>
+</li>
+<li>硬件加速：<ul>
+<li>硬件有三个处理器，CPU、GPU和APU（不是加速处理器是声音处理器）。他们通过PCI/AGP/PCIE总线交换数据。今天，GPU已经不再局限于3D图形处理了，GPU通用计算技术发展已经引起业界不少的关注，事实也证明在浮点运算、并行计算等部分计算方面，GPU可以提供数十倍乃至于上百倍于CPU的性能。</li>
+</ul>
+</li>
+<li>60Hz和60fps：<ul>
+<li>没有任何关系。fps代表GPU渲染画面的频率，Hz代表显示器刷新屏幕的频率。</li>
+<li>一幅静态图片，你可以说这副图片的fps是0帧/秒，但绝对不能说此时屏幕的刷新率是0Hz，也就是说刷新率不随图像内容的变化而变化。</li>
+<li>游戏也好浏览器也好，我们谈到掉帧，是指GPU渲染画面频率降低。比如跌落到30fps甚至20fps，但因为视觉暂留原理，我们看到的画面仍然是运动和连贯的。</li>
+</ul>
+</li>
+<li>浏览器中动画有两种实现形式：<ul>
+<li>JavaScript：通过定时器（setTimeout 和 setIterval）来间隔来改变元素样式，或者使用requestAnimationFrame；<ul>
+<li>setTimeout 和 setIterval:<ul>
+<li>优点：<ul>
+<li>易用，低效，兼容好</li>
+</ul>
+</li>
+<li>缺点：<ul>
+<li>setInterval多个间隔可能会被跳过</li>
+<li>setInterval多个间隔可能比预期小</li>
+<li>不够流畅，且会占用额外的资源</li>
+<li>这种做法的主要问题是回调将会在帧中的某个时间点运行，这可能会刚好在末尾（会丢失帧导致发生卡顿）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>RAF：<ul>
+<li>优点：<ul>
+<li>在每次浏览器更新页面时，能获取通知并执行应用。 简单理解为，RAF能在每个16.7ms间执行一次咱们的函数，不多不少。</li>
+<li>最小化的消耗资源，RAF在页面被切换或浏览器最小化时，会暂停执行，等页面再次关注时，继续执行动画。<ul>
+<li>不需要使用者指定循环间隔时间，浏览器会基于当前页面是否可见、CPU的负荷情况等来自行决定最佳的帧速率，从而更合理地使用CPU</li>
+</ul>
+</li>
+<li>相比 CSS 动画有更好的掌控，能合理降低CPU的使用。</li>
+</ul>
+</li>
+<li>缺点：<ul>
+<li>无法控制执行时间，执行时间由系统根据屏幕刷新时间决定</li>
+<li>浏览器兼容性问题，IE10+及现代浏览器，低版本浏览器建议降级处理，使用setInterval或setTimeout</li>
+</ul>
+</li>
+</ul>
+</li>
+<li></li>
+</ul>
+</li>
+<li>CSS3：transition 和 animation；</li>
+<li>HTML5：使用HTML5提供的绘图方式（canvas、svg、WebGL）<ul>
+<li>canvas：<ul>
+<li>优点：<br>1) 画2D图形时，页面渲染性能比较高<br>2) 页面渲染性能受图形复杂度影响小<br>3) 渲染性能只受图形的分辨率的影响<br>4) 画出来的图形可以直接保存为 .png 或者 .jpg的图形<br>5) 最适合于画光栅图像（如游戏和不规则几何图形等），编辑图片还有其他基于像素的图形操作。</li>
+<li>缺点：<br>1) 整个就是一张图，无论你往上画什么东西——没有DOM 结点可供操作<br>2) 没有实现动画的API，你必须依靠定时器和其他事件来更新Canvas<br>3) 对文本的渲染支持是比较差<br>4) 对要求有高可访问性（盲文、声音朗读等）页面，比较困难<br>5) 对交互要求高的（比如TIBCO的很多产品）的界面，不建议使用Canvas</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>requestAnimationFrame：</p>
+<ul>
+<li>requestAnimationFrame是浏览器用于定时循环操作的一个接口，类似于setTimeout，主要用途是按帧对网页进行重绘。</li>
+<li>设置这个API的目的是为了让各种网页动画效果（DOM动画、Canvas动画、SVG动画、WebGL动画）能够有一个统一的刷新机制，从而节省系统资源，提高系统性能，改善视觉效果。代码中使用这个API，就是告诉浏览器希望执行一个动画，让浏览器在下一个动画帧安排一次网页重绘。</li>
+<li><p>API：</p>
+<ul>
+<li><p>提供了两个接口：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">partial interface Window &#123;</span><br><span class="line">  	long requestAnimationFrame(FrameRequestCallback callback);</span><br><span class="line">  	void cancelAnimationFrame(long handle);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>requestAnimationFrame</p>
+<ul>
+<li>requestAnimationFrame方法用于通知浏览器重采样动画</li>
+<li>当requestAnimationFrame(callback)被调用时不会执行callback函数，而是会将元组&lt; handle,callback&gt;插入到动画帧请求回调函数列表末尾（其中元组的callback就是传入requestAnimationFrame的回调函数），并且返回handle值，该值为浏览器定义的、大于0的整数，唯一标识了该回调函数在列表中位置。</li>
+<li>每个回调函数都有一个布尔标识cancelled，该标识初始值为false，并且对外不可见。浏览器在执行“采样所有动画”的任务时会遍历动画帧请求回调函数列表，判断每个元组的callback的cancelled，如果为false，则执行callback。</li>
+</ul>
+</li>
+<li>cancelAnimationFrame<ul>
+<li>cancelAnimationFrame 方法用于取消先前安排的一个动画帧更新的请求</li>
+<li>当调用cancelAnimationFrame(handle)时，浏览器会设置该handle指向的回调函数的cancelled为true。无论该回调函数是否在动画帧请求回调函数列表中，它的cancelled都会被设置为true。</li>
+<li>如果该handle没有指向任何回调函数，则调用cancelAnimationFrame 不会发生任何事情。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>使用方式：</p>
+<ul>
+<li><p>只能执行一次函数a：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">// 方式一：callback内部执行cancelAnimationFrame</span><br><span class="line">function a() &#123;</span><br><span class="line">	console.log(&apos;hh&apos;);</span><br><span class="line">	id = window.requestAnimationFrame(a);</span><br><span class="line">	window.cancelAnimationFrame(id);</span><br><span class="line">&#125;</span><br><span class="line">a();</span><br><span class="line"></span><br><span class="line">// 方式二：callback外部执行cancelAnimationFrame</span><br><span class="line">function a() &#123;</span><br><span class="line">	console.log(&apos;hh&apos;);</span><br><span class="line">	id = window.requestAnimationFrame(a);</span><br><span class="line">&#125;</span><br><span class="line">a();</span><br><span class="line">window.cancelAnimationFrame(id);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>因为window.requestAnimationFrame(a)不会执行a函数，只是将&lt;id, a&gt;插入到动画帧请求回调函数列表的末尾，window.cancelAnimationFrame(id)则把id指向的回掉函数a的cancelled置位true；当浏览器执行“采样所有动画的”的任务时，会遍历动画帧请求回调函数列表，先判断元祖的callback的cancelled，为true，所以后续不再不执行a函数。</li>
+</ul>
+</li>
+<li>循环执行多次函数a：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function a() &#123;</span><br><span class="line">	console.log(&apos;hh&apos;);</span><br><span class="line">	window.requestAnimationFrame(a);</span><br><span class="line">&#125;</span><br><span class="line">a();</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<pre><code>* 循环多次函数
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">flag = false;</span><br><span class="line">function draw() &#123;</span><br><span class="line">	function init() &#123;</span><br><span class="line">		;</span><br><span class="line">	&#125;</span><br><span class="line">	function a() &#123;</span><br><span class="line">		console.log(&apos;hh&apos;);</span><br><span class="line">		idRAF = window.requestAnimationFrame(a);</span><br><span class="line">	&#125;</span><br><span class="line">	if (flag == true) &#123;</span><br><span class="line">		window.cancelAnimationFrame(idRAF);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">draw();   		// 正常循环</span><br><span class="line">flag = true;	// 需要修改init函数</span><br><span class="line">draw();			// </span><br><span class="line">flag = false;	// 重新循环</span><br></pre></td></tr></table></figure>
+<pre><code>- 持续保持一次循环，不会重复渲染多次：
+    + 操作：循环多次draw函数，每次执行前，先修改flag，相当于仅执行内部init()函数，不会执行动画渲染的a()函数，处理完逻辑后恢复flag，保持循环。
+    + 原理：第一次draw()后，已经有了一个不断循环进行动画帧请求的任务了，一直保持；下一次再次执行draw()的时候，会先执行我们想要的init()函数，然后进入a()的时候，由于idRAF已经被cancel了，所以此次draw()的渲染函数a()不会执行；
+</code></pre>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>thank you for donating~</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.png" alt="Batista Yu 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="Batista Yu 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/canvas/" rel="tag"># canvas</a>
+          
+            <a href="/tags/javascript/" rel="tag"># javascript</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/13/angular2教程/" rel="next" title="angular2教程">
+                <i class="fa fa-chevron-left"></i> angular2教程
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/03/17/面试准备-刷题/" rel="prev" title="面试准备-刷题">
+                面试准备-刷题 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Batista Yu</p>
+              <p class="site-description motion-element" itemprop="description">do research like playing</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/a550461053" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#坐标与颜色"><span class="nav-number">1.</span> <span class="nav-text">坐标与颜色</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2D转3D原理"><span class="nav-number">2.</span> <span class="nav-text">2D转3D原理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#动画实现requestAnimationFrame用法"><span class="nav-number">3.</span> <span class="nav-text">动画实现requestAnimationFrame用法</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Batista Yu</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

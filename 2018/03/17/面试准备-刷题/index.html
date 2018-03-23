@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+  <link rel="stylesheet" media="all" href="/lib/Han/dist/han.min.css?v=3.3">
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="计算阶乘list_ = [1]for i in range(1, n): list_.append(list_[i-1] * (i+1)) Array Rotate Image 问题：顺时针旋转矩阵90度，要求in-place 思路：先上下翻转矩阵，转化为旋转问题，然后再旋转，swap每个值即可。时间复杂度O(n^2),空间O(1)   Set Matrix Zeroes 问题：把含有0的行列都置">
+<meta property="og:type" content="article">
+<meta property="og:title" content="面试准备-刷题">
+<meta property="og:url" content="http://yoursite.com/2018/03/17/面试准备-刷题/index.html">
+<meta property="og:site_name" content="Fake it till you make it">
+<meta property="og:description" content="计算阶乘list_ = [1]for i in range(1, n): list_.append(list_[i-1] * (i+1)) Array Rotate Image 问题：顺时针旋转矩阵90度，要求in-place 思路：先上下翻转矩阵，转化为旋转问题，然后再旋转，swap每个值即可。时间复杂度O(n^2),空间O(1)   Set Matrix Zeroes 问题：把含有0的行列都置">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-03-22T18:13:55.843Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="面试准备-刷题">
+<meta name="twitter:description" content="计算阶乘list_ = [1]for i in range(1, n): list_.append(list_[i-1] * (i+1)) Array Rotate Image 问题：顺时针旋转矩阵90度，要求in-place 思路：先上下翻转矩阵，转化为旋转问题，然后再旋转，swap每个值即可。时间复杂度O(n^2),空间O(1)   Set Matrix Zeroes 问题：把含有0的行列都置">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/03/17/面试准备-刷题/"/>
+
+
+
+
+
+  <title>面试准备-刷题 | Fake it till you make it</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Fake it till you make it</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">computer science, linux, blockchain, deeplearning, algorithm</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/17/面试准备-刷题/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Batista Yu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Fake it till you make it">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">面试准备-刷题</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-17T18:18:28+08:00">
+                2018-03-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>计算阶乘<br>list_ = [1]<br>for i in range(1, n): list_.append(list_[i-1] * (i+1))</p>
+<h1 id="Array"><a href="#Array" class="headerlink" title="Array"></a>Array</h1><ol>
+<li>Rotate Image<ul>
+<li>问题：顺时针旋转矩阵90度，要求in-place</li>
+<li>思路：先上下翻转矩阵，转化为旋转问题，然后再旋转，swap每个值即可。时间复杂度O(n^2),空间O(1)</li>
+</ul>
+</li>
+<li>Set Matrix Zeroes<ul>
+<li>问题：把含有0的行列都置为0</li>
+<li>思路：使用两个数组，遍历1次保存每行每列为0的标志，然后遍历2次分别处理行和列</li>
+</ul>
+</li>
+<li>Find All Numbers Disappeared in an Array<ul>
+<li>问题：找出[1,..n]数组中没出现的数字，数组中存在出现1次活2次的数字。时间O(n),空间inplace</li>
+<li>思路：<ul>
+<li>法一：交换位置<ul>
+<li>充分利用1-n数组的特点，下标正常为[0,1,2,3,4],即[1,2,3,4,5]</li>
+<li>数组为：[2,1,1,3,4]</li>
+<li>交换每个元素到原来的位置上，转换为：[1,2,3,4,1]</li>
+<li>在比较每个位置的值和index+1是否相等即可。</li>
+</ul>
+</li>
+<li>法二：将每个元素值对应的index-1变为负值<ul>
+<li>变为[-1,-2,-3,-4,1]</li>
+<li>寻找大于0的元素，返回index+1</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h1 id="stack"><a href="#stack" class="headerlink" title="stack"></a>stack</h1><ol>
+<li>Min Stack<ul>
+<li>问题：定义栈结构，实现一个能够找到栈最小元素的min函数，min、push、pop时间复杂度都是O(1)</li>
+<li>思路：<ul>
+<li>把每次遇到的更小的元素保存在一个辅助栈里；</li>
+<li>每次push压入value，辅助栈压入新的更小的元素，否则压入辅助栈自己的栈顶top元素</li>
+<li>pop的时候，两个stack同时pop</li>
+<li>min的时候，辅助栈top()</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h1 id="queue"><a href="#queue" class="headerlink" title="queue"></a>queue</h1><ol>
+<li>Sliding Window Maximum<ul>
+<li>问题：nums，滑窗为k，返回经过滑窗后的每个滑窗的最大值</li>
+<li>思路：<ul>
+<li>暴力法，可以通过。。</li>
+<li>法二：优先队列<ul>
+<li>优先队列 头部保存最大值，</li>
+<li>上一次的队列的值小于当前值，则扔掉上次的值/队列尾部</li>
+<li>添加当前值到队列</li>
+<li>如果间隔达到k了，就去掉双端队列的最左边left</li>
+<li>从k-1开始返回结果加入res，就返回队列头的index对应的值，即res+=nums[d[0]] </li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h1 id="Backtracking"><a href="#Backtracking" class="headerlink" title="Backtracking"></a>Backtracking</h1><h1 id="Permutation组合数系列"><a href="#Permutation组合数系列" class="headerlink" title="Permutation组合数系列"></a>Permutation组合数系列</h1><ol>
+<li>Next Permutation<ul>
+<li>问题：输出按照正常顺序一个序列的下一个排列组合<ul>
+<li><a href="https://leetcode.com/problems/next-permutation/description/" target="_blank" rel="noopener">https://leetcode.com/problems/next-permutation/description/</a></li>
+</ul>
+</li>
+<li>思路：<ul>
+<li><ol>
+<li>若已经排序好，则返回为上一次的交换：最大和次大</li>
+</ol>
+</li>
+<li>首先从最尾端开始往前寻找两个相邻元素，令第一元素为<em>i,第二元素为</em>ii,且满足<em>i&lt;</em>ii。</li>
+<li>找到这样一组相邻元素后，再从最尾端开始往前检验，找出第一个大于<em>i的元素，令为</em>j，将i,j元素对调(swap)。</li>
+<li>再将ii之后的所有元素颠倒(reverse)排序</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Permutations<ul>
+<li>问题：给一行数字，返回所有可能的组合<ul>
+<li><a href="https://leetcode.com/problems/permutations/description/" target="_blank" rel="noopener">https://leetcode.com/problems/permutations/description/</a></li>
+</ul>
+</li>
+<li>思路：<ul>
+<li>法一：回溯法，递归实现：<ul>
+<li>逐一向中间集添加元素，并将当中间集元素个数等于 nums 长度的时候，将中间集添加到结果集中，并终止该层递归</li>
+</ul>
+</li>
+<li>法二：回溯法，递归实现：<ul>
+<li>每次回溯的时候交换两个元素位置，当最终长度等于nums时，终止递归</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Permutations II</p>
+<ul>
+<li>问题：给定一行数字，但可能含有重复的元素，返回所有可能的组合数</li>
+<li>思路：<ul>
+<li>先排序，然后多用一个used_list数组保存是否一个元素被访问过了，然后使用dfs递归遍历，在每次下一个dfs前，判断是否被访问，以及是否和前一个相等，才进行下次dfs调用。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Permutation Sequence</p>
+<ul>
+<li>问题：给定n，输出n的全排列中字典序第k小的排列。</li>
+<li>思路：<ul>
+<li>直接用dfs枚举排列来查找会TLE，所以需要数学推导：</li>
+<li>第一个开头的数字，分别有(n-1)!种</li>
+<li>k/(n-1)! 就是开头的数字</li>
+<li>k%(n-1)! 就是第二个开头的数字</li>
+<li>用一个list1保存n!,用另外一个list2保存1-n的index</li>
+<li>直接for循环，遍历，依次取第一个数字，。。</li>
+<li>取完一个数字后，就在list2中删除该值。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h1 id="牛客网"><a href="#牛客网" class="headerlink" title="牛客网"></a>牛客网</h1><h2 id="python"><a href="#python" class="headerlink" title="python"></a>python</h2><ul>
+<li>输入的时候：使用input()会变慢<ul>
+<li>改用:import sys</li>
+<li>N = int(sys.stdin.readline().strip(‘\n’))</li>
+</ul>
+</li>
+<li>最大整数：<ul>
+<li>python2：sys.maxint</li>
+<li>python3：sys.maxsize</li>
+</ul>
+</li>
+<li><p>组合数：</p>
+<ul>
+<li>from itertools import permutations</li>
+<li>for i in permutations(list_, 2): print(i)</li>
+</ul>
+</li>
+<li><p>头条2018-1：<br>  -问题：P为给定的二维平面整数点集。定义 P 中某点x，如果x满足 P 中任意点都不在 x 的右上方区域内（横纵坐标都大于x），则称其为“最大的”。求出所有“最大的”点的集合。（所有点的横坐标和纵坐标都不重复, 坐标轴范围在[0, 1e9) 内）<br>  如下图：实心点为满足条件的点的集合。请实现代码找到集合 P 中的所有 ”最大“ 点的集合并输出。</p>
+<ul>
+<li>解决：80%ac，超出空间，</li>
+<li>import sys<br>nums = int(sys.stdin.readline().strip(‘\n’))<br>points = []<br>for i in range(0, nums):<br>  points.append([int(t) for t in sys.stdin.readline().strip(‘\n’).split(‘ ‘)])<br>points.sort()  # 排序，元组排序会先按第一个数排，再按第二个数排<br>max_x2y = points[nums - 1][1]<br>index = nums - 2<br>for j in range(nums - 2, -1, -1):  # 倒过来求<br>  if points[j][1] &gt; max_x2y:<pre><code>points[index] = points[j]
+max_x2y = points[j][1]
+index -= 1
+</code></pre>for i in range(index+1, nums):<br>  print(str(points[i][0]) + ‘ ‘ + str(points[i][1]))</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>thank you for donating~</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.png" alt="Batista Yu 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="Batista Yu 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/14/canvas实现动态3D效果/" rel="next" title="canvas实现动态3D效果">
+                <i class="fa fa-chevron-left"></i> canvas实现动态3D效果
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Batista Yu</p>
+              <p class="site-description motion-element" itemprop="description">do research like playing</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/a550461053" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Array"><span class="nav-number">1.</span> <span class="nav-text">Array</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#stack"><span class="nav-number">2.</span> <span class="nav-text">stack</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#queue"><span class="nav-number">3.</span> <span class="nav-text">queue</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Backtracking"><span class="nav-number">4.</span> <span class="nav-text">Backtracking</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Permutation组合数系列"><span class="nav-number">5.</span> <span class="nav-text">Permutation组合数系列</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#牛客网"><span class="nav-number">6.</span> <span class="nav-text">牛客网</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#python"><span class="nav-number">6.1.</span> <span class="nav-text">python</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Batista Yu</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
