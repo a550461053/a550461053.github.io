@@ -91,7 +91,7 @@
 <meta property="og:site_name" content="Fake it till you make it">
 <meta property="og:description" content="当前的一个项目任务是实现动态粒子拓扑连线3D效果图，采用angular2基于typescript实现，这方面的资料比较少，所以需要借鉴javascript的资源，调研了很多实现方案，最终选择了canvas来实现，查到的资料系统的汇总一下。 坐标与颜色 坐标 2D坐标系： 左上角为原点 x: width，也就是从左往右 y: height，从上往下 当然也有负的x/y坐标，默认是hidden的，但还">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-23T11:01:31.971Z">
+<meta property="og:updated_time" content="2018-03-26T09:21:23.441Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="canvas实现动态3D效果">
 <meta name="twitter:description" content="当前的一个项目任务是实现动态粒子拓扑连线3D效果图，采用angular2基于typescript实现，这方面的资料比较少，所以需要借鉴javascript的资源，调研了很多实现方案，最终选择了canvas来实现，查到的资料系统的汇总一下。 坐标与颜色 坐标 2D坐标系： 左上角为原点 x: width，也就是从左往右 y: height，从上往下 当然也有负的x/y坐标，默认是hidden的，但还">
@@ -434,9 +434,11 @@
 </li>
 <li><p>2D-3D算法：</p>
 <ul>
-<li><h1 id="动画实现requestAnimationFrame用法"><a href="#动画实现requestAnimationFrame用法" class="headerlink" title="动画实现requestAnimationFrame用法"></a>动画实现requestAnimationFrame用法</h1></li>
+<li></li>
 </ul>
 </li>
+</ul>
+<h1 id="动画实现requestAnimationFrame用法"><a href="#动画实现requestAnimationFrame用法" class="headerlink" title="动画实现requestAnimationFrame用法"></a>动画实现requestAnimationFrame用法</h1><ul>
 <li>背景：由于我要实现的功能，需要重复调用我的paint()函数，导致paint()函数内部的requestAnimationFrame对同样的callback执行多次，也就导致我的动画效果多次重叠渲染了，所以对requestAnimationFrame的使用研究了一番。</li>
 <li>浏览器渲染原理：<ul>
 <li>DNS 查询</li>
@@ -569,7 +571,8 @@
 <pre><code>- 持续保持一次循环，不会重复渲染多次：
     + 操作：循环多次draw函数，每次执行前，先修改flag，相当于仅执行内部init()函数，不会执行动画渲染的a()函数，处理完逻辑后恢复flag，保持循环。
     + 原理：第一次draw()后，已经有了一个不断循环进行动画帧请求的任务了，一直保持；下一次再次执行draw()的时候，会先执行我们想要的init()函数，然后进入a()的时候，由于idRAF已经被cancel了，所以此次draw()的渲染函数a()不会执行；
-</code></pre>
+</code></pre><p># </p>
+
       
     </div>
     
@@ -707,7 +710,7 @@
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <p class="site-author-name" itemprop="name">Batista Yu</p>
-              <p class="site-description motion-element" itemprop="description">do research like playing</p>
+              <p class="site-description motion-element" itemprop="description">大道至简，大智若愚</p>
           </div>
 
           <nav class="site-state motion-element">
@@ -717,7 +720,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">21</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

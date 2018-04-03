@@ -83,17 +83,17 @@
 
 
 
-<meta name="description" content="计算阶乘list_ = [1]for i in range(1, n): list_.append(list_[i-1] * (i+1)) Array Rotate Image 问题：顺时针旋转矩阵90度，要求in-place 思路：先上下翻转矩阵，转化为旋转问题，然后再旋转，swap每个值即可。时间复杂度O(n^2),空间O(1)   Set Matrix Zeroes 问题：把含有0的行列都置">
+<meta name="description" content="计算阶乘list_ = [1]for i in range(1, n): list_.append(list_[i-1] * (i+1)) Array Palindrome Number 问题：判断一个int数字是否是回文数，不能使用额外string等类型空间，不能reverse 思路： 纯数学逻辑判断，将12321的12和21进行比较， 21用一个int变量存，翻转21用该变量进行*10计算 难">
 <meta property="og:type" content="article">
 <meta property="og:title" content="面试准备-刷题">
 <meta property="og:url" content="http://yoursite.com/2018/03/17/面试准备-刷题/index.html">
 <meta property="og:site_name" content="Fake it till you make it">
-<meta property="og:description" content="计算阶乘list_ = [1]for i in range(1, n): list_.append(list_[i-1] * (i+1)) Array Rotate Image 问题：顺时针旋转矩阵90度，要求in-place 思路：先上下翻转矩阵，转化为旋转问题，然后再旋转，swap每个值即可。时间复杂度O(n^2),空间O(1)   Set Matrix Zeroes 问题：把含有0的行列都置">
+<meta property="og:description" content="计算阶乘list_ = [1]for i in range(1, n): list_.append(list_[i-1] * (i+1)) Array Palindrome Number 问题：判断一个int数字是否是回文数，不能使用额外string等类型空间，不能reverse 思路： 纯数学逻辑判断，将12321的12和21进行比较， 21用一个int变量存，翻转21用该变量进行*10计算 难">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-22T18:13:55.843Z">
+<meta property="og:updated_time" content="2018-03-27T15:56:39.327Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="面试准备-刷题">
-<meta name="twitter:description" content="计算阶乘list_ = [1]for i in range(1, n): list_.append(list_[i-1] * (i+1)) Array Rotate Image 问题：顺时针旋转矩阵90度，要求in-place 思路：先上下翻转矩阵，转化为旋转问题，然后再旋转，swap每个值即可。时间复杂度O(n^2),空间O(1)   Set Matrix Zeroes 问题：把含有0的行列都置">
+<meta name="twitter:description" content="计算阶乘list_ = [1]for i in range(1, n): list_.append(list_[i-1] * (i+1)) Array Palindrome Number 问题：判断一个int数字是否是回文数，不能使用额外string等类型空间，不能reverse 思路： 纯数学逻辑判断，将12321的12和21进行比较， 21用一个int变量存，翻转21用该变量进行*10计算 难">
 
 
 
@@ -335,6 +335,20 @@
       
         <p>计算阶乘<br>list_ = [1]<br>for i in range(1, n): list_.append(list_[i-1] * (i+1))</p>
 <h1 id="Array"><a href="#Array" class="headerlink" title="Array"></a>Array</h1><ol>
+<li>Palindrome Number<ul>
+<li>问题：判断一个int数字是否是回文数，不能使用额外string等类型空间，不能reverse</li>
+<li>思路：<ul>
+<li>纯数学逻辑判断，将12321的12和21进行比较，</li>
+<li>21用一个int变量存，翻转21用该变量进行*10计算</li>
+<li>难点在于：10这种类型的数据的特殊处理，直接判断为False即可。</li>
+<li>while x &gt; temp: </li>
+<li>temp = temp*10 + x%10</li>
+<li>x = x//10</li>
+<li>return x == temp or x == temp // 10 </li>
+</ul>
+</li>
+</ul>
+</li>
 <li>Rotate Image<ul>
 <li>问题：顺时针旋转矩阵90度，要求in-place</li>
 <li>思路：先上下翻转矩阵，转化为旋转问题，然后再旋转，swap每个值即可。时间复杂度O(n^2),空间O(1)</li>
@@ -377,8 +391,19 @@
 </li>
 </ul>
 </li>
-</ol>
-<h1 id="queue"><a href="#queue" class="headerlink" title="queue"></a>queue</h1><ol>
+<li>Largest Rectangle in Histogram<ul>
+<li>问题：求最大的连续矩形面积</li>
+<li>思路：单调递增栈<ul>
+<li>把每个当前的height看做最小的，然后往后寻找大的height则添加进栈</li>
+<li>如果下一个height小于或等于heights[stack.top()]，则h=heights[stack.top()]，stack.pop()，side=stack.top() if len(stack) &gt;0 else -1,result=max(result, h*(i-side-1))</li>
+<li>注意点：<ul>
+<li>[1,1]这种情况发生了会无返回结果，所以比较简单的处理方式就是把heights添加一个0，0一定小于所有的heights，所以一定会返回结果。<h1 id="queue"><a href="#queue" class="headerlink" title="queue"></a>queue</h1></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
 <li>Sliding Window Maximum<ul>
 <li>问题：nums，滑窗为k，返回经过滑窗后的每个滑窗的最大值</li>
 <li>思路：<ul>
@@ -484,6 +509,26 @@ index -= 1
 </ul>
 </li>
 </ul>
+<h1 id="笔试题杂"><a href="#笔试题杂" class="headerlink" title="笔试题杂"></a>笔试题杂</h1><ol>
+<li><p>在如下4*5的矩阵中，请计算从A移动到B一共有<strong>__</strong>种走法？要求每次只能向上或向右移动一格，并且不能经过P。</p>
+<ul>
+<li><p>法一：组合数，A-B路径总数=C(m, n)<br>  不考虑经过P：从A到B必须要向上走3步，向右走4步，所以从A到B，一共有C(7,3)种走法</p>
+<p>  考虑经过P：从A到P必须要向上走2步，向右走2步，所以一共是C(4,2)种</p>
+<p>  从P到B必须要向上走1步，向右走2步，所以一共是C(3,1)种</p>
+<p>  则考虑P，从A到B一共有C(7,3)-C(4,2)*C(3,1) = 17种走法</p>
+</li>
+<li>法二：写出每个格子的路径种数，其中，每个格子的路径种数 = 左边格子种数 + 下边格子种数</li>
+<li>法三：递归方式求解：f(m,n) = f(m-1,n)+f(m,n-1)</li>
+</ul>
+</li>
+<li>哈夫曼树最小编码位数</li>
+<li>均匀筛子的熵值为多少比特：<ul>
+<li>H(x) = E(-plogp) = - <em> (1/6) </em> log2(1/6)) = log2(6) = log2(3) + log2(2) = 1 + lg3 / lg2 = 1 + 0.47 / 0.3 = 2.6</li>
+</ul>
+</li>
+<li>正则化式子：<br> - </li>
+<li></li>
+</ol>
 
       
     </div>
@@ -546,6 +591,10 @@ index -= 1
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/03/26/js拷贝问题/" rel="prev" title="js拷贝问题">
+                js拷贝问题 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -610,7 +659,7 @@ index -= 1
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <p class="site-author-name" itemprop="name">Batista Yu</p>
-              <p class="site-description motion-element" itemprop="description">do research like playing</p>
+              <p class="site-description motion-element" itemprop="description">大道至简，大智若愚</p>
           </div>
 
           <nav class="site-state motion-element">
@@ -620,7 +669,7 @@ index -= 1
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">21</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -676,7 +725,7 @@ index -= 1
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Array"><span class="nav-number">1.</span> <span class="nav-text">Array</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#stack"><span class="nav-number">2.</span> <span class="nav-text">stack</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#queue"><span class="nav-number">3.</span> <span class="nav-text">queue</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Backtracking"><span class="nav-number">4.</span> <span class="nav-text">Backtracking</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Permutation组合数系列"><span class="nav-number">5.</span> <span class="nav-text">Permutation组合数系列</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#牛客网"><span class="nav-number">6.</span> <span class="nav-text">牛客网</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#python"><span class="nav-number">6.1.</span> <span class="nav-text">python</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Array"><span class="nav-number">1.</span> <span class="nav-text">Array</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#stack"><span class="nav-number">2.</span> <span class="nav-text">stack</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#queue"><span class="nav-number">3.</span> <span class="nav-text">queue</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Backtracking"><span class="nav-number">4.</span> <span class="nav-text">Backtracking</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Permutation组合数系列"><span class="nav-number">5.</span> <span class="nav-text">Permutation组合数系列</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#牛客网"><span class="nav-number">6.</span> <span class="nav-text">牛客网</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#python"><span class="nav-number">6.1.</span> <span class="nav-text">python</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#笔试题杂"><span class="nav-number">7.</span> <span class="nav-text">笔试题杂</span></a></li></ol></div>
             
 
           </div>
