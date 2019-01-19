@@ -1233,8 +1233,8 @@ bash /opt/kafka/bin/kafka-server-start.sh /opt/kafka/config/server.properties --
 			* array=(a,b,$c)  # 传入的是a，b，c变量的值
 			* array=("1" "2" "3") # 空格分割即可
 		+ 计算数组元素个数：
-			* ${#array[*]}
-			* ${#array[@]}
+			* `${#array[*]}`
+			* `${#array[@]}`
 		+ 引用数组：
 			* echo ${array[i]} # 单个值
 			* echo ${array[*]} # 所有值
