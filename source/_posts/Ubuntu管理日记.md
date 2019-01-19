@@ -920,10 +920,16 @@ docker-compose -f docker-compose-peer.yaml down
 docker-compose -f docker-compose-peer.yaml up -d
 docker exec -it cli bash
 
+docker history hyperledger/fabric-kafka:1.2.0  --no-trunc
+
 peer chaincode query -C "mychannel" -n mycc -c '{"Args":["query","a"]}'
 
 rm -rf channel-artifacts/ crypto-config
 mkdir channel-artifacts
+
+
+bash /opt/kafka/bin/kafka-server-start.sh /opt/kafka/config/server.properties --override broker.id=$KAFKA_BROKER_ID --override zookeeper.connect=$KAFKA_ZOOKEEPER_CONNECT --override message.max.bytes=$KAFKA_MESSAGE_MAX_BYTES --override replica.fetch.max.bytes=$KAFKA_REPLICA_FETCH_MAX_BYTES --override unclean.leader.election.enable=$KAFKA_UNCLEAN_LEADER_ELECTION_ENABLE --override min.insync.replicas=$KAFKA_MIN_INSYNC_REPLICAS --override default.replication.factor=$KAFKA_DEFAULT_REPLICATION_FACTOR --override zookeeper.session.timeout.ms=$KAFKA_ZOOKEEPER_SESSION_TIMEOUT_MS --override zookeeper.connection.timeout.ms=$KAFKA_ZOOKEEPER_CONNECTION_TIMEOUT_MS --override advertised.host.name=$KAFKA_ADVERTISED_HOST_NAME;
+
 
 - 脚本连续执行多行：
 	+ ;  : 连续执行多行
