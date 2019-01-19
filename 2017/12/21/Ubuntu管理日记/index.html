@@ -91,7 +91,7 @@
 <meta property="og:site_name" content="Fake it till you make it">
 <meta property="og:description" content="Ubuntu常识 linux文件系统： /usr/bin: 一般存放为系统安装的应用 /usr/local/bin: 一般存放为用户自己编译创建的应用     酷炫Ubuntu 开机时间： uptime uptime -v 查看版本 开机密码：   sudo su第一次安装用户可以使用命令 然后切换到root后：passwd，即可修改root密码   忘记密码：   重启，按住shift，选择ad">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-28T17:35:10.263Z">
+<meta property="og:updated_time" content="2019-01-19T09:04:31.804Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Ubuntu管理日记">
 <meta name="twitter:description" content="Ubuntu常识 linux文件系统： /usr/bin: 一般存放为系统安装的应用 /usr/local/bin: 一般存放为用户自己编译创建的应用     酷炫Ubuntu 开机时间： uptime uptime -v 查看版本 开机密码：   sudo su第一次安装用户可以使用命令 然后切换到root后：passwd，即可修改root密码   忘记密码：   重启，按住shift，选择ad">
@@ -397,6 +397,20 @@
 <li><p>减少cache：</p>
 <ul>
 <li>free -m 查看内存得到的是：memory = free memory + buffers + cached</li>
+<li>df -h:查看硬盘大小<ul>
+<li>磁盘若快满了：分析一下磁盘Disk Usage Analyzer工具，删除不必要的东西</li>
+</ul>
+</li>
+<li>查看文件夹大小：<ul>
+<li>进入文件夹</li>
+<li>du -sh</li>
+</ul>
+</li>
+<li>磁盘分析工具：<ul>
+<li>sudo apt install baobab</li>
+<li>sudo baobab</li>
+</ul>
+</li>
 <li>buffers:<ul>
 <li>dentry进行缓存（用于VFS、加速文件路径名到inode的转换）</li>
 <li>作用：缓存文件的元数据<ul>
@@ -445,8 +459,12 @@
 </li>
 </ul>
 </li>
-</ul>
+<li><p>apt update报错：</p>
 <ul>
+<li>删除libappstream3：sudo apt remove libappstream3</li>
+<li></li>
+</ul>
+</li>
 <li><p>查看CPU：</p>
 <ul>
 <li>物理cpu个数：cat /proc/cpuinfo | grep ‘physical id’ | sort | uniq | wc -l</li>
@@ -520,7 +538,80 @@
 </li>
 </ul>
 </li>
-<li><p>中文编码：locale查看支持的字符集</p>
+<li><p>静态IP：</p>
+<ul>
+<li>centos：<ul>
+<li>虚拟机下：如果发现虚拟机无法桥接，找不到的时候，修改虚拟网络编辑器-&gt;还原默认设置即可。</li>
+<li>也可以直接修改网络的UI设置。</li>
+<li>ifconfig 在centos7之后取消了该指令，用ip addr </li>
+<li>修改主机名称：vim /etc/sysconfig/network<ul>
+<li>NETWORKING=yes  </li>
+<li>HOSTNAME=centos</li>
+</ul>
+</li>
+<li>修改网卡：vim /etc/sysconfig/network-scripts/ifcfg-eth0<ul>
+<li>BOOTPROTO=static  # 静态IP，动态用dhcp分配ip</li>
+<li>IPADDR=10.10.28.107 </li>
+<li>NETMASK=255.255.255.0 # 子网掩码</li>
+<li>GATEWAY=10.10.28.1</li>
+</ul>
+</li>
+<li>修改DNS：vim /etc/resolv.conf<ul>
+<li>这样添加可能会失效，通过ui添加；DNS没有就上不了网。</li>
+<li>nameserver 8.8.8.8</li>
+<li>nameserver 101.198.199.200 # 指定当前城市最近的DNS服务器</li>
+<li>nameserver 210.73.64.1 # 指定经路由器上指定的DNS服务器</li>
+</ul>
+</li>
+<li>重启网络配置：service network restart</li>
+<li></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Ubuntu系统中文编码：locale查看支持的字符集</p>
+<ul>
+<li>安装相应的中文语言环境包：sudo apt-get install <code>check-language-support -l zh-hans</code></li>
+<li>法一：修改系统默认<ul>
+<li>vi /etc/environment</li>
+<li>添加：LANG=”zh_CN.UTF-8”</li>
+</ul>
+</li>
+<li>法二：修改locale<ul>
+<li>locale-gen zh_CN.UTF-8</li>
+<li>或者：vi /var/lib/locales/supported.d/local<ul>
+<li>zh_CN.UTF-8 UTF-8</li>
+<li>en_US.UTF-8 UTF-8</li>
+<li>zh_CN.GB18030 GB18030</li>
+<li>zh_CN.GBK GBK</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>重新登录即可</li>
+</ul>
+</li>
+<li>vi支持中文输入：<ul>
+<li>vi ~/.vimrc</li>
+<li>添加：<ul>
+<li>set fileencodings=utf-8,gbk,chinese</li>
+<li>let &amp;termencoding=&amp;encoding</li>
+</ul>
+</li>
+<li>说明：<ul>
+<li>需要考虑：<ul>
+<li>系统当前的locale编码类型</li>
+<li>文件本身编码</li>
+<li>vi处理文件的自动编码识别</li>
+<li>客户端运行vi的终端所使用的编码类型</li>
+</ul>
+</li>
+<li>fileencodings表示支持的文件编码</li>
+<li>termencoding表示输出到终端的转换，默认为空则不进行编码转换</li>
+<li>encoding默认是采用的locale的系统编码，所以不需要直接指定termencoding，直接导入</li>
+</ul>
+</li>
+</ul>
 </li>
 <li><p>win下还是要使用sublime，不用txt打开文件。<br>   sudo gedit /etc/environment<br>  可以看到如下内容：<br>  PATH=”/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games”<br>  LANG=”zh_CN.UTF-8”<br>  LANGUAGE=”zh_CN:zh:en_US:en”第二行即是默认的中文字符编码。注：可以通过这里修改默认的中文编码字符，比如修改为：zh_CN.GBK。</p>
 <ul>
@@ -698,6 +789,12 @@
 </li>
 </ul>
 </li>
+<li><p>sudo自带密码</p>
+<ul>
+<li>使用-S参数使得sudo从标准输入流读入而不是终端设备</li>
+<li>echo password | sudo -S rm -rf a.file</li>
+</ul>
+</li>
 </ul>
 <h2 id="Ubuntu显示问题"><a href="#Ubuntu显示问题" class="headerlink" title="Ubuntu显示问题"></a>Ubuntu显示问题</h2><ul>
 <li><p>常见问题：</p>
@@ -785,7 +882,13 @@
 </li>
 </ul>
 <h2 id="常用软件安装"><a href="#常用软件安装" class="headerlink" title="常用软件安装"></a>常用软件安装</h2><ul>
-<li>非root用户安装软件：<ol>
+<li><p>apt：</p>
+<ul>
+<li>apt：advanced package tools</li>
+</ul>
+</li>
+<li><p>非root用户安装软件：</p>
+<ol>
 <li>获取源代码，一般是wget方式，ubuntu可以使用apt-get source来获取源代码。</li>
 <li>解压源代码，一般使用tar -zxvf xxx.tar.gz即可</li>
 <li>切换到解压后的目录，运行 ./configure。其选项可以通过 ./configure –help来获取，非root用户下最重要的应该是定义安装目录，即应该定义 ./configure –prefix=/path/to/bin， 对于一些依赖库，可能还需要使用 ./configure  –prefix=xxx –with-xx-dir=xxx这种形式。</li>
@@ -1013,11 +1116,45 @@ sudo update-alternatives --set c++ /usr/bin/g++
 </li>
 </ul>
 </li>
+<li><p>docker命令：</p>
+<ul>
+<li>删除镜像：</li>
+<li>问题1：docker setup: could not find an available, non-overlapping IPv4 address pool<ul>
+<li>清除docker的网络缓存：docker network prune</li>
+<li>或者试试：sudo service network-manager restart</li>
+</ul>
+</li>
+<li>问题2：<ul>
+<li>NFS服务意外断开，导致挂载的客户端“df -Th”命令无法使用，及挂载目录无法“cd”“ls”</li>
+<li>解决：<ul>
+<li>1、强制取消客户端挂载：umount -lf /mnt</li>
+<li>2、重启NFS服务，客户端和服务端都需要重启: systemctl restart nfs ; systemctl restart rpcbind</li>
+<li>3、重新挂载NFS: mount 192.168.1.1:/data /data.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>docker拷贝镜像：<ul>
+<li>保存镜像为文件：<ul>
+<li>docker save -o a.save a.image</li>
+</ul>
+</li>
+<li>从文件载入为镜像：<ul>
+<li>docker load –input a.save</li>
+<li>或者：docker load &lt; a.save</li>
+</ul>
+</li>
+<li></li>
+</ul>
+</li>
+</ul>
+</li>
 <li><p>golang：</p>
 <ul>
 <li>下载: sudo wget <a href="https://storage.googleapis.com/golang/go1.7.4.linux-amd64.tar.gz" target="_blank" rel="noopener">https://storage.googleapis.com/golang/go1.7.4.linux-amd64.tar.gz</a></li>
 <li>解压后, 复制到GOROOT目录下:sudo cp -r go/ /usr/lib/</li>
-<li>export GOROOT=/usr/lib/go</li>
+<li>进入vi ~/.bashrc</li>
+<li>export GOROOT=/usr/lib/go # go安装的位置，也是go可执行文件的位置；</li>
 <li>export GORACH=amd64</li>
 <li>export GOOS=linux</li>
 <li>export PATH=${PATH}:$GOROOT/bin</li>
@@ -1026,7 +1163,10 @@ sudo update-alternatives --set c++ /usr/bin/g++
 </li>
 <li><p>必须新建：$GOPATH/src/go/github.com/hyperledger/</p>
 </li>
-<li>必须新建：$GOROOT/src/go/github.com/hyperledger/</li>
+<li>必须新建：$GOROOT/src/go/github.com/hyperledger/<ul>
+<li>sudo mkdir ../ -p</li>
+</ul>
+</li>
 <li>安装了:sudo apt install mercurial</li>
 <li>安装go中文教程：sudo go get bitbucket.org/mikespook/go-tour-zh/gotour</li>
 <li>sudo go env是root环境下的环境变量了</li>
@@ -1043,6 +1183,23 @@ sudo update-alternatives --set c++ /usr/bin/g++
 </li>
 </ul>
 </li>
+<li><p>go get指令报错：unrecognized import path</p>
+<ul>
+<li>问题：<ul>
+<li>go get google.golang.org/grpc</li>
+<li>结果：package google.golang.org/grpc: unrecognized import path “google.golang.org/grpc” (https fetch: Get <a href="https://google.golang.org/grpc?go-get=1" target="_blank" rel="noopener">https://google.golang.org/grpc?go-get=1</a>: dial tcp 74.125.28.14:443: i/o timeout)</li>
+</ul>
+</li>
+<li>解决方法：<br>  1、建立相关文件夹<pre><code>mkdir -p $GOPATH/src/google.golang.org/
+</code></pre>  2、命令行打开文件夹<pre><code>cd $GOPATH/src/google.golang.org
+</code></pre>  3、从Github上克隆其他的仓库<pre><code>git clone https://github.com/Agzs/grpc grpc
+</code></pre>  4、 安装仓库<pre><code>cd $GOPATH/src/
+go install google.golang.org/grpc
+</code></pre></li>
+</ul>
+</li>
+</ul>
+<ul>
 <li><p>pycharm安装：</p>
 <ol>
 <li>获取pycharm.tar.gz</li>
@@ -1234,6 +1391,36 @@ Common Options:
 </li>
 </ul>
 <h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><ul>
+<li><p>curl</p>
+<ul>
+<li>安装：sudo apt install curl</li>
+<li>请求：curl baidu.com</li>
+<li>下载：curl -o save baidu.com<ul>
+<li>把网页保存到save文件</li>
+</ul>
+</li>
+<li>上传：curl -T “img[1-100].png” <a href="http://www.example.com" target="_blank" rel="noopener">http://www.example.com</a></li>
+<li>post方法：<ul>
+<li>-d或–data：表示post请求</li>
+<li>当提交的参数中有特殊字符就需要先转义，如空格时，就转义为%20</li>
+<li>–data-urlencode：可以自动转义成特殊字符，无需人工事先转义</li>
+<li>-F或–form：将本地文件上传到服务器，curl -F “filename=@/home/test/test.pic” <a href="http://example.com/example.php不能漏掉@符号" target="_blank" rel="noopener">http://example.com/example.php不能漏掉@符号</a></li>
+</ul>
+</li>
+<li>和wget比较：<ul>
+<li>wget简单</li>
+<li>curl多功能的工具，支持更复杂的使用，完全模拟命令行的浏览器，只是不会渲染接收到的信息；</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>wget：</p>
+<ul>
+<li>专业的直接下载程序，支持递归下载。同时，它也允许你下载网页中或是 FTP 目录中的任何内容。</li>
+<li>wget 拥有智能的默认设置。它规定了很多在常规浏览器里的事物处理方式，比如 cookies 和重定向，这都不需要额外的配置。可以说，wget 简直就是无需说明，开罐即食！</li>
+<li>wget 是一个独立的程序，无需额外的资源库，更不会做其范畴之外的事情。</li>
+</ul>
+</li>
 <li><p>使用bash命令：</p>
 <ul>
 <li>bash a.sh</li>
@@ -1313,6 +1500,15 @@ Common Options:
 </li>
 </ul>
 </li>
+<li><p>查找文件：</p>
+<ul>
+<li>find ./ -name a.py 2&gt;/dev/null/<ul>
+<li>/dev/null是一个特殊的文件，表明空的或者错误的信息，这样查询到的错误信息将被转移了，不会再显示了</li>
+</ul>
+</li>
+<li></li>
+</ul>
+</li>
 </ul>
 <h2 id="网络：远程控制-文件共享"><a href="#网络：远程控制-文件共享" class="headerlink" title="网络：远程控制+文件共享"></a>网络：远程控制+文件共享</h2><ul>
 <li><p>关闭防火墙：sudo ufw status ; sudo ufw disable;</p>
@@ -1320,7 +1516,12 @@ Common Options:
 <li><p>端口冲突：</p>
 <ul>
 <li>fuser 3000/tcp</li>
-<li>kill 28597    </li>
+<li>kill 28597</li>
+</ul>
+</li>
+<li><p>查看启动的端口：</p>
+<ul>
+<li>netstat -tlnp</li>
 </ul>
 </li>
 <li><p>VPN:</p>
@@ -1357,8 +1558,7 @@ Common Options:
 </li>
 </ul>
 <ul>
-<li><p>远程连接：</p>
-<ul>
+<li>远程连接：<ul>
 <li>Ubuntu连接windows：<ul>
 <li>安装rdesktop：sudo apt install rdesktop</li>
 <li>rdesktop -f -a 16 10.10.4.42 -u Administrator -p 1qazZAQ!</li>
@@ -1381,13 +1581,30 @@ Common Options:
 <li>scp也就是secure copy，是linux下基于ssh登录进行安全的远程文件拷贝命令</li>
 <li>前提：sudo apt install ssh</li>
 <li>scp 参数 源路径 目标路径</li>
-<li>本地到远程：scp local_file -r remote_username@remote_ip:remote_folder<ul>
+<li>本地到远程：scp -r local_file remote_username@remote_ip:remote_folder<ul>
 <li>加了remote_username需要输入密码，不加则需要输入用户名和密码</li>
 </ul>
 </li>
-<li>远程到本地：scp <a href="mailto:root@192.168.120.204" target="_blank" rel="noopener">root@192.168.120.204</a>:/opt/soft/a.tar.gz /opt/soft/</li>
+<li>远程到本地：scp -r <a href="mailto:root@10.153.5.21" target="_blank" rel="noopener">root@10.153.5.21</a>:/opt/gopath/src/github.com/hyperledger/fabric/examples/e2e_cli/channel-artifacts ./<ul>
+<li>scp -r <a href="mailto:root@10.153.5.21" target="_blank" rel="noopener">root@10.153.5.21</a>:/opt/gopath/src/github.com/hyperledger/fabric/examples/e2e_cli/crypto-config ./</li>
 </ul>
 </li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>docker-compose -f docker-compose-peer.yaml down<br>docker-compose -f docker-compose-peer.yaml up -d<br>docker exec -it cli bash</p>
+<p>docker history hyperledger/fabric-kafka:1.2.0  –no-trunc</p>
+<p>peer chaincode query -C “mychannel” -n mycc -c ‘{“Args”:[“query”,”a”]}’</p>
+<p>rm -rf channel-artifacts/ crypto-config<br>mkdir channel-artifacts</p>
+<p>bash /opt/kafka/bin/kafka-server-start.sh /opt/kafka/config/server.properties –override broker.id=$KAFKA_BROKER_ID –override zookeeper.connect=$KAFKA_ZOOKEEPER_CONNECT –override message.max.bytes=$KAFKA_MESSAGE_MAX_BYTES –override replica.fetch.max.bytes=$KAFKA_REPLICA_FETCH_MAX_BYTES –override unclean.leader.election.enable=$KAFKA_UNCLEAN_LEADER_ELECTION_ENABLE –override min.insync.replicas=$KAFKA_MIN_INSYNC_REPLICAS –override default.replication.factor=$KAFKA_DEFAULT_REPLICATION_FACTOR –override zookeeper.session.timeout.ms=$KAFKA_ZOOKEEPER_SESSION_TIMEOUT_MS –override zookeeper.connection.timeout.ms=$KAFKA_ZOOKEEPER_CONNECTION_TIMEOUT_MS –override advertised.host.name=$KAFKA_ADVERTISED_HOST_NAME;</p>
+<ul>
+<li><p>脚本连续执行多行：</p>
+<ul>
+<li>;  : 连续执行多行</li>
+<li>&amp;&amp; : 连续执行多行，前面中断则后面不执行</li>
+<li>|| : 连续，前面成功，则后面不执行</li>
 </ul>
 </li>
 <li><p>windows复制文件到Linux —— 同一局域网下<br>  1.Linux服务器：XFTP方式（建立连接） 或 远程工具XSHELL（登录直接yum安装） 或 Linux安装samba服务器<br>  2.Linux虚拟机：XFTP方式（虚拟与实体） 或 利用VMTOOL工具直接拖拽（安装的操作系统版本很新，都是Vmware的版本比较老，晚于操作系统出来）</p>
@@ -1396,9 +1613,23 @@ Common Options:
 - 一路回车到底
 - 重启虚拟机即可
 </code></pre></li>
+<li><p>windows通过xshell复制文件到Linux：</p>
+<ul>
+<li>1.linux安装ftp服务器</li>
+<li>2.linux安装rz：<ul>
+<li>sudo apt install lrzsz</li>
+<li>接受文件：rz -e 打开窗口，选择文件</li>
+<li>-e：对所有控制字符转义</li>
+<li>-b：以二进制方式，默认为文本方式；</li>
+<li>rz -e a.tar.gz</li>
+<li>rz -eb a.sh</li>
+</ul>
+</li>
+</ul>
+</li>
 <li><p>通过外网访问内网：</p>
 <ul>
-<li>端口映射方法：<ul>
+<li>端口转发方法：<ul>
 <li>利用路由器的虚拟服务器功能/端口映射功能，将内网映射到外网，从而实现外网访问内网指定端口的服务。<ul>
 <li>缺陷：有时候不能实现，因为公网ipv4地址不够用，所以服务提供商一般分配给用户的都是NAT后的局域网的IP，无法实现端口映射、远程访问了。</li>
 </ul>
@@ -1424,6 +1655,29 @@ Common Options:
 <li>重定向方法：</li>
 </ul>
 </li>
+<li><p>内网穿透实例：<a href="http://arondight.me/2016/02/17/%E4%BD%BF%E7%94%A8SSH%E5%8F%8D%E5%90%91%E9%9A%A7%E9%81%93%E8%BF%9B%E8%A1%8C%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/" target="_blank" rel="noopener">http://arondight.me/2016/02/17/%E4%BD%BF%E7%94%A8SSH%E5%8F%8D%E5%90%91%E9%9A%A7%E9%81%93%E8%BF%9B%E8%A1%8C%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/</a></p>
+<ul>
+<li>机器：<ul>
+<li>A，位于公网，地址A_ip，需要sshd</li>
+<li>B，位于NAT后，地址localhost，需要sshd</li>
+<li>C，位于NAT后，地址localhost，不需要sshd</li>
+</ul>
+</li>
+<li>目的：希望A主动向B发起SSH连接，但B位于NAT后，无可用公网IP+端口的组合，所以A无法穿透NAT</li>
+<li>SSH反向隧道：<ul>
+<li>B向A主动建立一个SSH隧道，将A的6766端口转发到B的22端口上（只要隧道不关闭，这个转发就是有效的），这样只需要访问A的6766端口反向连接B即可</li>
+<li>B机器：建立一个SSH隧道，将A的6766端口转发到B的22端口上<ul>
+<li>ssh -p 22 -qngfNTR 6766:localhost:22 userA@A_ip</li>
+</ul>
+</li>
+<li>A机器：利用A的6766端口反向SSH到B<ul>
+<li>ssh -p 6766 userB@localhost</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
 <li><p>Samba：根据SMB协议实现的，主要用于Windows和Linux之间共享资源<br>  1.安装samba：sudo apt-get install samba</p>
 <pre><code>修改配置文件：vi /etc/samba/smb.conf  的global加入：usershare owner only=false
 sudo chmod 777 myshare
@@ -1441,11 +1695,37 @@ sudo chmod 777 myshare
 </ol>
 </li>
 <li><p>IP网络配置:<br>  sudo gedit /etc/network/interfaces</p>
-<h1 id="net-for-xingongsuo"><a href="#net-for-xingongsuo" class="headerlink" title="net for xingongsuo"></a>net for xingongsuo</h1><h1 id="auto-ens33"><a href="#auto-ens33" class="headerlink" title="auto ens33"></a>auto ens33</h1><p>  iface ens33 inet static<br>  address 10.10.28.102<br>  netmask 255.255.254.0<br>  gateway 10.10.28.1</p>
+<h1 id="net-for-xingongsuo"><a href="#net-for-xingongsuo" class="headerlink" title="net for xingongsuo"></a>net for xingongsuo</h1><h1 id="auto-ens33"><a href="#auto-ens33" class="headerlink" title="auto ens33"></a>auto ens33</h1><p>  iface ens33 inet static<br>  address 10.10.28.102<br>  netmask 255.255.254.0<br>  gateway 10.10.28.1<br>  dns-nameservers 210.73.64.1  # 永久生效</p>
+</li>
+<li>dns配置：<ul>
+<li>vi /etc/resolv.conf</li>
+<li>增加：nameserver 210.73.64.1</li>
+</ul>
+</li>
+<li><p>重启网络：</p>
+<ul>
+<li>单纯使用断开重连的方式不正确</li>
+<li>应该为：<ul>
+<li>sudo ip addr flush eno2 </li>
+<li>sudo systemctl restart networking.service</li>
+</ul>
+</li>
+<li>远程连接的时候：<ul>
+<li>echo yuziqi | sudo -S ip addr flush eno2 &amp;&amp; sudo service networking restart</li>
+</ul>
+</li>
+</ul>
 </li>
 <li><p>关闭其他网络：</p>
 <ul>
 <li>sudo ifconfig docker0 down</li>
+<li>或者直接：sudo ifdown eno2</li>
+<li>sudo ifup eno2</li>
+</ul>
+</li>
+<li><p>查看网络：</p>
+<ul>
+<li>ifconfig ens33</li>
 </ul>
 </li>
 <li><p>Busybox：</p>
@@ -1584,21 +1864,153 @@ sudo chmod 777 myshare
 <li>速度为=1000 / 返回的时间ms = 多少个k字节</li>
 </ul>
 </li>
+<li>查看路由过程：<ul>
+<li>linux：traceroute hostname<ul>
+<li>或者：tracepath hostname</li>
+</ul>
+</li>
+<li>windows：tracert hostname</li>
+</ul>
+</li>
 <li>linux下的网络工具：<ul>
 <li>iperf</li>
 <li>netperf</li>
 </ul>
 </li>
+<li>安装必要的工具<ul>
+<li>apt install net-tools</li>
+</ul>
+</li>
 </ul>
 <h2 id="shell使用"><a href="#shell使用" class="headerlink" title="shell使用:"></a>shell使用:</h2><ol>
+<li>shell：<ul>
+<li>shell是一个交互性命令解释器</li>
+<li>shell独立于操作系统，可以让用户灵活选择适合自己的shell</li>
+<li>执行过程：命令行输入命令，经过shell解释后传送给操作系统内核执行</li>
+<li></li>
+</ul>
+</li>
+<li>bash：<ul>
+<li>bash：borne again shell，是shell的一种，Linux上默认采用bash</li>
+<li>在命令行中输入bash命令，就相当于进入bash环境，如果再次开启，那就是进入了一个bash子环境(子进程)</li>
+</ul>
+</li>
 <li>ll -rt</li>
+<li><p>shell编程：</p>
+<ul>
+<li>单行注释：#</li>
+<li><p>多行注释：</p>
+<ul>
+<li>把输入重定义到前面的命令，:是空命令，所以就相当于注释</li>
+<li>BLOCK:是Here Documents中的定义符号，名称任意，只要前后匹配就行；<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">:&lt;&lt;BLOCK</span><br><span class="line">注释的内容</span><br><span class="line">BLOCK</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>()表示使用子shell</p>
+</li>
+<li>&lt;表示把命令的输出到一个临时文件</li>
+<li>echo -e “\n打印空行”</li>
+<li>[EXPRESSION] 表示条件判断</li>
+<li>逻辑表达式：<ul>
+<li>与：-a，例，判断文件123.txt是不是可读写<ul>
+<li>[ -r 123.txt -a -w 123.txt ]</li>
+<li>[ -r 123.txt ] &amp;&amp; [ -w 123.txt ]</li>
+</ul>
+</li>
+<li>或：-o，例，判断变量num是不是等于数字101或102<ul>
+<li>[ “$num” -eq “101” -o “$num” -eq “102” ]</li>
+<li>[ -r 123.txt ] || [ -w 123.txt ]</li>
+</ul>
+</li>
+<li>非：!，例，判断文件123.txt是不是不可读<ul>
+<li>[ ! -r 123.txt ]</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>if：</p>
+<ul>
+<li>大于：-gt(greater than)，大于等于：-ge(greater equal)，小于：-lt(less than)，小于等于：le(less equal)，不等于：-ne(not equal)<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">if 条件1</span><br><span class="line">then 命令1</span><br><span class="line">elif 条件2</span><br><span class="line">then 命令2</span><br><span class="line">else 命令3</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>for:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># 方式1</span><br><span class="line">for 变量名 in 列表</span><br><span class="line">do</span><br><span class="line">命令1</span><br><span class="line">命令2...</span><br><span class="line">done</span><br><span class="line"># 方式2</span><br><span class="line">sum=0</span><br><span class="line">for ((i=1;i&lt;10;i++)) </span><br><span class="line">do </span><br><span class="line">((sum=$sum+$i))</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>while:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">val=0</span><br><span class="line">while [ &quot;$val&quot; -lt &quot;5&quot; ]</span><br><span class="line">do</span><br><span class="line"># 输出数值</span><br><span class="line">echo &quot;val=$val&quot;</span><br><span class="line"># 将数值加1</span><br><span class="line">((val++))</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>字符串：</p>
+<ul>
+<li>截断：<ul>
+<li>str=123456</li>
+<li>字符串最后一个字符：<ul>
+<li>Final=<code>echo ${str: -1}</code></li>
+<li>或者：Final=${str: -1}</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>拼接：<ul>
+<li>变量+字符串：res=${val}”asd”</li>
+<li>字符串+变量：res=”CO_${index}”</li>
+</ul>
+</li>
+<li>单引号：’’<ul>
+<li>单引号之间全是字符串，不论格式</li>
+<li>要想在单引号内插入变量：<ul>
+<li>‘“‘内容’”‘ 替换原来的 “内容”</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>数组：</p>
+<ul>
+<li>赋值：<ul>
+<li>array=(a,b,$c)  # 传入的是a，b，c变量的值</li>
+<li>array=(“1” “2” “3”) # 空格分割即可</li>
+</ul>
+</li>
+<li><p>计算数组元素个数：</p>
+<ul>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">* ```$&#123;#array[@]&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>引用数组：</p>
+<ul>
+<li>echo ${array[i]} # 单个值</li>
+<li>echo ${array[*]} # 所有值</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>随机数：<ul>
+<li>RANDOM 是 Bash 的一个内建函数(而不是常量)，产生0-32767内的整数</li>
+<li>指定种子seed：<ul>
+<li>RANDOM=10</li>
+<li>echo $RANDOM</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>变量：</p>
+<ul>
+<li>echo ${a:-abc} # 如果a没有值，那就借给a一个值，此次命令执行完后，a还是空值；</li>
+</ul>
+</li>
+<li></li>
 </ol>
 <h2 id="vim技巧："><a href="#vim技巧：" class="headerlink" title="vim技巧："></a>vim技巧：</h2><ul>
 <li>配置vim：<a href="https://github.com/ma6174/vim" target="_blank" rel="noopener">https://github.com/ma6174/vim</a></li>
 <li>手动配置vim：<ul>
 <li>vim ~/.vimrc</li>
 <li>set nu “显示行号，nonu不显示行号</li>
-<li>set hlserarch “搜索时关键字高亮反白</li>
+<li>set hlsearch “搜索时关键字高亮反白</li>
 <li>set backspace=2 “允许退格键删除</li>
 <li>set autoindent “自动缩进</li>
 <li>set showmode “显示左下角状态行</li>
@@ -1614,18 +2026,21 @@ sudo chmod 777 myshare
 </ul>
 <ul>
 <li><p>vim技巧：</p>
-<ol>
-<li>w跳词头，e跳词尾<ol>
+<ul>
+<li>跳转：<ol>
+<li>w跳词头，e跳词尾</li>
 <li>ctrl+s是停止输入;ctrl+q是继续输入;看不见输入的内容了，直接输入exit回车，退出该终端;</li>
 <li>ctrl+a回到文件开头</li>
+<li>gg跳到文件开头，G跳到文件末尾</li>
 </ol>
 </li>
-</ol>
+</ul>
 <ul>
 <li><p>vim粘贴：</p>
 <ol>
 <li>系统粘贴板：复制后 - 在vim的编辑模式直接shift+inset键;</li>
-<li>vim粘贴板：esc正常模式 - v进入可视模式 - 选中文本 - 按y复制 - 用p粘贴</li>
+<li>使用快捷键粘贴：vim粘贴板：esc正常模式 - v进入可视模式 - 选中文本 - 按y复制 - 用p粘贴</li>
+<li>使用鼠标或快捷键粘贴：如果设置vim的set mouse=a则是所有模式都是使用鼠标，就无法使用鼠标右键进行复制粘贴了，所以改为set mouse=v，这样按v键进入可视模式，只在可视模式下进行鼠标滚动；要是粘贴，就按esc或者鼠标单击正常模式，进行鼠标选择 - 按y复制 - 用p粘贴。</li>
 </ol>
 </li>
 <li><p>vim撤销：</p>
@@ -1634,6 +2049,13 @@ sudo chmod 777 myshare
 <li>ctrl+R: 重做操作</li>
 </ol>
 </li>
+</ul>
+</li>
+<li><p>vim快速查找</p>
+<ul>
+<li>普通查找：/word或者?word</li>
+<li>快速1：让光标停留在一个单词的任意一个字母上，然后输入shift+*即可快速选中该单词，通过n或N进行匹配</li>
+<li>快速2：让光标停留在单词的第一个字幕上，然后yw进行快速拷贝，然后输入Ctrl+R+0，回车，就查找到了匹配词</li>
 </ul>
 </li>
 <li><p>git上配置的vim使用：</p>
@@ -1646,6 +2068,8 @@ sudo chmod 777 myshare
 </ol>
 </li>
 </ul>
+<p>##<br>kubectl describe pod/peer0-k8sorg15-sdfsdf -n t15<br>kubectl exec -it peer0-org15-sdfsdf -n t15 echo a<br>kubectl logs peer0-org15-sdfsdf -c peer0-org15 -n t15 </p>
+<p>192.168.125.77 zookeeper0<br>192.168.125.118 zookeeper1<br>192.168.125.76 zookeeper2<br>192.168.125.84 kafka0<br>192.168.125.127 kafka1<br>192.168.125.83 kafka2</p>
 <h2 id="在github上托管博客"><a href="#在github上托管博客" class="headerlink" title="在github上托管博客"></a>在github上托管博客</h2><ol>
 <li>create a repository and named ：hacker.github.io<ul>
 <li>进入github，找到设置，最下面有删除</li>
@@ -1745,8 +2169,7 @@ sudo chmod 777 myshare
 <li>继续恢复: git checkout – 2.py</li>
 </ul>
 </li>
-<li><p>远程仓库github：</p>
-<ul>
+<li>远程仓库github：<ul>
 <li><ol>
 <li>远程github创建一个repo, 勾选README.md</li>
 </ol>
@@ -1885,15 +2308,32 @@ sudo chmod 777 myshare
 </li>
 </ol>
 </li>
+<li><ol>
+<li>删除无用的文件夹：<ul>
+<li>echo .idea &gt;&gt; .gitignore</li>
+<li>git rm -r .idea –cache</li>
+<li>git add .</li>
+<li>git commit -m “delete .idea”</li>
+<li>git push origin master</li>
 </ul>
 </li>
-<li><p>创建分支：</p>
-<ul>
+</ol>
+</li>
+</ul>
+</li>
+<li>创建分支：<ul>
 <li>创建分支：git branch dev</li>
 <li>切换分支：git checkout dev</li>
 <li>创建+切换：git checkout -b dev</li>
 <li>查看当前分支：git branch</li>
-<li>合并分支：在master下，git merge dev</li>
+<li>合并分支：在master下，git merge dev<ul>
+<li>如果冲突</li>
+<li>先把本地dev推到远程master：git push origin dev:master -f</li>
+<li>切回旧分支：git checkout master</li>
+<li>本地旧分支master重置为dev：git reset –hard dev</li>
+<li>在推送</li>
+</ul>
+</li>
 <li>删除分支：git branch -d dev</li>
 <li></li>
 </ul>
@@ -1946,6 +2386,26 @@ sudo chmod 777 myshare
 <li>3.若合并有冲突，需要解决冲突，并本地提交；在用git push origin branch dev推送</li>
 </ul>
 </li>
+<li>区块链协作小组：<ul>
+<li>git branch  # master 和 dev</li>
+<li>git checkout dev</li>
+<li>git checkout -b yuziqi</li>
+<li>修改代码</li>
+<li>git add src  # 添加自己修改的文件</li>
+<li>git commit -m “yuziqi:xxx”</li>
+<li>git checkout dev</li>
+<li>git pull  # 更新最新代码</li>
+<li>git merge yuziqi # 合并新建的分支<ul>
+<li>如果出现merge失败</li>
+<li>可以直接回退dev到merge之前，git reset –merge</li>
+<li>然后再次修改yuziqi分支，提交不冲突的部分；或者重新修改代码；</li>
+<li>git add -A .  # 提交所有的修改</li>
+<li>git commit -m “blabla”</li>
+</ul>
+</li>
+<li>git push origin dev  # 把dev推到远程</li>
+</ul>
+</li>
 </ul>
 </li>
 <li>常用命令：<ul>
@@ -1956,7 +2416,93 @@ sudo chmod 777 myshare
 <li></li>
 </ul>
 </li>
+<li>多人合作项目<ul>
+<li>项目负责人：<ul>
+<li>首先把队友直接push的权限关掉，设置为Read，可以防止队友误操作；</li>
+<li>创建开发分支：<ul>
+<li>master稳定版，dev开发版</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>其他成员：<ul>
+<li>fork项目到自己的个人仓库</li>
+<li>clone自己的仓库项目到本地</li>
+<li>创建本地dev分支：<ul>
+<li>git branch -a；查看本地和远程的所有分支</li>
+<li>git checkout -b dev origin/dev；创建一个本地dev分支，并把远程dev分支的内容放在本地dev分支；并切换到该dev分支。</li>
+</ul>
+</li>
+<li>同步代码：<ul>
+<li>查看是否有upstream：git remote -v</li>
+<li>如果没有upstream：git remote add upstream 团队项目地址</li>
+<li>git remote -v</li>
+<li>开始同步，获取团队项目最新版本：git fetch upstream</li>
+<li>把最新版本合并到本地的dev分支上：git merge upstream/dev</li>
+</ul>
+</li>
+<li>提交代码：<ul>
+<li>git push；将本地的修改同步到自己的github仓库上</li>
+</ul>
+</li>
+<li>合并到团队项目：<ul>
+<li>进入到自己fork的github仓库，点击pull request</li>
+<li>选择合并内容，和目标内容，点击create </li>
+</ul>
+</li>
+</ul>
+</li>
+<li>项目负责人：<ul>
+<li>选择是否要合并到某个分支</li>
+<li>如果发现有问题，可以关闭该pull request<ul>
+<li>如果关闭了，一定要告诉队友，否则对方会不知道。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>创建分支：git</li>
+</ul>
+</li>
+<li>已有的项目创建git<ul>
+<li>git init</li>
+<li>git add .</li>
+<li>git commit -m “123”</li>
+<li>git remote add origin <a href="https://github.com/a550461053/my-bbs" target="_blank" rel="noopener">https://github.com/a550461053/my-bbs</a></li>
+<li>或者：git remote add origin <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:a550461053/my-bbs.git</li>
+<li>提前在github注册好一个远程的空项目</li>
+</ul>
+</li>
+<li></li>
 </ol>
+<ul>
+<li>github常见问题：<ul>
+<li>RPC failed; curl 56 GnuTLS recv error</li>
+<li>解决：增大git的临时缓冲区，git config –global http.postBuffer 2000000000</li>
+</ul>
+</li>
+</ul>
+<h2 id="ELK"><a href="#ELK" class="headerlink" title="ELK"></a>ELK</h2><ol>
+<li>ElasticSearch是一个基于Lucene的开源分布式搜索服务器。它的特点有：分布式，零配置，自动发现，索引自动分片，索引副本机制，restful风格接口，多数据源，自动搜索负载等。它提供了一个分布式多用户能力的全文搜索引擎，基于RESTful web接口。Elasticsearch是用Java开发的，并作为Apache许可条款下的开放源码发布，是第二流行的企业搜索引擎。设计用于云计算中，能够达到实时搜索，稳定，可靠，快速，安装使用方便。<br>在elasticsearch中，所有节点的数据是均等的。</li>
+<li>Logstash是一个完全开源的工具，它可以对你的日志进行收集、过滤、分析，支持大量的数据获取方法，并将其存储供以后使用（如搜索）。说到搜索，logstash带有一个web界面，搜索和展示所有日志。一般工作方式为c/s架构，client端安装在需要收集日志的主机上，server端负责将收到的各节点日志进行过滤、修改等操作在一并发往elasticsearch上去。</li>
+<li>Kibana 是一个基于浏览器页面的Elasticsearch前端展示工具，也是一个开源和免费的工具，Kibana可以为 Logstash 和 ElasticSearch 提供的日志分析友好的 Web 界面，可以帮助您汇总、分析和搜索重要数据日志。（angular项目）</li>
+</ol>
+<ul>
+<li>why ELK？<ul>
+<li>日志分析场景是：直接在日志文件中 grep、awk 就可以获得自己想要的信息。但在规模较大的场景中，此方法效率低下，面临问题包括日志量太大如何归档、文本搜索太慢怎么办、如何多维度查询。需要集中化的日志管理，所有服务器上的日志收集汇总。常见解决思路是建立集中式日志收集系统，将所有节点上的日志统一收集，管理，访问。</li>
+<li>一般大型系统是一个分布式部署的架构，不同的服务模块部署在不同的服务器上，问题出现时，大部分情况需要根据问题暴露的关键信息，定位到具体的服务器和服务模块，构建一套集中式日志系统，可以提高定位问题的效率。</li>
+</ul>
+</li>
+<li>特点：<br>  1）收集－能够采集多种来源的日志数据<br>  2）传输－能够稳定的把日志数据传输到中央系统<br>  3）存储－如何存储日志数据<br>  4）分析－可以支持 UI 分析<br>  5）警告－能够提供错误报告，监控机制</li>
+<li>地址：<ul>
+<li>展示地址：localhost:5601</li>
+<li>接受数据地址：<a href="http://localhost:9200/elk1/test1" target="_blank" rel="noopener">http://localhost:9200/elk1/test1</a></li>
+</ul>
+</li>
+<li>idea：<ul>
+<li>直接利用ELK的处理大数据的特点，对各大比特币、以太坊等币进行交易信息、区块信息、价格汇总的整体信息的汇总分析、可视化、大数据搜索。——可能就是类似交易所了！</li>
+</ul>
+</li>
+</ul>
 <h2 id="Ubuntu提速"><a href="#Ubuntu提速" class="headerlink" title="Ubuntu提速"></a>Ubuntu提速</h2><ol>
 <li>查看分析：<ul>
 <li>sudo systemd-analyze plot &gt; boot.svg</li>
@@ -2159,7 +2705,28 @@ sudo chmod 777 myshare
 </ul>
 </li>
 </ul>
-<h2 id="nodejs"><a href="#nodejs" class="headerlink" title="nodejs"></a>nodejs</h2><ol>
+<h2 id="nodejs"><a href="#nodejs" class="headerlink" title="nodejs"></a>nodejs</h2><ul>
+<li>web请求过程：<ul>
+<li>输入URL：<a href="http://www.google.com" target="_blank" rel="noopener">www.google.com</a></li>
+<li>DNS域名解析：域名与IP的映射</li>
+<li>建立TCP连接：TCP三次握手</li>
+<li>发送HTTP Request：请求信息</li>
+<li>Web浏览器：Nginx反向代理</li>
+<li>应用服务器：Servlet处理请求</li>
+<li>关闭TCP连接：请求响应完成</li>
+<li>用户浏览器：渲染响应页面</li>
+</ul>
+</li>
+<li>正向、反向代理<ul>
+<li>正向Proxy：局域网 去访问 外部服务器</li>
+<li>反向Reverse Proxy：客户端 去访问 局域网服务器<ul>
+<li>封装网站服务器；</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ol>
 <li><p>mogodb:</p>
 <ul>
 <li>sudo apt install mongo</li>
@@ -2192,6 +2759,23 @@ sudo chmod 777 myshare
 </li>
 <li><p>node</p>
 <ul>
+<li>概念：<ul>
+<li>apache就是静态网页服务器，就是将本地页面文件做一个网络映射，可以添加mod来扩展功能；<ul>
+<li>apache+PHP</li>
+</ul>
+</li>
+<li>tomcat：java servlet容器，就是基于java的CGI动态页面服务器，静态页面只是一个附属功能<ul>
+<li>tomcat+java</li>
+</ul>
+</li>
+<li>nginx：也是静态网页服务器，不过更多用于代理服务器<ul>
+<li>nodejs+nginx：每个服务器启动nodejs作为集群的节点，然后前面做一层负载均衡，反向代理到集群的服务器上。</li>
+</ul>
+</li>
+<li>node.js:同一是一个容器，就是基于JS的CGI动态页面服务器；</li>
+<li>都可以作为web服务器，只不过nodejs更倾向于业务逻辑。</li>
+</ul>
+</li>
 <li>安装：<ul>
 <li>sudo apt install nodejs</li>
 <li>sudo apt install nodejs-legacy</li>
@@ -2222,6 +2806,8 @@ sudo chmod 777 myshare
 <li>npm install -g n</li>
 <li>sudo npm install npm@latest -g  # 更新npm到最新版本 ~~~~ 可用，但貌似有时候会不管用</li>
 <li>n stable  # 这样一句就可以node更新到最新版本了。 ！！！！！！！！！最管用</li>
+<li>sudo n ls # 查看所有版本信息</li>
+<li>sudo n 8.9.4 # 切换到8.9.4版本</li>
 <li>n –version</li>
 <li>npm install -g npm</li>
 <li>node -v; n ls; </li>
@@ -2320,6 +2906,55 @@ sudo chmod 777 myshare
 </ol>
 <h2 id="未完待续"><a href="#未完待续" class="headerlink" title="未完待续"></a>未完待续</h2><p>应用程序有两种模式C/S、B/S。<br>C/S是客户端/服务器端程序，也就是说这类程序一般独立运行。<br>B/S就是浏览器端/服务器端应用程序，一般借助IE等浏览器来运行。</p>
 <p>服务器端是远程服务器，运行结果是由服务器产生的；<br>    所有的动态网页都是在服务器端执行的，例如ASP、PHP、JSP；<br>客户端就是网友的电脑。<br>    所有的静态网页都是在客户端执行的，例如JavaScript、Flash都是属于静态网页。 </p>
+<h2 id="centos使用"><a href="#centos使用" class="headerlink" title="centos使用"></a>centos使用</h2><ul>
+<li>说明：<ul>
+<li>apt是Ubuntu、debian的包管理器</li>
+<li>yum属于Redhat、Centos包管理器</li>
+<li>centos、rhel、fedora应该使用rpm包格式。</li>
+<li>deb是Ubuntu、Debian的包。</li>
+</ul>
+</li>
+</ul>
+<ol>
+<li>修改源<ul>
+<li>mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup</li>
+<li>cd /etc/yum.repos.d/</li>
+<li>wget <a href="http://mirrors.163.com/.help/CentOS7-Base-163.repo" target="_blank" rel="noopener">http://mirrors.163.com/.help/CentOS7-Base-163.repo</a> # 这是centos7</li>
+<li>生成缓存：yum makecache</li>
+<li>更新系统：yum -y update</li>
+<li></li>
+</ul>
+</li>
+<li>安装dpkg 暂时失效！！！<br>sudo yum -y install epel-release<br>sudo yum repolist<br>sudo yum install dpkg-devel dpkg-dev</li>
+<li>安装rpm包<ul>
+<li>rpm -ivh soft.rpm</li>
+<li>yum install soft.rpm</li>
+</ul>
+</li>
+<li>yum安装<ul>
+<li>yum -y soft  # -y表示yes</li>
+<li>yum update   # 更新yum</li>
+<li>yum修改源：<ul>
+<li>下载对应版本的源文件：<a href="http://mirrors.163.com/.help/centos.html" target="_blank" rel="noopener">http://mirrors.163.com/.help/centos.html</a></li>
+<li>先备份：mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup</li>
+<li>然后拷贝覆盖进来。</li>
+<li>yum clean all</li>
+<li>yum makecache</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>安装teamviewer13：<ul>
+<li>yum install -y team…13.rpm</li>
+<li>报错，缺少lib.so.6:yum install -y lib.so.6 <ul>
+<li>原因：teamviewer13至少centos7版本</li>
+</ul>
+</li>
+<li>teamviewer12在历史版本界面下载。</li>
+<li>teamviewer:运行</li>
+</ul>
+</li>
+</ol>
 <ol>
 <li>小米网】【实习】研发实习生招聘 :<a href="http://www.newsmth.net/nForum/#!article/Intern/249203" target="_blank" rel="noopener">http://www.newsmth.net/nForum/#!article/Intern/249203</a></li>
 <li>算法工程师☆机器学习 :<a href="http://www.newsmth.net/nForum/#!article/Intern/249200" target="_blank" rel="noopener">http://www.newsmth.net/nForum/#!article/Intern/249200</a></li>
@@ -2500,7 +3135,7 @@ sudo chmod 777 myshare
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-count">35</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -2543,7 +3178,7 @@ sudo chmod 777 myshare
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Ubuntu常识"><span class="nav-number">1.</span> <span class="nav-text">Ubuntu常识</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#酷炫Ubuntu"><span class="nav-number">2.</span> <span class="nav-text">酷炫Ubuntu</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#bin-bash"><span class="nav-number"></span> <span class="nav-text">!/bin/bash</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Ubuntu显示问题"><span class="nav-number">1.</span> <span class="nav-text">Ubuntu显示问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用软件安装"><span class="nav-number">2.</span> <span class="nav-text">常用软件安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用命令"><span class="nav-number">3.</span> <span class="nav-text">常用命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网络：远程控制-文件共享"><span class="nav-number">4.</span> <span class="nav-text">网络：远程控制+文件共享</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#net-for-xingongsuo"><span class="nav-number"></span> <span class="nav-text">net for xingongsuo</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#auto-ens33"><span class="nav-number"></span> <span class="nav-text">auto ens33</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#default-on"><span class="nav-number"></span> <span class="nav-text">default: on</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#description-The-telnet-server-serves-telnet-sessions-it-uses"><span class="nav-number"></span> <span class="nav-text">description: The telnet server serves telnet sessions; it uses \</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#unencrypted-username-password-pairs-for-authentication"><span class="nav-number"></span> <span class="nav-text">unencrypted username/password pairs for authentication.</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#shell使用"><span class="nav-number">1.</span> <span class="nav-text">shell使用:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vim技巧："><span class="nav-number">2.</span> <span class="nav-text">vim技巧：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在github上托管博客"><span class="nav-number">3.</span> <span class="nav-text">在github上托管博客</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#git概念："><span class="nav-number">4.</span> <span class="nav-text">git概念：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#git使用"><span class="nav-number">5.</span> <span class="nav-text">git使用:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ubuntu提速"><span class="nav-number">6.</span> <span class="nav-text">Ubuntu提速</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#kali-linux"><span class="nav-number">7.</span> <span class="nav-text">kali-linux:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#wifi破解"><span class="nav-number">8.</span> <span class="nav-text">wifi破解:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#nodejs"><span class="nav-number">9.</span> <span class="nav-text">nodejs</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#未完待续"><span class="nav-number">10.</span> <span class="nav-text">未完待续</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Ubuntu常识"><span class="nav-number">1.</span> <span class="nav-text">Ubuntu常识</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#酷炫Ubuntu"><span class="nav-number">2.</span> <span class="nav-text">酷炫Ubuntu</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#bin-bash"><span class="nav-number"></span> <span class="nav-text">!/bin/bash</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Ubuntu显示问题"><span class="nav-number">1.</span> <span class="nav-text">Ubuntu显示问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用软件安装"><span class="nav-number">2.</span> <span class="nav-text">常用软件安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用命令"><span class="nav-number">3.</span> <span class="nav-text">常用命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网络：远程控制-文件共享"><span class="nav-number">4.</span> <span class="nav-text">网络：远程控制+文件共享</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#net-for-xingongsuo"><span class="nav-number"></span> <span class="nav-text">net for xingongsuo</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#auto-ens33"><span class="nav-number"></span> <span class="nav-text">auto ens33</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#default-on"><span class="nav-number"></span> <span class="nav-text">default: on</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#description-The-telnet-server-serves-telnet-sessions-it-uses"><span class="nav-number"></span> <span class="nav-text">description: The telnet server serves telnet sessions; it uses \</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#unencrypted-username-password-pairs-for-authentication"><span class="nav-number"></span> <span class="nav-text">unencrypted username/password pairs for authentication.</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#shell使用"><span class="nav-number">1.</span> <span class="nav-text">shell使用:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vim技巧："><span class="nav-number">2.</span> <span class="nav-text">vim技巧：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在github上托管博客"><span class="nav-number">3.</span> <span class="nav-text">在github上托管博客</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#git概念："><span class="nav-number">4.</span> <span class="nav-text">git概念：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#git使用"><span class="nav-number">5.</span> <span class="nav-text">git使用:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ELK"><span class="nav-number">6.</span> <span class="nav-text">ELK</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ubuntu提速"><span class="nav-number">7.</span> <span class="nav-text">Ubuntu提速</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#kali-linux"><span class="nav-number">8.</span> <span class="nav-text">kali-linux:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#wifi破解"><span class="nav-number">9.</span> <span class="nav-text">wifi破解:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#nodejs"><span class="nav-number">10.</span> <span class="nav-text">nodejs</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#未完待续"><span class="nav-number">11.</span> <span class="nav-text">未完待续</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#centos使用"><span class="nav-number">12.</span> <span class="nav-text">centos使用</span></a></li></ol></div>
             
 
           </div>
@@ -2563,7 +3198,7 @@ sudo chmod 777 myshare
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

@@ -91,7 +91,7 @@
 <meta property="og:site_name" content="Fake it till you make it">
 <meta property="og:description" content="算法概述 NP： non-deterministic polynomial problem非确定性问题(难)   NPC： NP完全问题(最难)   P问题： polynomial problem多项式问题(易)   一般算法分类：  判定性问题： 最优化问题：  标准分治： 动态规划： 贪心算法： | 算法比较 | 标准分治 | 动态规划 | 贪心算法 |  | ——– | :——: | :——">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-12T06:46:44.423Z">
+<meta property="og:updated_time" content="2018-05-29T08:50:59.467Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="面试准备:算法">
 <meta name="twitter:description" content="算法概述 NP： non-deterministic polynomial problem非确定性问题(难)   NPC： NP完全问题(最难)   P问题： polynomial problem多项式问题(易)   一般算法分类：  判定性问题： 最优化问题：  标准分治： 动态规划： 贪心算法： | 算法比较 | 标准分治 | 动态规划 | 贪心算法 |  | ——– | :——: | :——">
@@ -370,6 +370,40 @@
 </ul>
 </li>
 </ul>
+<h1 id="回溯法"><a href="#回溯法" class="headerlink" title="回溯法"></a>回溯法</h1><ul>
+<li>背景：<ul>
+<li>一些问题，可以分解，但是不能给出明确的动态规划或递归解法(如果能得出明显的递推公式迭代求解的问题，不用回溯)，此时可以考虑用回溯法解决</li>
+</ul>
+</li>
+<li>区别：<ul>
+<li>递归是一种算法结构，是在函数中调用函数本身来解决问题</li>
+<li>回溯是一种算法思想，通过不同的尝试来生成问题的解，有点类似穷举，但是不同之处在于，回溯会剪枝；</li>
+<li>回溯搜索是DFS的一种，但对于某个搜索树来说(搜索树是记录路径和状态判断的作用)，回溯和DFS的区别在于：回溯在求解过程中不保留完整的树结构，而DFS则记录下完整的搜索树；<ul>
+<li>为了减少存储空间，在DFS中，用标志的方法记录访问过的状态，这种处理方法使得DFS和回溯法没什么区别。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>思路：</li>
+<li>优点：<ul>
+<li>程序结构明确，可读性强，易于理解</li>
+<li>通过对问题的分析可以大大提高运行效率</li>
+</ul>
+</li>
+<li>DFS：<ul>
+<li>有深度优先搜索DFS和广度优先搜索BFS</li>
+<li>分支界限法中，一般用的是FIFO或最小耗费搜搜：一次性将一个节点的所有子节点求出，并放入一个待求子节点的队列；通过遍历这个队列完成搜索；</li>
+<li>DFS：是将一条合法路径求出后，再转向上求第二条合法路径</li>
+<li>回溯法一般用DFS？<ul>
+<li>通过约束函数可以杀死一些节点，从而节约时间</li>
+<li>DFS是将路径逐一求出的，在求路径的过程中杀死节点可以省去所有子节点所花费的时间</li>
+<li>FIFO也可以实现剪枝，但是DFS的解决思路很清晰。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>def dfs(nums, res, temp_list, index):<br>    if index &gt; len(nums): return<br>    if index == len(nums): res.append(temp_list); return<br>    for i in range(index, len(table[index])):<br>        temp_list.append(table[index][i])</p>
 <h1 id="贪心算法"><a href="#贪心算法" class="headerlink" title="贪心算法"></a>贪心算法</h1><ul>
 <li>定义：<ul>
 <li>贪心算法（Greedy Algorithm，又称贪婪算法），指在对问题求解时，不从整体最优上加以考虑，而总是做出在当前看来是最好的选择。也就是说，所做出的是在某种意义上的局部最优解。</li>
@@ -684,7 +718,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-count">35</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -727,7 +761,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#算法概述"><span class="nav-number">1.</span> <span class="nav-text">算法概述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#分治法"><span class="nav-number">2.</span> <span class="nav-text">分治法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#贪心算法"><span class="nav-number">3.</span> <span class="nav-text">贪心算法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#动态规划"><span class="nav-number">4.</span> <span class="nav-text">动态规划</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#DP概念"><span class="nav-number">4.1.</span> <span class="nav-text">DP概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DP题型"><span class="nav-number">4.2.</span> <span class="nav-text">DP题型</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#算法概述"><span class="nav-number">1.</span> <span class="nav-text">算法概述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#分治法"><span class="nav-number">2.</span> <span class="nav-text">分治法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#回溯法"><span class="nav-number">3.</span> <span class="nav-text">回溯法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#贪心算法"><span class="nav-number">4.</span> <span class="nav-text">贪心算法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#动态规划"><span class="nav-number">5.</span> <span class="nav-text">动态规划</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#DP概念"><span class="nav-number">5.1.</span> <span class="nav-text">DP概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DP题型"><span class="nav-number">5.2.</span> <span class="nav-text">DP题型</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -747,7 +781,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

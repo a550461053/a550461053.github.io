@@ -90,7 +90,7 @@
 <meta property="og:site_name" content="Fake it till you make it">
 <meta property="og:description" content="Angular简介 AngularJS： AngularJS自2012年发布，首次提出双向绑定。 AngularJS 是一个为动态WEB应用设计的结构框架。它能让你使用HTML作为模板语言，通过扩展HTML的语法，让你能更清楚、简洁地构建你的应用组件。它的创新点在于，利用 数据绑定 和 依赖注入，它使你不用再写大量的代码了。这些全都是通过浏览器端的Javascript实现，这也使得它能够完美地和任">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-13T17:42:12.051Z">
+<meta property="og:updated_time" content="2018-05-09T13:20:57.004Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="angular2教程">
 <meta name="twitter:description" content="Angular简介 AngularJS： AngularJS自2012年发布，首次提出双向绑定。 AngularJS 是一个为动态WEB应用设计的结构框架。它能让你使用HTML作为模板语言，通过扩展HTML的语法，让你能更清楚、简洁地构建你的应用组件。它的创新点在于，利用 数据绑定 和 依赖注入，它使你不用再写大量的代码了。这些全都是通过浏览器端的Javascript实现，这也使得它能够完美地和任">
@@ -412,11 +412,11 @@
 <li>新建工程<ul>
 <li>webstorm打开后，新建angular-cli，这个是代表angular2工程，angular-js代表angular工程</li>
 <li>配置angular-cli的安装路径</li>
-<li>常见问题：<a href="http://blog.csdn.net/pointer_v/article/details/55096197" target="_blank" rel="noopener">http://blog.csdn.net/pointer_v/article/details/55096197</a><h1 id="Angular的三大核心概念"><a href="#Angular的三大核心概念" class="headerlink" title="Angular的三大核心概念"></a>Angular的三大核心概念</h1></li>
+<li>常见问题：<a href="http://blog.csdn.net/pointer_v/article/details/55096197" target="_blank" rel="noopener">http://blog.csdn.net/pointer_v/article/details/55096197</a></li>
 </ul>
 </li>
 </ul>
-<ol>
+<h1 id="Angular的三大核心概念"><a href="#Angular的三大核心概念" class="headerlink" title="Angular的三大核心概念"></a>Angular的三大核心概念</h1><ol>
 <li>组件<br> - </li>
 <li>模块NgModule<ul>
 <li>动态异步加载js</li>
@@ -444,10 +444,111 @@
 <li>简介：</li>
 <li></li>
 </ul>
+<h1 id="Angular引入css"><a href="#Angular引入css" class="headerlink" title="Angular引入css"></a>Angular引入css</h1><ol>
+<li>全局引入</li>
+<li>bootstrap.css和ng-bootstrap.css区别：<br> - </li>
+<li></li>
+</ol>
+<h1 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h1><ol>
+<li>AngularJS设置img：ng-src与src区别<ul>
+<li><img ng-src=""></li>
+<li>加载图片过程：在angular加载页面完成之前，浏览器会试图去url地址加载图片；一旦加载完成之后，浏览器会找到具体的位置值，如logo.png,然后会加载正确的图片；</li>
+<li>src：Angular的数据还没有返回，渲染dom时出错，所以直接读到的是空的url值</li>
+<li>ng-src会让angular加载完成之后，才会得到正确的地址数据。</li>
+</ul>
+</li>
+<li>相对路径问题：<ul>
+<li>加/img/…</li>
+<li>而不是img/…</li>
+</ul>
+</li>
+<li></li>
+</ol>
+<h1 id="Angular指令"><a href="#Angular指令" class="headerlink" title="Angular指令"></a>Angular指令</h1><ul>
+<li>angular指令：扩展的HTML属性，带有ng-前缀</li>
+<li>angular完美支持数据库的CRUD(create、read、update、delete)应用程序，可以把实例对象想象成数据库中的记录</li>
+<li>ng-app:定义了angularJS应用程序的根元素<ul>
+<li>在网页加载完毕后会自动引导</li>
+</ul>
+</li>
+<li>ng-init：定义初始值</li>
+<li>ng-model：绑定HTML元素到应用程序数据<ul>
+<li>提供类型验证number、email、required</li>
+<li>提供状态invaid、dirty、touched、error</li>
+<li>为html元素提供css类</li>
+<li>绑定html元素到html表单</li>
+</ul>
+</li>
+<li>ng-repeat：对于集合中的每个项会克隆一次html元素</li>
+<li>创建自定义指令：<ul>
+<li>使用驼峰法来命名一个指令， runoobDirective, 但在使用它时需要以 - 分割, runoob-directive:</li>
+</ul>
+</li>
+<li></li>
+</ul>
 <h1 id="Typescript"><a href="#Typescript" class="headerlink" title="Typescript"></a>Typescript</h1><ol>
 <li>Typescript简介</li>
-<li>Javascript区别</li>
+<li>Javascript区别<ul>
+<li>JavaScript一种动态类型、弱类型、基于原型的客户端脚本语言，用来给HTML网页增加动态功能。<ul>
+<li>动态：在运行时确定数据类型。变量使用之前不需要类型声明，通常变量的类型是被赋值的那个值的类型。</li>
+<li>弱类：计算时可以不同类型之间对使用者透明地隐式转换，即使类型不正确，也能通过隐式转换来得到正确的类型。</li>
+<li>原型：新对象继承对象（作为模版），将自身的属性共享给新对象，模版对象称为原型。这样新对象实例化后不但可以享有自己创建时和运行时定义的属性，而且可以享有原型对象的属性。</li>
+<li>PS：新对象指函数，模版对象是实例对象，实例对象是不能继承原型的，函数才可以的。</li>
+</ul>
+</li>
+</ul>
+</li>
 <li>TypeScript/Angular2调用原生JS的桥接文件的编写：<a href="https://www.jianshu.com/p/e87e596c3280" target="_blank" rel="noopener">https://www.jianshu.com/p/e87e596c3280</a></li>
+</ol>
+<h1 id="标准"><a href="#标准" class="headerlink" title="标准"></a>标准</h1><ol>
+<li>JavaScript三个部分：<ul>
+<li>ECMAScript核心：规定了语言的组成部分：<ul>
+<li>语法、类型、语句、关键字、保留字、操作符、对象</li>
+</ul>
+</li>
+<li>DOM文档对象类型：<ul>
+<li>把整个页面映射为一个多层节点效果，开发人员可以借助DOM提供的API，轻松地删除、添加、替换或修改任何节点</li>
+<li>DOM也有级别，分为DOM1、DOM2、DOM3，扩展不少规范和新接口</li>
+</ul>
+</li>
+<li>BOM浏览器对象模型：<ul>
+<li>支持可以访问和操作浏览器窗口的浏览器对象模型，开发人员可以控制浏览器显示的页面以外的部分；</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>ES5<ul>
+<li>ECMAScript第五个版本(第四个版本由于过于复杂废弃了)</li>
+<li>支持特性：<ul>
+<li>strict模式</li>
+<li>Array增加方法：every、some 、forEach、filter 、indexOf、lastIndexOf、isArray、map、reduce、reduceRight方法</li>
+<li>Object方法：Object.getPrototypeOf、Object.create、Object.getOwnPropertyNames、Object.defineProperty</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>ES6</p>
+<ul>
+<li>ECMAScript6在保证向下兼容的前提下，提供大量新特性，目前浏览器兼容情况如下：</li>
+<li><p>特性：</p>
+<ul>
+<li>块级作用域：关键字let、常量const</li>
+<li>对象字面量的属性赋值简写property value shorthand</li>
+<li><p>赋值解构：</p>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let singer = &#123; first: &quot;Bob&quot;, last: &quot;Dylan&quot; &#125;;</span><br><span class="line">let &#123; first: f, last: l &#125; = singer; // 相当于 f = &quot;Bob&quot;, l = &quot;Dylan&quot;</span><br><span class="line">let [all, year, month, day] =  /^(\d\d\d\d)-(\d\d)-(\d\d)$/.exec(&quot;2015-10-25&quot;);</span><br><span class="line">let [x, y] = [1, 2, 3]; // x = 1, y = 2</span><br></pre></td></tr></table></figure>
+</code></pre></li>
+<li><p>函数参数 - 默认值、参数打包、 数组展开（Default 、Rest 、Spread）</p>
+</li>
+<li>箭头函数 Arrow functions</li>
+<li>字符串模板 Template strings</li>
+<li>Iterators（迭代器）+ for..of</li>
+<li>Proxies:使用代理proxy监听对象的操作，然后做相应的事情</li>
+<li>Promises</li>
+</ul>
+</li>
+<li></li>
+</ul>
+</li>
 </ol>
 
       
@@ -602,7 +703,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-count">35</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -645,7 +746,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Angular简介"><span class="nav-number">1.</span> <span class="nav-text">Angular简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#angular-cli安装配置"><span class="nav-number">2.</span> <span class="nav-text">angular-cli安装配置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Angular的三大核心概念"><span class="nav-number">3.</span> <span class="nav-text">Angular的三大核心概念</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Angular架构"><span class="nav-number">4.</span> <span class="nav-text">Angular架构</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#UI库"><span class="nav-number">5.</span> <span class="nav-text">UI库</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#NiceFish"><span class="nav-number">6.</span> <span class="nav-text">NiceFish</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Typescript"><span class="nav-number">7.</span> <span class="nav-text">Typescript</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Angular简介"><span class="nav-number">1.</span> <span class="nav-text">Angular简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#angular-cli安装配置"><span class="nav-number">2.</span> <span class="nav-text">angular-cli安装配置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Angular的三大核心概念"><span class="nav-number">3.</span> <span class="nav-text">Angular的三大核心概念</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Angular架构"><span class="nav-number">4.</span> <span class="nav-text">Angular架构</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#UI库"><span class="nav-number">5.</span> <span class="nav-text">UI库</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#NiceFish"><span class="nav-number">6.</span> <span class="nav-text">NiceFish</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Angular引入css"><span class="nav-number">7.</span> <span class="nav-text">Angular引入css</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#常见问题"><span class="nav-number">8.</span> <span class="nav-text">常见问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Angular指令"><span class="nav-number">9.</span> <span class="nav-text">Angular指令</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Typescript"><span class="nav-number">10.</span> <span class="nav-text">Typescript</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#标准"><span class="nav-number">11.</span> <span class="nav-text">标准</span></a></li></ol></div>
             
 
           </div>
@@ -665,7 +766,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

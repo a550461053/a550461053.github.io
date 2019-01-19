@@ -91,7 +91,7 @@
 <meta property="og:site_name" content="Fake it till you make it">
 <meta property="og:description" content="vmware配置 安装vm12: 安装vmwaretools 点击install tools 解压到桌面 进入 sudo ./vmware-install.pl -d 重启 如要卸载: ./vmware-tools-distrib/bin/vmware-uninstall-tools.pl   修改下载源 先用nat模式联网(可以ipv6地址修改，桥接到有线网卡也可以，直接桥接就不需要改ipv6的">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-01T06:52:09.780Z">
+<meta property="og:updated_time" content="2018-08-01T11:53:12.107Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="虚拟机多节点">
 <meta name="twitter:description" content="vmware配置 安装vm12: 安装vmwaretools 点击install tools 解压到桌面 进入 sudo ./vmware-install.pl -d 重启 如要卸载: ./vmware-tools-distrib/bin/vmware-uninstall-tools.pl   修改下载源 先用nat模式联网(可以ipv6地址修改，桥接到有线网卡也可以，直接桥接就不需要改ipv6的">
@@ -396,6 +396,16 @@
 </li>
 </ul>
 </li>
+<li>Ubuntu出现引导错误，进入grub：<ul>
+<li>用U盘进入试用模式</li>
+<li>sudo su</li>
+<li>sudo add-apt-repository ppa:yannubuntu/boot-repair</li>
+<li>apt-get update</li>
+<li>apt-get install boot-repair</li>
+<li>在dash中搜索boot-repair</li>
+<li>点recommand repair</li>
+</ul>
+</li>
 <li>虚拟机复制出现grub问题：<ul>
 <li>当系统装了多个内核之后，开机就会进入grub，需要找到内核启动</li>
 <li>查看分区：ls</li>
@@ -430,7 +440,8 @@
 </li>
 </ul>
 </li>
-<li>vmware多节点<ul>
+<li><p>vmware多节点</p>
+<ul>
 <li>计划布置：<ul>
 <li>orderer1.org1.batista.com - 192.168.1.2</li>
 <li>peer0.org1.batista.com - 192.168.1.11</li>
@@ -500,6 +511,55 @@
 <li>vmnet8</li>
 <li>gateway：192.168.93.2, mask:255.255.255.0</li>
 <li>多节点之间不能互相ping通</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>vmware的ip设置：</p>
+<ul>
+<li>如果需要虚拟机和宿主机同一ip，则：桥接模式，并选择复制物理网络连接状态</li>
+<li>Bridge桥接：“网络桥接”中的“直接桥接到物理网络”意思是重新分配一个 IP地址。而“复制物理网络连接状态”就是虚拟机和本地电脑通用一块网卡。 也就不存在重新为虚拟机上网分配IP地址。</li>
+</ul>
+</li>
+<li><p>vmware扩容，扩大硬盘</p>
+<ul>
+<li>扩展硬盘，提示无法扩展，需要删除快照：删除所有快照</li>
+<li>扩展硬盘，后df看不出来，虚拟机暂时没有识别</li>
+<li>分区：<ul>
+<li>正常进入系统，然后init 1，进入到单用户模式，crtl+alt+f1，登录root用户</li>
+<li>fdisk -l /dev/sda 查看磁盘分区情况</li>
+<li>fdisk /dev/sda 进入到fdisk磁盘管理</li>
+<li>输入：n {new partition}</li>
+<li>输入：p {primary partition}</li>
+<li>输入分区号：3 {partition number}表示第三个</li>
+<li>first sector选择默认即可</li>
+<li>last sector：可以使用+30G来表示，或者仔细计算：一个sector=512字节=0.5kb，所以50G=1024<em>1024</em>2*50-1</li>
+<li>partprobe更新分区</li>
+<li>关闭tty7的图形界面占用，ligthdm服务，可以在终端输入：<ul>
+<li>systemctl disable lightdm.service</li>
+<li>或：/etc/init.d/lightdm stop</li>
+<li>开启：/etc/init.d/lightdm start</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>挂载：<ul>
+<li>swap不需要挂载</li>
+<li>将刚创建的新的分区3挂载到目录上之前，需要格式化<ul>
+<li>mkfs.ext4 /dev/sda2</li>
+</ul>
+</li>
+<li>挂载到一个准备好的空目录上<ul>
+<li>mkdir /home/batista/disk1 -p</li>
+<li>mount /dev/sda2 /home/batista/disk1</li>
+</ul>
+</li>
+<li>设置开机自动挂载<ul>
+<li>vim /etc/fstab</li>
+<li>添加一行：/dev/sda2 /home/batista/disk1 ext4 defaults 0 2</li>
+</ul>
+</li>
+<li>df -h 查看最后的结果</li>
 </ul>
 </li>
 </ul>
@@ -762,7 +822,7 @@
 <li>fabric源码：<ul>
 <li>go get github.com/hyperledger/fabric </li>
 <li>git checkout -b v1.0.0 # 切换到1.0.0版本</li>
-<li>后来又改为git checkout -b v1.1.0-previewer</li>
+<li>后来又改为git checkout -b v1.1.0-preview</li>
 </ul>
 </li>
 <li>fabric镜像：<ul>
@@ -1024,7 +1084,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-count">35</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -1087,7 +1147,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
