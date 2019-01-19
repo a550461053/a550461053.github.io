@@ -1,5 +1,7 @@
 ---
 title: github_blog的使用
+date: 2017-12-21 10:49:35
+tags: [github, blog, hexo, next]
 ---
 ## github做blog方法比较
 略
@@ -215,3 +217,13 @@ title: github_blog的使用
 		+ git push origin hexo
 		+ hexo d -g
 		+ 
+10. 增加tag选项：
+	- hexo new page tag
+	- 然后会在_post同级下创建文件夹tags
+	- 进入tags，修改index.md
+	- 添加type: tags
+	- 在主题配置文件中，menu项下，把tags打开：
+		+ tags: /tags
+11. 常见问题：
+	- 显示Uber等字体：修改hexo的配置文件_config.xml默认字体为zh-han即可
+12. 

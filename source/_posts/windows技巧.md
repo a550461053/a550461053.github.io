@@ -1,19 +1,18 @@
 ---
 title: windows技巧
 date: 2017-12-21 10:38:54
-tags:
+tags: [windows]
 ---
 
 
-
-环境变量：不区分大小写——使用cmd方式只在当前cmd有效，暂时性的
-1、查看当前所有可用的环境变量：输入 set 即可查看。
-2、查看某个环境变量：输入 “set 变量名”即可，比如想查看path变量的值，即输入 set path，不用！！！
-3、修改环境变量 ：输入 “set 变量名=变量内容”
-4、设置为空：如果想将某一变量设置为空，输入“set 变量名=”
-5、给变量追加内容（不同于3，那个是覆盖）：输入“set 变量名=%变量名%;变量内容”
-getenv是获取系统的环境变更，对于windows在系统属性-->高级-->环境变量中设置的变量将显示在此(对于linux,通过export设置的变量将显示在此)
-getProperties是获取系统的相关属性,包括文件编码,操作系统名称,区域,用户名等,此属性一般由jvm自动获取,不能设置.
+0. 环境变量：不区分大小写——使用cmd方式只在当前cmd有效，暂时性的
+1. 查看当前所有可用的环境变量：输入 set 即可查看。
+2. 查看某个环境变量：输入 “set 变量名”即可，比如想查看path变量的值，即输入 set path，不用！！！
+3. 修改环境变量 ：输入 “set 变量名=变量内容”
+4. 设置为空：如果想将某一变量设置为空，输入“set 变量名=”
+5. 给变量追加内容（不同于3，那个是覆盖）：输入“set 变量名=%变量名%;变量内容”
+    getenv是获取系统的环境变更，对于windows在系统属性-->高级-->环境变量中设置的变量将显示在此(对于linux,通过export设置的变量将显示在此)
+    getProperties是获取系统的相关属性,包括文件编码,操作系统名称,区域,用户名等,此属性一般由jvm自动获取,不能设置.
 
 6. 资源管理器卡死：文件夹选项-查看-勾选“在单独的进程中打开文件夹窗口”
 
@@ -64,7 +63,7 @@ Signature script: <sig> [sig] [sig...] <redeemScript>
     - 按下回车，等待黄色背景滚动完毕后，重启计算机即可。
     
 
-win10：
+14. win10：
     win+E快捷键修改为我的电脑：查看 - 选项 - 资源管理器改为此电脑；
     修改alt+tab显示风格：改了不好看~regedit在HKEY_CURRENT_USER下搜索Explorer-新建一个32位值，键值为AltTabSettings，数据改为1，默认是3*7，搜索Desktop，修改CoolSwitchColumns即可。
 	
@@ -72,7 +71,7 @@ win10：
 
     关闭自动更新/补丁更新：打开更新和安全 - win更新 - 高级选项 - 如何提供更新 - 取消来自更多位置的更新；
 
-win10 chrome：修改安装路径下的chrome.exe的名字。
+15. win10 chrome：修改安装路径下的chrome.exe的名字。
     （1）在桌面上建立一个“新建文本文档.txt”。
     具体做法是：在桌面上空白处点击鼠标右键，在“新建”菜单中用鼠标左键点击“文本文档”。
     （2）把“新建文本文档.txt”重命名为“Go.html”(可以随便取名字,只要后缀是html即可)。
@@ -80,8 +79,20 @@ win10 chrome：修改安装路径下的chrome.exe的名字。
     双击“Go.html”文件，就可以打开默认的浏览器了（是个空白页面）。在地址栏输入你喜欢的主页，以后只需要点击地址栏下拉列表中的网址就可以啦。
     Go.html是个空白文件，用它来启动浏览器的速度似乎更快哦！
 
+16. win10关闭安全中心
+    - 法0：
+        + win10默认谦虚的方法，只要安装了第三方的安全软件，则自动退出defender
+    - 法1：
+        + regedit
+        + 进入：计算机\HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\SecurityHealthService
+        + 修改start的值为4则关闭
+        + 恢复则修改start为2
+        + 重启wins资源管理器即可。
+    - 法2：
+        + service.msc
+        + 找到Security-center，禁用。
 
-sublime：
+17. sublime：
     1. package install不好用的话，add channel：https://packagecontrol.io/channel_v3.json
     2. 配置java编译环境
         - sublime的java.sublime-package，用压缩软件打开，找到JavaC.sublime-build并打开，添加：
@@ -107,8 +118,7 @@ sublime：
             )
             ```
 
-            
-cmd命令大全（第一部分）
+18. cmd命令大全（第一部分）
 　　winver---------检查Windows版本 
 　　wmimgmt.msc----打开windows管理体系结构(WMI) 
 　　wupdmgr--------windows更新程序 

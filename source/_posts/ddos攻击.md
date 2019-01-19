@@ -1,7 +1,7 @@
 ---
-title: ddos
+title: ddos攻击
 date: 2017-12-21 10:40:58
-tags:
+tags: [ddos, 攻击]
 ---
 
 

@@ -1,7 +1,7 @@
 ---
-title: sublime
+title: sublime的使用
 date: 2017-12-21 10:41:32
-tags:
+tags: [sublime]
 ---
 
 
@@ -52,10 +52,6 @@ tags:
 		+ 一个顶俩
 9. solidity:
 	- ethereum: 安装后并修改view
-作者：知乎用户
-链接：https://www.zhihu.com/question/50098807/answer/133097092
-来源：知乎
-著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 
 10. InsertDate
 	- 可以在文档中快速插入时间，初始快捷键是Ctrl+F5。
